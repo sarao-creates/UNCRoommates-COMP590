@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import Title from './Title.js';
-import Welcome from './Welcome-page.js';
+import Title from './Title/Title';
+import Welcome from './WelcomePage/Welcome-page';
 
 
 function App() {
