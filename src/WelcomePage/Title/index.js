@@ -1,5 +1,5 @@
 import React from 'react'
-import './Title.css';
+import './index.css';
 function Title() {
   return (
     <div className = "Title">

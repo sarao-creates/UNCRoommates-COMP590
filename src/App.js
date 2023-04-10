@@ -1,15 +1,17 @@
-import React from 'react';
-import './App.css';
-import Title from './Title/Title';
-import Welcome from './WelcomePage/Welcome-page';
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+import WelcomePage from './WelcomePage';
+import ProfilePage from './ProfilePage';
+const ProfilePath = '/profile';
+const WelcomePath = '/welcome';
+
 
 
 function App() {
   return (
-    <div className="App">
-      <Title />
-      <Welcome />
-    </div>
+    <Router>
+      <Route path={WelcomePath} component={WelcomePage}></Route>
+      <Route path={ProfilePath} component={ProfilePage}></Route>
+    </Router>
 
   );
 }
