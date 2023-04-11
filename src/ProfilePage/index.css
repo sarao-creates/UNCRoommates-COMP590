@@ -1,0 +1,33 @@
+.full-screen {
+    width: 100vw;
+    height: 100vh;
+}
+
+.profile-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    border: #13294B 2px solid;
+    height: 60%;
+}
+
+.image-container {
+    height: 50%;
+    border: #000000 2px solid;
+    width: 25%;
+    margin-left: 10px;
+    margin-top: 10px;
+    float: left;
+}
+
+.name-container {
+    float: left;
+    background: #4B9CD3;
+    margin-left: 20px;
+}
+
+.profile-characteristics {
+    background: #E8F6FF;
+    float: left;
+}
+

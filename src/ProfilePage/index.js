@@ -1,9 +1,21 @@
 import {db} from '../Firebase/firebase.js'
 import { doc, getDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
+import './index.css';
 
 function ProfilePage() {
     const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [gender, setGender] = useState('')
+    const [bio, setBio] = useState('')
+    const [birthday, setBirthday] = useState('')
+    const [location, setLocation] = useState('')
+    const [party, setParty] = useState('')
+    const [sleep, setSleep] = useState('')
+    const [wake, setWake] = useState('')
+    const [year, setYear] = useState('')
+    const [allergies, setAllergies] = useState('')
+
 
     useEffect(() => {
 
@@ -13,6 +25,16 @@ function ProfilePage() {
 
             if (docSnap.exists()) {
                 setFirstName(docSnap.data()["First Name"])
+                setLastName(docSnap.data()["Last Name"])
+                setBio(docSnap.data()["Bio"])
+                setGender(docSnap.data()["Gender"])
+                setBirthday(docSnap.data()["Birthday"])
+                setLocation(docSnap.data()["Location Preference"])
+                setParty(docSnap.data()["PartyPref"])
+                setSleep(docSnap.data()["SleepTime"])
+                setWake(docSnap.data()["WakeTime"])
+                setYear(docSnap.data()["Year"])
+                setAllergies(docSnap.data()["Allergies"])
               } else {
                 setFirstName("Error")
             }    
@@ -24,7 +46,24 @@ function ProfilePage() {
     }, []);
     
     return (
-        <h1>{firstName}</h1>
+        <div className='full-screen'>
+            <div className='profile-container'>
+                <div className='image-container'></div>
+                <div className='name-container'>
+                    <h1>{firstName} {lastName}</h1>
+                </div>
+                <div className='profile-characteristics'>
+                    <p>Year <br />{year}</p>
+                    <p>Birthday<br />{birthday}</p>
+                    <p>Location Preference<br />{location}</p>
+                    <p>Identifies as <br />{gender} {wake} {party}</p>
+                    <p>Allergies <br />{allergies}</p>
+                </div>
+                <div className='bio-container'>
+                    {bio}
+                </div>
+            </div>
+        </div>
     )
 }
 
