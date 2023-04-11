@@ -2,6 +2,7 @@ import {db} from '../Firebase/firebase.js'
 import { doc, getDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import './index.css';
+import Title from '../WelcomePage/Title';
 
 function ProfilePage() {
     const [firstName, setFirstName] = useState('')
@@ -47,6 +48,7 @@ function ProfilePage() {
     
     return (
         <div className='full-screen'>
+            <Title></Title>
             <div className='profile-container'>
                 <div className='left-container'>
                     <div className='image-container'></div>
