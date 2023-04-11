@@ -6,7 +6,7 @@ function ProfilePage() {
     // }
     
     return (
-        <h1>Hi this is the profile page! My name is Sameer</h1>
+        <h1>Hi this is the profile page! My name is Sameer & Jingtong & Brooke</h1>
     )
 }
 
