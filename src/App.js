@@ -9,7 +9,7 @@ const WelcomePath = '/welcome';
 function App() {
   return (
     <Router>
-      <Route path='/'>
+      <Route exact path='/'>
         <Redirect to='/welcome'></Redirect>
       </Route>
       <Route path={WelcomePath} component={WelcomePage}></Route>
