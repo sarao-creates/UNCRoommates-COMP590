@@ -3,6 +3,18 @@
     height: 100vh;
 }
 
+.left-container {
+    float: left;
+    width: 25%;
+    height: 50%;
+}
+
+.right-container {
+    float: left;
+    width: 75%;
+    height: 50%;
+}
+
 .profile-container {
     margin-left: auto;
     margin-right: auto;
@@ -12,22 +24,29 @@
 }
 
 .image-container {
-    height: 50%;
+    height: 80%;
     border: #000000 2px solid;
-    width: 25%;
-    margin-left: 10px;
-    margin-top: 10px;
-    float: left;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .name-container {
-    float: left;
     background: #4B9CD3;
-    margin-left: 20px;
+    width: auto;
 }
 
 .profile-characteristics {
     background: #E8F6FF;
-    float: left;
 }
 
+.table-size {
+    width: 33%
+}
+
+.blank-row {
+    background-color: #E8F6FF;
+    height: 20px;
+}

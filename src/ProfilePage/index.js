@@ -48,17 +48,38 @@ function ProfilePage() {
     return (
         <div className='full-screen'>
             <div className='profile-container'>
-                <div className='image-container'></div>
-                <div className='name-container'>
-                    <h1>{firstName} {lastName}</h1>
+                <div className='left-container'>
+                    <div className='image-container'></div>
                 </div>
-                <div className='profile-characteristics'>
-                    <p>Year <br />{year}</p>
-                    <p>Birthday<br />{birthday}</p>
-                    <p>Location Preference<br />{location}</p>
-                    <p>Identifies as <br />{gender} {wake} {party}</p>
-                    <p>Allergies <br />{allergies}</p>
+                <div className='right-container'>
+                    <div className='name-container'>
+                        <h1>{firstName} {lastName}</h1>
+                    </div>
+                    <div className='profile-characteristics'>
+                        <table>
+                            <tr>
+                                <td className='table-size'>Year</td>
+                                <td>Birthday</td>
+                                <td>Location Preference</td>
+                            </tr>
+                            <tr>
+                                <td>{year}</td>
+                                <td>{birthday}</td>
+                                <td>{location}</td>
+                            </tr>
+                            <tr className="blank-row"><td colspan="3"></td></tr>
+                            <tr>
+                                <td>Identifies as</td>
+                                <td>Allergies</td>
+                            </tr>
+                            <tr>
+                                <td>{gender} {wake} {party}</td>
+                                <td>{allergies}</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
+    
                 <div className='bio-container'>
                     {bio}
                 </div>
