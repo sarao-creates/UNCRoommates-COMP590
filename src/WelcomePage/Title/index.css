@@ -34,3 +34,11 @@
     padding: 10px;
 
 }
+
+.Settings-text {
+    position: flex;
+    right: 125px;
+    height: 15%;
+    width: 200;
+    padding: 10px;
+}
