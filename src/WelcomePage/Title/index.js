@@ -5,9 +5,11 @@ function Title() {
   return (
     <div className = "Title">
       <h1 className='Text'>UNCRoommates</h1>
-      <h2 className='Logout-text'alignItems="stretch">
-        <Button style={{backgroundColor:'#13294b'}}variant='contained'>Logout</Button>
-        <Button style={{backgroundColor:'#13294b'}}variant='contained'>Settings</Button>
+      <h2 className='Logout-text'>
+        <Button style={{maxWidth: '100px', maxHeight: '40px', minWidth: '100px', minHeight: '40px',backgroundColor:'#13294b'}}variant='contained'size='medium'>Logout</Button>
+        <h3 className='Settings-text'>
+        <Button style={{maxWidth: '100px', maxHeight: '40px', minWidth: '100px', minHeight: '40px',backgroundColor:'#13294b'}}variant='contained'size='medium'>Settings</Button>
+        </h3>
       </h2>
     </div>
   )

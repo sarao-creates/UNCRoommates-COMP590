@@ -36,8 +36,9 @@
 }
 
 .Settings-text {
-    position: flex;
-    right: 125px;
+    position: absolute;
+    right: 0px;
+    top: 15px;
     height: 15%;
     width: 200;
     padding: 10px;
