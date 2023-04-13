@@ -1,0 +1,45 @@
+.Title {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: baseline;
+    padding: 1em;
+    margin-bottom: 1em;
+    background-color: #4b9cd3;
+    color: #fff;
+  }
+.App-logo {
+    box-sizing: border-box;
+    width: 10%;
+    height: 10%;
+    display: flex;
+    justify-content:left;
+    align-items: baseline;
+    padding: 1em;
+    margin-bottom: 1em;
+    background-color: #4b9cd3;
+}
+.Text {
+    color: #fff;
+    display: flex;
+    justify-content: left;
+    font-size: 55px;
+
+}
+.Logout-text {
+    position: absolute;
+    right: 25px;
+    width: 200;
+    padding: 10px;
+
+}
+
+.Settings-text {
+    position: absolute;
+    right: 0px;
+    top: 15px;
+    height: 15%;
+    width: 200;
+    padding: 10px;
+}
