@@ -1,0 +1,87 @@
+.full-screen {
+    width: 100vw;
+    height: 100vh;
+}
+
+.button {
+    background-color: #13294B;
+    border: 2px solid #13294B;
+    border-radius: 4px;
+    color: white;
+    padding: 10px 10px;
+    margin-right: 20px;
+    text-decoration: none;
+    font-size: 16px;
+    transition-duration: 0.3s;
+  }
+  
+  .button:hover {
+    background-color: white;
+    border: 2px solid #13294B;
+    color: #13294B;
+  }
+
+.button-save {
+    float: right;
+}
+
+.button-status {
+    margin-left: 272px;
+    padding: 15px 25px;
+    font-size: 20px;
+    background-color: #4B9CD3;
+    float: center;
+}
+
+.settings-header {
+    padding: 5px;
+    margin-top: -34px;
+    text-align: relative;
+    font-size: 20px;
+    color: white;
+}
+
+.settings-header-description {
+    padding: 5px;
+    margin-top: -26px;
+    margin-left: 115px;
+    text-align: relative;
+    font-size: 10px;
+    color: white;
+}
+
+.settings-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    border: #13294B 2px solid;
+    height: 115%;
+}
+
+.smaller-container {
+    height: 28%;
+    border: #13294B 2px solid;
+    border-top-width: 30px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.form-text {
+    color:black;
+    padding: 5px;
+    margin-left: 5px;
+  }
+
+  input[type=text], select {
+    width: 95%;
+    padding: 12px 20px;
+    margin-left: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
