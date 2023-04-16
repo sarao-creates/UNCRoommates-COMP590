@@ -1,0 +1,60 @@
+.full-screen {
+    width: auto;
+    height: 100vh;
+}
+
+.button {
+    background-color: #13294B;
+    border: 2px solid #13294B;
+    border-radius: 4px;
+    color: white;
+    padding: 10px 10px;
+    margin-right: 20px;
+    text-decoration: none;
+    font-size: 16px;
+    transition-duration: 0.3s;
+  }
+  
+  .button:hover {
+    background-color: white;
+    border: 2px solid #13294B;
+    color: #13294B;
+  }
+
+  .button-create {
+    margin-left: 290px;
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: #4B9CD3;
+    float: center;
+}
+.createaccount-header {
+    padding: 40px;
+    padding-bottom: 10px;
+    margin-top: -34px;
+    text-align: center;
+    font-size: 50px;
+    color: #13294B;
+}
+
+.dashedline {
+    margin: 5px 370px;
+    height: 5px;
+    background: repeating-linear-gradient(
+      to right,
+      transparent,
+      transparent 10px,
+      #4B9CD3 10px,
+      #4B9CD3 20px
+    );
+}
+
+.createaccount-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    border: #13294B 2px solid;
+    border-top: #13294B 15px solid;
+    height: auto;
+    padding: 20px;
+}
