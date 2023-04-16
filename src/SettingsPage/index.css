@@ -26,23 +26,32 @@
 }
 
 .button-status {
-    margin-left: 272px;
+    margin-left: 300px;
     padding: 15px 25px;
     font-size: 20px;
     background-color: #4B9CD3;
     float: center;
 }
 
-.settings-header {
-    padding: 5px;
+.page-header {
+    padding: 40px;
+    padding-bottom: 10px;
+    margin-left: 100px;
     margin-top: -34px;
+    text-align: center;
+    font-size: 50px;
+    color: #13294B;
+}
+
+.settings-header {
+    margin-top: -38px;
     text-align: relative;
     font-size: 20px;
     color: white;
 }
 
 .settings-header-description {
-    padding: 5px;
+    padding-top: 10px;
     margin-top: -26px;
     margin-left: 115px;
     text-align: relative;
@@ -55,7 +64,8 @@
     margin-right: auto;
     width: 60%;
     border: #13294B 2px solid;
-    height: 115%;
+    height: 110%;
+    padding-bottom: 50px;
 }
 
 .smaller-container {
@@ -67,21 +77,17 @@
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 1px;
 }
 
-.form-text {
-    color:black;
-    padding: 5px;
-    margin-left: 5px;
-  }
-
-  input[type=text], select {
-    width: 95%;
-    padding: 12px 20px;
-    margin-left: 10px;
-    margin-right: 6px;
-    display: inline-block;
-    border: 1px solid black;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
+.settingstextinputheader {
+    padding-top: 45px;
+    padding-bottom: 8px;
+    margin-top: -30px;
+    text-align: relative;
+    font-size: 15px;
+    color: black;
+}
