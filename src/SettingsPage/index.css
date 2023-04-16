@@ -1,0 +1,93 @@
+.full-screen {
+    width: 100vw;
+    height: 100vh;
+}
+
+.button {
+    background-color: #13294B;
+    border: 2px solid #13294B;
+    border-radius: 4px;
+    color: white;
+    padding: 10px 10px;
+    margin-right: 20px;
+    text-decoration: none;
+    font-size: 16px;
+    transition-duration: 0.3s;
+  }
+  
+  .button:hover {
+    background-color: white;
+    border: 2px solid #13294B;
+    color: #13294B;
+  }
+
+.button-save {
+    float: right;
+}
+
+.button-status {
+    margin-left: 300px;
+    padding: 15px 25px;
+    font-size: 20px;
+    background-color: #4B9CD3;
+    float: center;
+}
+
+.page-header {
+    padding: 40px;
+    padding-bottom: 10px;
+    margin-left: 100px;
+    margin-top: -34px;
+    text-align: center;
+    font-size: 50px;
+    color: #13294B;
+}
+
+.settings-header {
+    margin-top: -38px;
+    text-align: relative;
+    font-size: 20px;
+    color: white;
+}
+
+.settings-header-description {
+    padding-top: 10px;
+    margin-top: -26px;
+    margin-left: 115px;
+    text-align: relative;
+    font-size: 10px;
+    color: white;
+}
+
+.settings-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    border: #13294B 2px solid;
+    height: 110%;
+    padding-bottom: 50px;
+}
+
+.smaller-container {
+    height: 28%;
+    border: #13294B 2px solid;
+    border-top-width: 30px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 1px;
+}
+
+.settingstextinputheader {
+    padding-top: 45px;
+    padding-bottom: 8px;
+    margin-top: -30px;
+    text-align: relative;
+    font-size: 15px;
+    color: black;
+}
