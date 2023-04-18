@@ -13,6 +13,7 @@ const LoginPath = '/login';
 const SurveyPath = '/survey';
 const SettingsPath = '/settings'
 const CreateAccountPath = '/signup';
+const ViewMatchesPath = '/viewmatches'
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
         <Route path={SurveyPath} component={Survey}></Route>
         <Route path={SettingsPath} component={Settings}></Route>
         <Route path={CreateAccountPath} component={CreateAccountPage}></Route>
+        <Route path={ViewMatchesPath} component={ViewMatches}></Route>
+
       </Switch>
     </Router>
   );
