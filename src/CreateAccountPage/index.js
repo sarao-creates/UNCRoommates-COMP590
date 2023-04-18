@@ -8,6 +8,9 @@ import {TextField} from '@mui/material';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../Firebase/firebase.js';
 import { useHistory } from "react-router-dom";
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+
 
 
 
@@ -23,6 +26,12 @@ function CreateAccountPage() {
         phone: '',
     })
 
+     const [snackbar, setSnackbar] = useState({
+        status: false,
+        message: '',
+    });
+
+
     const [pwd, setPWD] = useState('')
 
     const handlePWD = (event) => {
@@ -32,11 +41,12 @@ function CreateAccountPage() {
     const handleSignup = () => {
         createUserWithEmailAndPassword(auth, userInfo['email'], pwd).then((userCredential) => {
             console.log(userCredential.user)
-            history.go('/survey');
+            history.push('/survey');
             return db.collection('users').doc(userCredential.user.uid).set(userInfo);
         })
         .catch((error) => {
-            console.log(error.code + " - " + error.message)
+            console.log(error.code + " - " + error.message);
+            setSnackbar({status: true, message: `${error.code} - ${error.message}`});
         })
     }
 
@@ -83,19 +93,22 @@ function CreateAccountPage() {
                     /><TextField
                         id="password"
                         label="Password"
-                        type="email"
+                        type="password"
                         size="small"
                         style = {{width: 340, paddingRight:78}}
                         onChange={handlePWD}
                     /><TextField
                         id="confirmpassword"
                         label="Re-enter password"
-                        type="email"
+                        type="password"
                         size="small"
                         style = {{width: 340, paddingBottom: 30}}
                         //onChange={}
                     />
-                    <button onClick={handleSignup()} className="button button-create">Create Account</button>
+                    <button onClick={handleSignup} className="button button-create">Create Account</button>
+                    <Snackbar open={snackbar.status} autoHideDuration={7500} onClose={() => setSnackbar({status: false})}> 
+                        <Alert severity='info'>{snackbar.message}</Alert>
+                    </Snackbar>
                 </div>
             </div>
         </div>
