@@ -4,7 +4,7 @@ import ProfilePage from './ProfilePage';
 import Survey from './Survey';
 import Settings from './SettingsPage';
 import CreateAccountPage from './CreateAccountPage';
-
+ 
 const ProfilePath = '/profile';
 const WelcomePath = '/welcome';
 const SurveyPath = '/survey';
