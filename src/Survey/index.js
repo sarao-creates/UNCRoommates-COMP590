@@ -1,6 +1,8 @@
 import './index.css'
 import Title from './Title'
 import React, { useState } from 'react';
+//import {Redirect} from 'react-router-dom';
+
 import {
   Grid,
   TextField,
@@ -15,7 +17,8 @@ import {
   Select,
 } from '@mui/material';
 //import { createTheme, ThemeProvider } from '@mui/material/styles';
-import db from '../Firebase/firebase';
+import db from '../Firebase/firebase.js';
+import { collection, addDoc } from "firebase/firestore";
 
 function Survey() {
   const [birthYear, setBirthYear] = useState('');
@@ -33,11 +36,42 @@ function Survey() {
   const [window, setWindow] = useState('');
   const [animal, setAnimal] = useState('');
   const [party, setParty] = useState('');
+  const [setError] = useState('');
+  const [setSuccess] = useState('');
+  
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    //console.log(`Age: ${age}, Favorite Color: ${favoriteColor}, Gender: ${gender}`);
-    
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    if (!birthYear || !gender || !classYear || !major || !location || !bedTime || !wakeTime || !noiseLevel || !guestLevel || !tidiness) {
+        setError("Please fill in all required fields.");
+        return;
+      }
+      const surveyData = {
+        birthYear,
+        gender,
+        classYear,
+        major,
+        location,
+        bedTime,
+        wakeTime,
+        noiseLevel,
+        guestLevel,
+        tidiness,
+        allergies,
+        accomodations,
+        window,
+        animal,
+        party,
+      };
+      try {
+        const docRef = await addDoc(collection(db, "users"), surveyData);
+        console.log("Survey submitted with ID: ", docRef.id);
+        setSuccess(true);
+      } catch (error) {
+        console.error("Error adding survey: ", error);
+      }
+      
+
   }
 
   function handleGenderChange(event) {
@@ -252,17 +286,6 @@ function Survey() {
                 <FormControlLabel value="Somewhat uncomfortable" control={<Radio required/>} label="Somewhat uncomfortable - I prefer not to have guests over in the room, but it's not a hard rule." />
                 <FormControlLabel value="Somewhat comfortable" control={<Radio required/>} label="Somewhat comfortable - I am okay with having guests over in the room occasionally." />
                 <FormControlLabel value="Very comfortable" control={<Radio required/>} label="Very comfortable - I don't mind having guests over in the room at any time." />
-              </RadioGroup>
-            </FormControl>
-          </Grid>
-          <Grid item xs={7}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">10. How tidy do you keep your living spaces?<span style={{ color: 'red' }}>*</span></FormLabel>
-              <RadioGroup aria-label="tidiness" name="tidiness" value={tidiness} onChange={handleTidinessChange}>
-                <FormControlLabel value="Very tidy" control={<Radio required/>} label="Very tidy - I like to keep things organized and clean at all times." />
-                <FormControlLabel value="Slightly tidy" control={<Radio required/>} label="Slightly tidy - I try to keep things organized, but don't mind a little mess from time to time." />
-                <FormControlLabel value="Slightly messy" control={<Radio required/>} label="Slightly messy - I tend to be a little disorganized and may have a few items out of place." />
-                <FormControlLabel value="Very messy" control={<Radio required/>} label="Very messy - I am not very concerned with tidiness and may have a lot of clutter." />
               </RadioGroup>
             </FormControl>
           </Grid>
