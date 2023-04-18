@@ -4,12 +4,14 @@ import ProfilePage from './ProfilePage';
 import Survey from './Survey';
 import Settings from './SettingsPage';
 import CreateAccountPage from './CreateAccountPage';
+import OnboardingBioPage from './OnboardingBioPage';
 
 const ProfilePath = '/profile';
 const WelcomePath = '/welcome';
 const SurveyPath = '/survey';
 const SettingsPath = '/settings'
 const CreateAccountPath = '/createaccount';
+const OnboardingBioPath = '/onboardingbio';
 
 
 
@@ -24,6 +26,7 @@ function App() {
       <Route path={SurveyPath} component={Survey}></Route>
       <Route path={SettingsPath} component={Settings}></Route>
       <Route path={CreateAccountPath} component={CreateAccountPage}></Route>
+      <Route path={OnboardingBioPath} component={OnboardingBioPage}></Route>
     </Router>
 
   );
