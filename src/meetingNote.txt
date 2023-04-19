@@ -1,0 +1,10 @@
+1. add a 5th step that clearly states user will have to contact with matches
+2. forgot password choice
+3. welcome to UNCRoommates vibe
+4. put the tag besides choices for tag questions
+5. do a primary major rather than major
+6. visuals in settings page
+7. change id to order
+8. add another field of 'processed' for each accepted or declined match that's associated with the user, so the next time they won't get pulled form the database and recalculated
+
+
