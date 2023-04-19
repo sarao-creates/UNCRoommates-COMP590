@@ -64,7 +64,7 @@ function Survey() {
         party,
       };
       try {
-        const docRef = await addDoc(collection(db, "users"), surveyData);
+        const docRef = await addDoc(collection(db, "surveyResponses"), surveyData);
         console.log("Survey submitted with ID: ", docRef.id);
         setSuccess(true);
       } catch (error) {
