@@ -9,7 +9,6 @@
     border-radius: 4px;
     color: white;
     padding: 10px 10px;
-    margin-right: 20px;
     text-decoration: none;
     font-size: 16px;
     transition-duration: 0.3s;
@@ -25,37 +24,41 @@
     float: right;
 }
 
+.alignment-container {
+    text-align: center;
+ }
+
 .button-status {
-    margin-left: 300px;
+    display: block;
     padding: 15px 25px;
     font-size: 20px;
     background-color: #4B9CD3;
-    float: center;
+    margin: 0 auto;
 }
 
 .page-header {
     padding: 40px;
     padding-bottom: 10px;
-    margin-left: 100px;
-    margin-top: -34px;
     text-align: center;
     font-size: 50px;
     color: #13294B;
 }
 
-.settings-header {
-    margin-top: -38px;
-    text-align: relative;
-    font-size: 20px;
-    color: white;
+.headerpadding {
+    padding-left: 10px;
+    background-color: #13294B;
 }
 
-.settings-header-description {
-    padding-top: 10px;
-    margin-top: -26px;
-    margin-left: 115px;
+.textpadding {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.settings-header {
+    margin-top: auto;
     text-align: relative;
-    font-size: 10px;
+    font-size: 20px;
+    background-color: #13294B;
     color: white;
 }
 
@@ -64,23 +67,22 @@
     margin-right: auto;
     width: 60%;
     border: #13294B 2px solid;
-    height: 110%;
-    padding-bottom: 50px;
+    height: auto;
+    padding-bottom: auto;
 }
 
 .smaller-container {
-    height: 28%;
+    height: auto;
     border: #13294B 2px solid;
-    border-top-width: 30px;
     width: 60%;
     margin-left: auto;
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 1px;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 15px;
 }
 
 .settingstextinputheader {
