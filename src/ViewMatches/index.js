@@ -1,9 +1,10 @@
 import './index.css'
 import Title from './Title'
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 //import { Link } from 'react-router-dom';
 //import {Redirect} from 'react-router-dom';
-
+import db from '../Firebase/firebase.js';
+import { collection, addDoc } from "firebase/firestore";
 import {
   Grid,
   Paper, 
@@ -14,6 +15,24 @@ import {
 //import { collection, addDoc } from "firebase/firestore";
 
 function ViewMatches() {
+    const [responses, setResponses] = useState([]);
+
+  useEffect(() => {
+    // Function to fetch all survey responses from Firebase
+    const fetchResponses = async () => {
+      const responseRef = db.collection("surveyResponses");
+      const snapshot = await responseRef.get();
+      const newResponses = [];
+      snapshot.forEach((doc) => {
+        const response = doc.data();
+        response.id = doc.id;
+        newResponses.push(response);
+      });
+      setResponses(newResponses);
+    };
+
+    fetchResponses();
+  }, []);
     const profiles = [
         {
           order: 1,
