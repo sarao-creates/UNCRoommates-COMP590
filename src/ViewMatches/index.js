@@ -4,7 +4,8 @@ import React, { useState , useEffect} from 'react';
 //import { Link } from 'react-router-dom';
 //import {Redirect} from 'react-router-dom';
 import db from '../Firebase/firebase.js';
-import { collection, addDoc } from "firebase/firestore";
+import { addDoc, doc, getDoc } from "firebase/firestore";
+
 import {
   Grid,
   Paper, 
@@ -19,20 +20,36 @@ function ViewMatches() {
 
   useEffect(() => {
     // Function to fetch all survey responses from Firebase
-    const fetchResponses = async () => {
-      const responseRef = db.collection("surveyResponses");
-      const snapshot = await responseRef.get();
-      const newResponses = [];
-      snapshot.forEach((doc) => {
-        const response = doc.data();
-        response.id = doc.id;
-        newResponses.push(response);
-      });
-      setResponses(newResponses);
+    const getResponses = async () => {
+        const responseRef = db.collection("surveyResponses");
+        const snapshot = await responseRef.get();
+        const newResponses = [];
+        let i = 1;
+        snapshot.forEach((doc) => {
+            const response = doc.data();
+            response.id = i;
+            i++;
+            newResponses.push(response);
+        });
+        setResponses(newResponses);
     };
 
-    fetchResponses();
+    getResponses();
   }, []);
+  
+    // Function to calculate score between two responses
+
+
+
+
+
+    // Function to sort responses based on their scores
+
+
+
+
+
+    // Function to generate a list of displayed info with the same format as 'profiles'.
     const profiles = [
         {
           order: 1,
