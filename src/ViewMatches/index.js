@@ -1,27 +1,17 @@
 import './index.css'
 import Title from './Title'
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 //import {Redirect} from 'react-router-dom';
 
 import {
   Grid,
-  TextField,
-  Radio,
-  RadioGroup,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Button,
-  MenuItem,
-  InputLabel,
-  Select, 
   Paper, 
   Typography
 } from '@mui/material';
 //import { createTheme, ThemeProvider } from '@mui/material/styles';
-import db from '../Firebase/firebase.js';
-import { collection, addDoc } from "firebase/firestore";
+//import db from '../Firebase/firebase.js';
+//import { collection, addDoc } from "firebase/firestore";
 
 function ViewMatches() {
     const profiles = [
@@ -92,7 +82,7 @@ function ViewMatches() {
             <Typography variant="body2">
               Year: {profile.year} | Age: {profile.age} | Location: {profile.location}
             </Typography>
-            <Typography variant="body1">Bio:{profile.bio}</Typography>
+            <Typography variant="body1"><b>Bio: </b>{profile.bio}</Typography>
           </Paper>
         </Grid>
       ))}
