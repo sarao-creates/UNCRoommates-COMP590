@@ -3,7 +3,16 @@
     height: 100vh;
 }
 
-.onboardingbio-text {
+img{
+    max-width:180px;
+  }
+  input[type=file]{
+  padding:10px;
+  background:#2d2d2d;}
+
+
+
+.onboardingphoto-text {
     font-size: medium;
     padding-bottom: 10px;
 }
@@ -47,7 +56,7 @@ button[disabled]:hover {
     color: #666666;
 }
 
-.onboardingbio-header {
+.onboardingphoto-header {
     padding: 15px;
     padding-bottom: 10px;
     text-align: center;
@@ -67,7 +76,7 @@ button[disabled]:hover {
     );
 }
 
-.onboardingbio-container {
+.onboardingphoto-container {
     margin-left: auto;
     margin-right: auto;
     width: 60%;

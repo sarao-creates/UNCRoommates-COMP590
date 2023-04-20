@@ -5,6 +5,7 @@ import Survey from './Survey';
 import Settings from './SettingsPage';
 import CreateAccountPage from './CreateAccountPage';
 import OnboardingBioPage from './OnboardingBioPage';
+import OnboardingPhotoPage from './OnboardingPhotoPage';
 
 const ProfilePath = '/profile';
 const WelcomePath = '/welcome';
@@ -12,6 +13,7 @@ const SurveyPath = '/survey';
 const SettingsPath = '/settings'
 const CreateAccountPath = '/createaccount';
 const OnboardingBioPath = '/onboardingbio';
+const OnboardingPhotoPath = '/onboardingphoto';
 
 
 
@@ -27,6 +29,7 @@ function App() {
       <Route path={SettingsPath} component={Settings}></Route>
       <Route path={CreateAccountPath} component={CreateAccountPage}></Route>
       <Route path={OnboardingBioPath} component={OnboardingBioPage}></Route>
+      <Route path={OnboardingPhotoPath} component={OnboardingPhotoPage}></Route>
     </Router>
 
   );
