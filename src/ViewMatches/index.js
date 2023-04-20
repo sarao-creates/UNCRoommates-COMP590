@@ -4,7 +4,7 @@ import React, { useState , useEffect} from 'react';
 //import { Link } from 'react-router-dom';
 //import {Redirect} from 'react-router-dom';
 import db from '../Firebase/firebase.js';
-import { addDoc, doc, getDoc, collection } from "firebase/firestore";
+import { addDoc, doc, getDocs, collection } from "firebase/firestore";
 
 import {
   Grid,
@@ -21,22 +21,22 @@ function ViewMatches() {
   useEffect(() => {
     // Function to fetch all survey responses from Firebase
     const getResponses = async () => {
-        const responseRef = getDoc(collection(db,"surveyResponses"));
-        const snapshot = await responseRef.get();
+        const responseRef = await getDocs(collection(db,"surveyResponses"));
+        // const snapshot = await responseRef.get();
         const newResponses = [];
         let i = 1;
-        snapshot.forEach((doc) => {
+        responseRef.forEach((doc) => {
             const response = doc.data();
             response.id = i;
             i++;
             newResponses.push(response);
         });
+        console.log(newResponses)
         setResponses(newResponses);
     };
 
     getResponses();
   }, []);
-  console.log(setResponses);
 
   
   
