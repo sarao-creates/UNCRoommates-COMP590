@@ -19,7 +19,7 @@ function OnboardingBioPage() {
                     <div class="dashedline"></div>
                     <br></br>
                     <div className='onboardingbio-container'>
-                        <p>Type a short bio of yourself here. You can include other information about yourself, such as hobbies, allergies, and lifestyle!</p>
+                        <div className='onboardingbio-text'>Type a short bio of yourself here. You can include other information about yourself, such as hobbies, allergies, and lifestyle! <b>NOTE: You must enter at least 150 characters and no more than 1,500 characters.</b></div>
                         <TextField
                             fullWidth
                             multiline
@@ -30,8 +30,8 @@ function OnboardingBioPage() {
                             className="full_height_Width"
                             onChange={e => setCount(e.target.value.length)}
                         />
-                        <p>{count}</p>
-                        <button class="button" type="button" disabled={!validate()}>Next</button>
+                        <p><b>Character Count: {count}</b></p>
+                        <button class="button button-next" type="button" disabled={!validate()}>Next</button>
                     </div>
                 </div>
         </div>
