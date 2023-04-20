@@ -22,7 +22,7 @@ function ViewMatches() {
     // Function to fetch all survey responses from Firebase
     const getResponses = async () => {
         const responseRef = await getDocs(collection(db,"surveyResponses"));
-        // const snapshot = await responseRef.get();
+        //const snapshot = await responseRef.get();
         const newResponses = [];
         let i = 1;
         responseRef.forEach((doc) => {
@@ -31,14 +31,15 @@ function ViewMatches() {
             i++;
             newResponses.push(response);
         });
-        console.log(newResponses)
         setResponses(newResponses);
     };
 
     getResponses();
   }, []);
 
-  
+
+
+
   
     // Function to calculate score between two responses
 
