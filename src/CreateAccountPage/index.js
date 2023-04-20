@@ -59,7 +59,7 @@ function CreateAccountPage() {
                         style = {{width: 340, paddingBottom: 30}}
                         //onChange={}
                     />
-                    <button class="button button-create">Create Account</button>
+                    <button class="button button-create" type="button">Create Account</button>
                 </div>
             </div>
         </div>
