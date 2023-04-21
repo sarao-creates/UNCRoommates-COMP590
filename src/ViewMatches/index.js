@@ -16,32 +16,116 @@ import {
 //import { collection, addDoc } from "firebase/firestore";
 
 function ViewMatches() {
-    const [responses, setResponses] = useState([]);
-
+    //const [responses, setResponses] = useState([]);
+    const responses = useState([]);
+    // TODO: we might want to change this sample response to the current user's response.
+    const sampleResponse = {
+        "birthYear": "1999",
+        "animal": "No",
+        "location": "North Campus",
+        "major": "Computer Science",
+        "gender": "male",
+        "party": "I like to party occasionally",
+        "guestLevel": "Somewhat comfortable",
+        "classYear": "2026",
+        "accomodations": "",
+        "tidiness": "Slightly tidy",
+        "bedTime": "Early",
+        "noiseLevel": "Moderate",
+        "allergies": "",
+        "wakeTime": "Early",
+        "window": "Neutral",
+        "id": 0
+    }
   useEffect(() => {
     // Function to fetch all survey responses from Firebase
     const getResponses = async () => {
         const responseRef = await getDocs(collection(db,"surveyResponses"));
         //const snapshot = await responseRef.get();
-        const newResponses = [];
-        let i = 1;
+        let i = 0;
         responseRef.forEach((doc) => {
             const response = doc.data();
             response.id = i;
+            response.score = calculateScore(response,sampleResponse)
+            console.log(response.score);
+            responses.push(response);
             i++;
-            newResponses.push(response);
+            
         });
-        setResponses(newResponses);
+        
     };
 
     getResponses();
   }, []);
+  //console.log(responses);
+
 
 
 
 
   
     // Function to calculate score between two responses
+    const calculateScore = (response1, response2) => {
+        let score = 0;
+
+        // filtering out users with different gender or different location preference
+        if ((response1.gender !== response2.gender) || (response1.location !== response2.location)) {
+            return -1;
+          }
+
+        // calculate birthYear difference, and add score accordingly
+        let birthYear1 = parseInt(response1.birthYear);
+        let birthYear2 = parseInt(response2.birthYear);
+        let birthYearDiff = Math.abs(birthYear1 - birthYear2);
+        if (birthYearDiff <= 1) score += 10;
+        else if (birthYearDiff <= 3) score += 5;
+        
+        // calculate classYear difference, and add score accordingly
+        let classYear1 = parseInt(response1.classYear);
+        let classYear2 = parseInt(response2.classYear);
+        let classYearDiff = Math.abs(classYear1 - classYear2);
+        if (classYearDiff === 0) score += 5;
+        
+        // bedTime calculation
+        let bedTime1 = response1.bedTime;
+        let bedTime2 = response2.bedTime;
+        if (bedTime1 === bedTime2) score += 20;
+        else if ((bedTime1 === 'Regular') || (bedTime2 === 'Regular')) score += 7;
+
+        //wakeTime calculation
+        let wakeTime1 = response1.wakeTime;
+        let wakeTime2 = response2.wakeTime;
+        if (wakeTime1 === wakeTime2) score += 20;
+        else if ((wakeTime1 === 'Regular') || (wakeTime2 === 'Regular')) score += 7;
+
+        //noiseLevel
+        let noiseLevel1 = response1.noiseLevel;
+        let noiseLevel2 = response2.noiseLevel;
+        if (noiseLevel1 === noiseLevel2) score += 15;
+        if ((noiseLevel1 === 'Moderate') || (noiseLevel2 === 'Moderate')) score += 7;
+
+        //guest
+        let guest1 = response1.guestLevel;
+        let guest2 = response2.guestLevel;
+        if (guest1 === guest2) score += 20;
+        if (((guest1 === 'Very uncomfortable') || (guest1 === 'Somewhat uncomfortable')) && ((guest2 === 'Very uncomfortable') || (guest2 === 'Somewhat uncomfortable'))) {
+            score += 10;
+        } else if (((guest1 === 'Very comfortable') || (guest1 === 'Somewhat comfortable')) && ((guest2 === 'Very comfortable') || (guest2 === 'Somewhat comfortable'))) {
+            score += 10;
+        }
+
+        //tidiness
+        let tidy1 = response1.tidiness;
+        let tidy2 = response2.tidiness;
+        if (tidy1 === tidy2) score += 20;
+        if (((tidy1 === 'Very tidy') || (guest1 === 'Slightly tidy')) && ((tidy2 === 'Very tidy') || (tidy2 === 'Slightly tidy'))) {
+            score += 10;
+        } else if (((tidy1 === 'Very messy') || (tidy1 === 'Slightly messy')) && ((tidy2 === 'Very messy') || (tidy2 === 'Slightly messy'))) {
+            score += 10;
+        }
+        return score;
+      };
+
 
 
 
@@ -119,10 +203,10 @@ function ViewMatches() {
             onClick={() => handleProfileClick(profile.id)}
           >
             <Typography variant="h6" color='#4b9cd3'>{profile.name}</Typography>
-            <Typography variant="body2">
+            <Typography variant="body1">
               Year: {profile.year} | Age: {profile.age} | Location: {profile.location}
             </Typography>
-            <Typography variant="body1"><b>Bio: </b>{profile.bio}</Typography>
+            <Typography variant="body2"><b>Bio: </b>{profile.bio}</Typography>
           </Paper>
         </Grid>
       ))}
