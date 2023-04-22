@@ -4,21 +4,12 @@ import { doc, getDoc } from 'firebase/firestore';
 import './index.css'
 import { useState, useEffect } from 'react';
 import Title from '../WelcomePage/Title/index.js';
-import {TextField} from '@mui/material';
 
 function OnboardingPhotoPage() {
     const [file, setFile] = useState("");
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                ('#blah')
-                    .attr('src', e.target.result);
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
+    function handleChange(e) {
+        console.log(e.target.files);
+        setFile(URL.createObjectURL(e.target.files[0]));
     }
     return (
         <div>
@@ -28,8 +19,22 @@ function OnboardingPhotoPage() {
                     <div class="dashedline"></div>
                     <br></br>
                     <div className='onboardingphoto-container'>
-                        <input type='file' onchange="readURL(this);" />
-                        <img id="blah" src="http://placehold.it/180" alt="your image" />
+                        <p className='largertext'>You can upload an <b>optional</b> photo of yourself here, which
+                        will appear on your profile page for other users to see!</p>
+                        <p>Try to use an image
+                        that is clear and not one taken from too far away.
+                        </p>
+                        <div className='smallcontainer'>
+                            <img src={file} class="img-border img-photo"/>
+                            <br></br>
+                            <input 
+                            type="file" 
+                            id="file"
+                            accept="image/*"
+                            onChange={handleChange}
+                            />
+                        </div>
+                    <br></br>
                     <button class='button button-next'>Next</button>
                     </div>
                 </div>

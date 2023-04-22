@@ -3,20 +3,37 @@
     height: 100vh;
 }
 
-img{
-    max-width:180px;
-  }
-  input[type=file]{
-  padding:10px;
-  background:#2d2d2d;}
+.img-border{
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  border: 3px solid #13294B;
+  object-fit: cover;
+  
+}
 
+.img-photo{
+  object-fit: cover;
+  background-image:url('./images/default-profile-pic.PNG');
+  background-size:cover;            
+  background-repeat:no-repeat;
+  background-position:center center; 
+}
+
+input[type=file]{
+padding:10px;
+color: white;
+background:#13294B;}
 
 
 .onboardingphoto-text {
     font-size: medium;
     padding-bottom: 10px;
 }
-  
+
+.largertext{
+    font-size:19px;
+}
 .button {
     background-color: #13294B;
     border: 2px solid #13294B;
@@ -43,19 +60,6 @@ img{
     float: center;
 }
 
-button:disabled,
-button[disabled]{
-    border: 2px solid #999999;
-    background-color: #cccccc;
-    color: #666666;
-}
-
-button[disabled]:hover {
-    border: 2px solid #999999;
-    background-color: #cccccc;
-    color: #666666;
-}
-
 .onboardingphoto-header {
     padding: 15px;
     padding-bottom: 10px;
@@ -79,9 +83,20 @@ button[disabled]:hover {
 .onboardingphoto-container {
     margin-left: auto;
     margin-right: auto;
-    width: 60%;
+    width: 40%;
     border: #13294B 2px solid;
     border-top: #13294B 15px solid;
     height: auto;
-    padding: 20px;
+    padding: 10px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.smallcontainer{
+    border: 3px solid #13294B;
+    padding: 10px;
+    width:fit-content;
+    text-align: center;
+    margin: 0 auto;
 }
