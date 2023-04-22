@@ -17,7 +17,8 @@ import {
 
 function ViewMatches() {
     //const [responses, setResponses] = useState([]);
-    const responses = useState([]);
+    const [responses, setResponses] = useState([]);
+
     // TODO: we might want to change this sample response to the current user's response.
     const sampleResponse = {
         "birthYear": "1999",
@@ -43,21 +44,26 @@ function ViewMatches() {
         const responseRef = await getDocs(collection(db,"surveyResponses"));
         //const snapshot = await responseRef.get();
         let i = 0;
+        const newResponses = [];
         responseRef.forEach((doc) => {
             const response = doc.data();
             response.id = i;
             response.score = calculateScore(response,sampleResponse)
-            console.log(response.score);
-            responses.push(response);
+            //console.log(response.score);
+            newResponses.push(response);
             i++;
             
         });
+        setResponses(newResponses);
         
     };
 
     getResponses();
   }, []);
+
   //console.log(responses);
+
+
 
 
 
@@ -133,7 +139,7 @@ function ViewMatches() {
 
     // Function to sort responses based on their scores
 
-
+    responses.sort((a, b) => a.score - b.score);
 
 
 
