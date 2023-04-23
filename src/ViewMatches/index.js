@@ -144,6 +144,14 @@ function ViewMatches() {
 
 
     // Function to generate a list of displayed info with the same format as 'profiles'.
+
+    const responsesFiltered = responses.filter((r) => r.score >= 40);
+
+
+
+
+
+    
     const profiles = [
         {
           order: 1,
