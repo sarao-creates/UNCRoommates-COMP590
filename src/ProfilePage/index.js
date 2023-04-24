@@ -3,6 +3,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import './index.css';
 import Title from '../WelcomePage/Title';
+import NavigationTabs from '../NavigationTabs';
 
 function ProfilePage() {
     const [firstName, setFirstName] = useState('')
@@ -49,8 +50,10 @@ function ProfilePage() {
     return (
         <div className='full-screen'>
             <Title></Title>
+            <NavigationTabs></NavigationTabs>
             <div className='profile-container'>
                 <div className='left-container'>
+                    <br></br>
                     <div className='image-container'></div>
                 </div>
                 <div className='right-container'>
@@ -72,11 +75,13 @@ function ProfilePage() {
                             <tr className="blank-row"><td colspan="3"></td></tr>
                             <tr>
                                 <td>Identifies as</td>
+                                <td></td>
                                 <td>Allergies</td>
                             </tr>
                             <tr>
-                                <td>{gender} {wake} {party}</td>
-                                <td>{allergies}</td>
+                                <td class='size'><span>{gender}</span>&nbsp;&nbsp;<span>{wake}</span>&nbsp;&nbsp;<span>{party}</span></td>
+                                <td></td>
+                                <td class='size'>{allergies}</td>
                             </tr>
                         </table>
                     </div>

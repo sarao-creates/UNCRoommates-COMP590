@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import Title from '../WelcomePage/Title';
 import {TextField} from '@mui/material';
 import { fontSize } from '@mui/system';
+import NavigationTabs from '../NavigationTabs';
 
 // Code still needs to be created to allow user to type into the text boxes and press the save button
 // and have it update their info in firebase, updating the info displayed on the page as well.
@@ -45,10 +46,11 @@ function SettingsPage() {
     return (
         <div>
             <Title></Title>
+            <NavigationTabs></NavigationTabs>
             <div className='full-screen'>
                 <div className='settings-container'>
                     <br></br>
-                    <button class="button button-save">Save Changes</button>
+                    <a href="/profile"><button class="button button-save">Save Changes</button></a>
                     <div className='page-header'>Settings</div>
                     <br></br>
                     <div className='smaller-container'>

@@ -1,5 +1,6 @@
 import './index.css'
-import Title from './Title'
+import Title from '../WelcomePage/Title'
+import NavigationTabs from '../NavigationTabs';
 import React, { useState } from 'react';
 import {
   Grid,
@@ -104,6 +105,8 @@ function Survey() {
   return (
     <div>
         <Title></Title>
+        <NavigationTabs></NavigationTabs>
+        <br></br>
         <form onSubmit={handleSubmit}>
       <Grid container spacing={3} justifyContent="center" height="100vh">
         <p>Please take a short survey for more accurate matches. The questions with <span style={{ color: 'red' }}>*</span> are required.</p>
@@ -334,7 +337,7 @@ function Survey() {
           </Grid>
           
         <Grid item xs={7}>
-        <Button style={{maxWidth: '100px', maxHeight: '40px', minWidth: '100px', minHeight: '40px',backgroundColor:'#13294b'}}variant='contained'size='medium'type="submit">Submit</Button>
+        <a href="/profile"><Button style={{maxWidth: '100px', maxHeight: '40px', minWidth: '100px', minHeight: '40px',backgroundColor:'#13294b'}}variant='contained'size='medium'type="submit">Submit</Button></a>
         </Grid>
       </Grid>
     </form>

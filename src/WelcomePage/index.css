@@ -9,3 +9,19 @@
     margin-bottom: 1em;
     background-color: #FFF;
 }
+
+.full-screen {
+    width: 100vw;
+    height: 100vh;
+}
+
+.welcome-container {
+    margin: auto auto;
+    width: 60%;
+}
+
+.welcome-title {
+    text-align: center;
+    font-size: 50px;
+    color: black;
+}
