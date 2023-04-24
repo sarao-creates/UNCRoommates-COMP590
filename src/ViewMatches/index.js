@@ -146,13 +146,28 @@ function ViewMatches() {
     // Function to generate a list of displayed info with the same format as 'profiles'.
 
     const responsesFiltered = responses.filter((r) => r.score >= 40);
+    let j = 1;
+
+    responsesFiltered.forEach((r) => {
+        r.order = j;
+        j++;
+    });
+
+    console.log(responsesFiltered);
+
+    const profiles = [];
+
+    responsesFiltered.forEach((response) => {
+        response.bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor ipsum vel justo maximus lacinia.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor ipsum vel justo maximus lacinia.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor ipsum vel justo maximus lacinia.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor ipsum vel justo maximus lacinia.";
+    })
+
 
 
 
 
 
     
-    const profiles = [
+    /* const profiles = [
         {
           order: 1,
           name: "Jingtong E",
@@ -201,7 +216,7 @@ function ViewMatches() {
             location: "North Campus",
             bio: "Suspendisse imperdiet ex et varius tristique. Sed vel nisi vel nunc eleifend auctor eget eu ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor ipsum vel justo maximus lacinia.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor ipsum vel justo maximus lacinia.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor ipsum vel justo maximus lacinia.",
           },
-      ];
+      ]; */
       const handleProfileClick = (id) => {
         console.log(`Clicked profile with ID ${id}`);
       };
@@ -209,7 +224,7 @@ function ViewMatches() {
         <div>
             <Title></Title>
             <Grid container spacing={2} sx={{ width: "66.66%", float:'right'}}>
-      {profiles.map((profile) => (
+      {responsesFiltered.map((profile) => (
         <Grid key={profile.order} item xs={6}>
           <Paper
             elevation={3}
@@ -218,7 +233,7 @@ function ViewMatches() {
           >
             <Typography variant="h6" color='#4b9cd3'>{profile.name}</Typography>
             <Typography variant="body1">
-              Year: {profile.year} | Age: {profile.age} | Location: {profile.location}
+              Year: {profile.classYear} | Age: {2023-profile.birthYear} | Location: {profile.location}
             </Typography>
             <Typography variant="body2"><b>Bio: </b>{profile.bio}</Typography>
           </Paper>
