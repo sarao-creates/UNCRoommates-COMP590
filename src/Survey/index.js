@@ -347,7 +347,7 @@ function Survey() {
           </Grid>
           <Grid item xs={7}>
             <FormControl component="fieldset">
-              <FormLabel component="legend">14. Do you prefer the windows open or closed in your room?</FormLabel>
+              <FormLabel component="legend">14. Do you prefer the windows open or closed in your room?<span style={{ color: 'red' }}>(Tag)</span></FormLabel>
               <RadioGroup aria-label="window" name="window" value={window} onChange={handleWindowChange}>
                 <FormControlLabel value="Open" control={<Radio />} label="Open - I prefer to open the windows." />
                 <FormControlLabel value="Neutral" control={<Radio />} label="Neutral - I don't have any preference." />
@@ -357,7 +357,7 @@ function Survey() {
           </Grid>
           <Grid item xs={7}>
             <FormControl component="fieldset">
-              <FormLabel component="legend">15. Are you going to have an animal in the room?</FormLabel>
+              <FormLabel component="legend">15. Are you going to have an animal in the room?<span style={{ color: 'red' }}>(Tag)</span></FormLabel>
               <RadioGroup aria-label="animal" name="animal" value={animal} onChange={handleAnimalChange}>
                 <FormControlLabel value="Yes" control={<Radio />} label="Yes - There will be an animal living with me." />
                 <FormControlLabel value="No" control={<Radio />} label="No - There will not be an animal living with me." />
@@ -366,7 +366,7 @@ function Survey() {
           </Grid>
           <Grid item xs={7}>
             <FormControl component="fieldset">
-              <FormLabel component="legend">16. What is your stance on parties?</FormLabel>
+              <FormLabel component="legend">16. What is your stance on parties?<span style={{ color: 'red' }}>(Tag)</span></FormLabel>
               <RadioGroup aria-label="party" name="party" value={party} onChange={handlePartyChange}>
                 <FormControlLabel value="I love to party" control={<Radio />} label="I love to party" />
                 <FormControlLabel value="I like to party occasionally" control={<Radio />} label="I like to party occasionally" />
