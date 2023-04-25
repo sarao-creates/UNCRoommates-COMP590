@@ -1,18 +1,6 @@
-.Welcome-text {
-    box-sizing: border-box;
-    width: 100%;
-    height: 10%;
-    display: flex;
-    justify-content:center;
-    align-items: baseline;
-    padding: 1em;
-    margin-bottom: 1em;
-    background-color: #FFF;
-}
-
 .full-screen {
-    width: 100vw;
-    height: 100vh;
+    width: auto;
+    height: fit-content;
 }
 
 .welcome-container {
@@ -20,8 +8,71 @@
     width: 60%;
 }
 
-.welcome-title {
-    text-align: center;
-    font-size: 50px;
-    color: black;
+.dashedline {
+    margin: 5px 370px;
+    height: 5px;
+    background: repeating-linear-gradient(
+      to right,
+      transparent,
+      transparent 10px,
+      #4B9CD3 10px,
+      #4B9CD3 20px
+    );
 }
+
+.welcome-title {
+    padding: 15px;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 52px;
+    color: #13294B;
+}
+
+.welcome-subtitle {
+    padding-bottom: 20px;
+    text-align: center;
+    font-size: 20px;
+    color: #13294B;
+}
+
+.welcome-description {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 92%;
+    height: auto;
+    padding: 20px;
+    padding-top: 30px;
+}
+
+
+.welcome-text {
+    text-align: left;
+    font-size: 16px;
+}
+span.bulletpoint {
+    font-size:20px;
+    color: #4B9CD3;
+}
+
+.button {
+    background-color: #13294B;
+    border: 2px solid #13294B;
+    border-radius: 4px;
+    color: white;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-size: 16px;
+    transition-duration: 0.3s;
+    text-align: center;
+    margin: 0 auto;
+    padding: 10px 40px 10px 40px;
+    font-size: 20px;
+    float: center;
+  }
+    
+    .button:hover {
+      background-color: white;
+      border: 2px solid #13294B;
+      color: #13294B;
+    }
