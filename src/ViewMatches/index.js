@@ -139,7 +139,7 @@ function ViewMatches() {
 
     // Function to sort responses based on their scores
 
-    responses.sort((a, b) => a.score - b.score);
+    responses.sort((a, b) => b.score - a.score);
 
 
 
@@ -151,9 +151,10 @@ function ViewMatches() {
     responsesFiltered.forEach((r) => {
         r.order = j;
         j++;
+        //console.log(r.score);
     });
 
-    console.log(responsesFiltered);
+    //console.log(responsesFiltered);
 
     const profiles = [];
 
