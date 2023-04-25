@@ -218,7 +218,7 @@ function Survey() {
           </Grid>
           <Grid item xs={7}>
             <FormControl fullWidth>
-              <InputLabel>5. What is your Major?<span style={{ color: 'red' }}>*</span></InputLabel>
+              <InputLabel>5. What is your primary major?<span style={{ color: 'red' }}>*</span></InputLabel>
               <Select value={major} onChange={handleMajorChange}>
                 <MenuItem value="Undecided">Undecided</MenuItem>
                 <MenuItem value="African, African American, and Diaspora Studies">African, African American, and Diaspora Studies</MenuItem>
