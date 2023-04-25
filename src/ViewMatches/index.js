@@ -75,7 +75,7 @@ function ViewMatches() {
         let score = 0;
 
         // filtering out users with different gender or different location preference
-        if ((response1.gender !== response2.gender) || (response1.location !== response2.location)) {
+        if ((response1.gender !== response2.gender) || ((response1.location !== response2.location) && (response1.location !== "Don't care") && (response2.location !== "Don't care"))) {
             return -1;
           }
 

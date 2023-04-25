@@ -1,6 +1,6 @@
 import './index.css'
 import Title from './Title'
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 //import {Redirect} from 'react-router-dom';
 
 import {
@@ -39,6 +39,28 @@ function Survey() {
   const [party, setParty] = useState('');
   const [setError] = useState('');
   const [setSuccess] = useState('');
+
+  useEffect(() => {
+    const surveyData = JSON.parse(localStorage.getItem("surveyData"));
+    if (surveyData) {
+      setName(surveyData.name);
+      setBirthYear(surveyData.birthYear);
+      setGender(surveyData.gender);
+      setClassYear(surveyData.classYear);
+      setMajor(surveyData.major);
+      setLocation(surveyData.location);
+      setBedTime(surveyData.bedTime);
+      setWakeTime(surveyData.wakeTime);
+      setNoiseLevel(surveyData.noiseLevel);
+      setGuestLevel(surveyData.guestLevel);
+      setTidiness(surveyData.setTidiness);
+      setAllergies(surveyData.allergies);
+      setAccomodations(surveyData.allergies);
+      setWindow(surveyData.window);
+      setAnimal(surveyData.animal);
+      setParty(surveyData.party);
+    }
+  }, []);
   
 
   const handleSubmit = async(e) => {
@@ -67,6 +89,7 @@ function Survey() {
       };
       try {
         const docRef = await addDoc(collection(db, "surveyResponses"), surveyData);
+        localStorage.setItem("surveyData", JSON.stringify(surveyData));
         console.log("Survey submitted with ID: ", docRef.id);
         //setSuccess(true);
       } catch (error) {
