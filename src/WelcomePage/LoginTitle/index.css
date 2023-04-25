@@ -31,19 +31,15 @@
 
 }
 
-.Logout-text {
+.Login-text {
     position: absolute;
-    right: 25px;
+    right: 3%;
+    top: 8%;
     width: 200;
     padding: 10px;
 
 }
 
-.Settings-text {
-    position: absolute;
-    right: 0px;
-    top: 15px;
-    height: 15%;
-    width: 200;
-    padding: 10px;
+a { 
+    text-decoration: none; 
 }

@@ -3,7 +3,7 @@ import {db} from '../Firebase/firebase.js'
 import { doc, getDoc } from 'firebase/firestore';
 import './index.css'
 import { useState, useEffect } from 'react';
-import Title from '../WelcomePage/Title';
+import LoginTitle from '../WelcomePage/LoginTitle';
 import {TextField} from '@mui/material';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../Firebase/firebase.js';
@@ -56,7 +56,7 @@ function CreateAccountPage() {
 
     return (
         <div>
-            <Title></Title>
+            <LoginTitle></LoginTitle>
                 <div className='full-screen'>
                     <div className='createaccount-header'>Create an Account</div>
                     <div class="dashedline"></div>
@@ -105,6 +105,8 @@ function CreateAccountPage() {
                         style = {{width: 340, paddingBottom: 30}}
                         //onChange={}
                     />
+                    <a href="/createaccount"><button class="button button-create" type="button">Create Account</button></a>
+
                     <button onClick={handleSignup} className="button button-create">Create Account</button>
                     <Snackbar open={snackbar.status} autoHideDuration={7500} onClose={() => setSnackbar({status: false})}> 
                         <Alert severity='info'>{snackbar.message}</Alert>

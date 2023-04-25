@@ -6,17 +6,16 @@ import { useState, useEffect } from 'react';
 import Title from '../WelcomePage/Title';
 import {TextField} from '@mui/material';
 import { fontSize } from '@mui/system';
+import NavigationTabs from '../NavigationTabs';
 
 // Code still needs to be created to allow user to type into the text boxes and press the save button
 // and have it update their info in firebase, updating the info displayed on the page as well.
 //
-// I changed the deactive/reactivate button design because just having one button's text change 
-// depending on whether the account is currently active would be easier than having two buttons with
-// one greyed-out and the other clickable like in the prototype. I could be wrong though, maybe the 
-// prototype way would easier to code.
-//
 // New password and confirm password needs to match. And confirm password box should be greyed out if 
 // there is nothing typed in the new password text box.
+//
+// WHY WONT SETTINGS PAGE HEADER CENTER?!!
+
 function SettingsPage() {
     const [Email, setEmail] = useState('')
     const [Phone, setPhone] = useState('')
@@ -47,19 +46,20 @@ function SettingsPage() {
     return (
         <div>
             <Title></Title>
+            <NavigationTabs></NavigationTabs>
             <div className='full-screen'>
                 <div className='settings-container'>
                     <br></br>
-                    <button class="button button-save">Save Changes</button>
+                    <a href="/profile"><button class="button button-save">Save Changes</button></a>
                     <div className='page-header'>Settings</div>
                     <br></br>
                     <div className='smaller-container'>
-                        <div className='settings-header'>
-                            Contact Info:
+                        <div className='headerpadding'>
+                            <div className='settings-header'>
+                                Contact Info:
+                            </div>
                         </div>
-                        <div className='settings-header-description'>
-                            &#x28;click text box and type&#x29;
-                        </div>
+                        <div className='textpadding'>
                         <div className='settingstextinputheader'><b>Current Email:</b> {Email}</div>
                         <TextField
                             fullWidth
@@ -79,12 +79,16 @@ function SettingsPage() {
                             //onChange={}
                         />
                     </div>
+                    </div>
                 <br></br>
                 <br></br>
                 <div className='smaller-container'>
+                    <div className='headerpadding'>
                         <div className='settings-header'>
                             Password Settings:
                         </div>
+                    </div>
+                    <div className='textpadding'>
                         <div className='settingstextinputheader'><b>Current Password:</b> {Password}</div>
                         <TextField
                             fullWidth
@@ -104,9 +108,12 @@ function SettingsPage() {
                             size="small"
                             //onChange={}
                         />
+                        </div>
                 </div>
                 <br></br>
+                <div className='alignment-container'>
                     <button class="button button-status">Deactivate Account</button>
+                </div>    
                 </div> 
             </div>
         </div>

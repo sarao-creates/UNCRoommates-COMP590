@@ -1,25 +1,26 @@
 import React from 'react'
 import './index.css'
-import Title from './Title'
-import { Link } from 'react-router-dom'
+import LoginTitle from './LoginTitle'
 
 function WelcomePage() {
     return (
-        <div className='full-screen'>
-            <Title></Title>
-            <div className='welcome-container'>
+        <div><LoginTitle></LoginTitle>
+            <div className='full-screen'>
                 <div className='welcome-title'>Welcome</div>
-                <div className='Welcome-text'>UNCRoommates is dedicated to take the stress out of finding a roommate at UNC Chapel Hill</div>
-                <div className='welcome-description'>Discover students who are <b>automatically matched</b> with your roommate needs in just a few steps
-                    <ul>
-                        <li>Take a survey</li>
-                        <li>Create a free-text bio</li>
-                        <li>Upload an optional photo</li>
-                        <li>View your matches</li>
-                    </ul>
+                <div className='welcome-subtitle'><i>UNCRoommates is dedicated to taking the stress out of finding a roommate at UNC Chapel Hill.</i></div>
+                <div class="dashedline"></div>
+                <div className='welcome-container'>
+                    <div className='welcome-description'>
+                        <div className='welcome-text'>Discover students who are <b>automatically matched</b> with your roommate needs in just a few steps:</div>
+                        <br></br>
+                        <div className='welcome-text'><span className='bulletpoint'><b>- </b></span>Take a survey</div>
+                        <div className='welcome-text'><span className='bulletpoint'><b>- </b></span>Create a free-text bio</div>
+                        <div className='welcome-text'><span className='bulletpoint'><b>- </b></span>Upload an optional photo</div>
+                        <div className='welcome-text'><span className='bulletpoint'><b>- </b></span>View your matches</div>
+                        <br></br>
+                        <a href="/login"><button class="button">Login or Create an Account</button></a>
+                    </div>
                 </div>
-
-                <Link to='/login'><button>Login or Sign Up</button></Link>
             </div>
         </div>
     )

@@ -106,3 +106,32 @@ table {
     background-color: #E8F6FF;
     height: 20px;
 }
+
+.alignright {
+    display: inline-block;
+    text-align: center;
+    margin-left: 23%;
+}
+
+.alignleft {
+    display: inline-block;
+    text-align: center;
+}
+
+.button {
+    background-color: #13294B;
+    border: 2px solid #13294B;
+    border-radius: 4px;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 20px;
+    transition-duration: 0.3s;
+    text-align: center;
+  }
+    
+    .button:hover {
+      background-color: white;
+      border: 2px solid #13294B;
+      color: #13294B;
+    }
