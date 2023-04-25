@@ -105,9 +105,9 @@ function CreateAccountPage() {
                         style = {{width: 340, paddingBottom: 30}}
                         //onChange={}
                     />
-                    <a href="/createaccount"><button class="button button-create" type="button">Create Account</button></a>
+                    <a href="/createaccount"><button onClick={handleSignup} class="button button-create" type="button">Create Account</button></a>
 
-                    <button onClick={handleSignup} className="button button-create">Create Account</button>
+                    {/* <button onClick={handleSignup} className="button button-create">Create Account</button> */}
                     <Snackbar open={snackbar.status} autoHideDuration={7500} onClose={() => setSnackbar({status: false})}> 
                         <Alert severity='info'>{snackbar.message}</Alert>
                     </Snackbar>
