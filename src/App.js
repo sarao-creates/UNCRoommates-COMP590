@@ -8,6 +8,7 @@ import CreateAccountPage from './CreateAccountPage';
 import OnboardingBioPage from './OnboardingBioPage';
 import OnboardingPhotoPage from './OnboardingPhotoPage';
 import ViewMatches from './ViewMatches';
+import MatchedUserProfilePage from './MatchedUserProfilePage';
 
 const ProfilePath = '/profile';
 const WelcomePath = '/welcome';
@@ -18,6 +19,7 @@ const CreateAccountPath = '/createaccount';
 const OnboardingBioPath = '/onboardingbio';
 const OnboardingPhotoPath = '/onboardingphoto';
 const ViewMatchesPath = '/viewmatches'
+const MatchedUserProfilePath = '/matcheduserprofile';
 
 
 
@@ -36,6 +38,7 @@ function App() {
       <Route path={OnboardingBioPath} component={OnboardingBioPage}></Route>
       <Route path={OnboardingPhotoPath} component={OnboardingPhotoPage}></Route>
       <Route path={ViewMatchesPath} component={ViewMatches}></Route>
+      <Route path={MatchedUserProfilePath} component={MatchedUserProfilePage}></Route>
     </Router>
 
   );

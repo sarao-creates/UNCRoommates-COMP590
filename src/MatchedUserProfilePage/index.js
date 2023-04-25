@@ -5,7 +5,7 @@ import './index.css';
 import Title from '../WelcomePage/Title';
 import NavigationTabs from '../NavigationTabs';
 
-function ProfilePage() {
+function MatchedUserProfilePage() {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [gender, setGender] = useState('')
@@ -89,10 +89,18 @@ function ProfilePage() {
     
                 <div className='bio-container'>
                     {bio}
+                    <br></br>
+                    <br></br>
+                    <div className='alignright'>
+                    <a href="/viewmatches"><button class="button button-decline" type="button">&#x2716; Decline</button></a>
+                    </div>
+                    <div className='alignright'>
+                    <a href="/viewmatches"><button class="button button-connect" type="button">&#x2714; Connect</button></a>
+                    </div>
                 </div>
             </div>
         </div>
     )
 }
 
-export default ProfilePage
+export default MatchedUserProfilePage

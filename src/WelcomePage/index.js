@@ -1,11 +1,11 @@
 import React from 'react'
 import './index.css'
-import Title from './Title'
+import LoginTitle from './LoginTitle'
 import Button from '@mui/material/Button';
 
 function WelcomePage() {
     return (
-        <div><Title></Title>
+        <div><LoginTitle></LoginTitle>
             <div className='full-screen'>
                 <div className='welcome-title'>Welcome</div>
                 <div className='welcome-subtitle'><i>UNCRoommates is dedicated to taking the stress out of finding a roommate at UNC Chapel Hill.</i></div>

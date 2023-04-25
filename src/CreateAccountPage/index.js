@@ -3,14 +3,14 @@ import {db} from '../Firebase/firebase.js'
 import { doc, getDoc } from 'firebase/firestore';
 import './index.css'
 import { useState, useEffect } from 'react';
-import Title from '../WelcomePage/Title';
+import LoginTitle from '../WelcomePage/LoginTitle';
 import {TextField} from '@mui/material';
 
 function CreateAccountPage() {
 
     return (
         <div>
-            <Title></Title>
+            <LoginTitle></LoginTitle>
                 <div className='full-screen'>
                     <div className='createaccount-header'>Create an Account</div>
                     <div class="dashedline"></div>
@@ -59,7 +59,7 @@ function CreateAccountPage() {
                         style = {{width: 340, paddingBottom: 30}}
                         //onChange={}
                     />
-                    <button class="button button-create" type="button">Create Account</button>
+                    <a href="/createaccount"><button class="button button-create" type="button">Create Account</button></a>
                 </div>
             </div>
         </div>
