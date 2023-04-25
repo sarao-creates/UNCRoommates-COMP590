@@ -8,3 +8,15 @@
 8. add another field of 'processed' for each accepted or declined match that's associated with the user, so the next time they won't get pulled form the database and recalculated
 
 
+Apr 25
+
+1. update the steps (user needs to contact their matches) on the welcome page
+2. center the create account between
+3. first row for create account page: first and last name, 2nd row would be email and phone number
+4. put a 2028 for class year option
+5. add the actual pills after the options for tagged question
+6. Settings page: instead of edit, say new email or new phone number
+7. should let user type their current password before changing their password
+8. type url for uploading picture...?
+9. If there's no matchs, put up a message and inform them to change survey
+10. 
