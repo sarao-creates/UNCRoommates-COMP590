@@ -1,7 +1,6 @@
 import React from 'react'
 import './index.css'
 import LoginTitle from './LoginTitle'
-import Button from '@mui/material/Button';
 
 function WelcomePage() {
     return (

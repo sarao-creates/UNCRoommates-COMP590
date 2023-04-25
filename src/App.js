@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom'
 import WelcomePage from './WelcomePage';
 import ProfilePage from './ProfilePage';
 import LoginPage from './LoginPage';
@@ -21,11 +21,10 @@ const OnboardingPhotoPath = '/onboardingphoto';
 const ViewMatchesPath = '/viewmatches'
 const MatchedUserProfilePath = '/matcheduserprofile';
 
-
-
 function App() {
   return (
     <Router>
+      <Switch>
       <Route exact path='/'>
         <Redirect to='/welcome'></Redirect>
       </Route>
@@ -39,8 +38,8 @@ function App() {
       <Route path={OnboardingPhotoPath} component={OnboardingPhotoPage}></Route>
       <Route path={ViewMatchesPath} component={ViewMatches}></Route>
       <Route path={MatchedUserProfilePath} component={MatchedUserProfilePage}></Route>
+      </Switch>
     </Router>
-
   );
 }
 
