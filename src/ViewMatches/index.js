@@ -233,7 +233,7 @@ function ViewMatches() {
           >
             <Typography variant="h6" color='#4b9cd3'>{profile.name}</Typography>
             <Typography variant="body1">
-              Year: {profile.classYear} | Age: {2023-profile.birthYear} | Location: {profile.location}
+              Year: {profile.classYear} | Age: {2023-profile.birthYear} | Location: {((profile.location)==="Don't care") ? "Any" : profile.location}
             </Typography>
             <Typography variant="body2"><b>Bio: </b>{profile.bio}</Typography>
           </Paper>

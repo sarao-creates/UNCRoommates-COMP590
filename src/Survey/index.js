@@ -286,7 +286,7 @@ function Survey() {
                 <FormControlLabel value="South Campus" control={<Radio required/>} label="South Campus (Ehaus, Craige, HoJo, Rams, etc.)" />
                 <FormControlLabel value="Middle Campus" control={<Radio required/>} label="Middle Campus (Carmichael, Avery, Teague, etc.)" />
                 <FormControlLabel value="North Campus" control={<Radio required/>} label="North Campus (Cobb, Graham, Connor, etc.)" />
-                <FormControlLabel value="Don't care" control={<Radio required/>} label="I don't care" />
+                <FormControlLabel value="I don't care" control={<Radio required/>} label="I don't care" />
               </RadioGroup>
             </FormControl>
           </Grid>
