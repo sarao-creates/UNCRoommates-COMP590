@@ -21,6 +21,10 @@
     color: #13294B;
   }
 
+.centerstuff {
+  text-align: center;
+}
+
   .button-create {
     margin: 0 auto;
     padding: 10px 40px 10px 40px;

@@ -5,6 +5,7 @@ import './index.css'
 import { useState, useEffect } from 'react';
 import LoginTitle from '../WelcomePage/LoginTitle';
 import {TextField} from '@mui/material';
+import { Link } from "react-router-dom";
 
 function CreateAccountPage() {
 
@@ -59,7 +60,10 @@ function CreateAccountPage() {
                         style = {{width: 340, paddingBottom: 30}}
                         //onChange={}
                     />
-                    <a href="/createaccount"><button class="button button-create" type="button">Create Account</button></a>
+                    <br></br>
+                    <div className='centerstuff'>
+                        <Link to="/survey"><button class="button button-create" type="button">Create Account</button></Link>
+                    </div>
                 </div>
             </div>
         </div>

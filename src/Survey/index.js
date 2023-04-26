@@ -16,6 +16,7 @@ import {
   Select,
 } from '@mui/material';
 //import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Link } from "react-router-dom";
 import db from '../Firebase/firebase';
 
 function Survey() {
@@ -337,7 +338,7 @@ function Survey() {
           </Grid>
           
         <Grid item xs={7}>
-        <a href="/profile"><Button style={{maxWidth: '100px', maxHeight: '40px', minWidth: '100px', minHeight: '40px',backgroundColor:'#13294b'}}variant='contained'size='medium'type="submit">Submit</Button></a>
+        <Link to="/profile"><Button style={{maxWidth: '100px', maxHeight: '40px', minWidth: '100px', minHeight: '40px',backgroundColor:'#13294b'}}variant='contained'size='medium'type="submit">Submit</Button></Link>
         </Grid>
       </Grid>
     </form>

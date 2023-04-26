@@ -3,6 +3,10 @@
     height: 100vh;
 }
 
+.centerstuff {
+    text-align: center;
+}
+
 .button {
     background-color: #13294B;
     border: 2px solid #13294B;

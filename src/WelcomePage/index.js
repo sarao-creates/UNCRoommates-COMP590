@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.css'
 import LoginTitle from './LoginTitle'
-import Button from '@mui/material/Button';
+import { Link } from "react-router-dom";
 
 function WelcomePage() {
     return (
@@ -19,7 +19,7 @@ function WelcomePage() {
                         <div className='welcome-text'><span className='bulletpoint'><b>- </b></span>Upload an optional photo</div>
                         <div className='welcome-text'><span className='bulletpoint'><b>- </b></span>View your matches</div>
                         <br></br>
-                        <a href="/login"><button class="button">Login or Create an Account</button></a>
+                        <Link to="/login"><button class="button">Login or Create an Account</button></Link>
                     </div>
                 </div>
             </div>

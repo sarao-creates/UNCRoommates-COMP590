@@ -26,19 +26,19 @@ const MatchedUserProfilePath = '/matcheduserprofile';
 function App() {
   return (
     <Router>
-      <Route exact path='/'>
-        <Redirect to='/welcome'></Redirect>
-      </Route>
-      <Route path={WelcomePath} component={WelcomePage}></Route>
-      <Route path={ProfilePath} component={ProfilePage}></Route>
-      <Route path={LoginPath} component={LoginPage}></Route>
-      <Route path={SurveyPath} component={Survey}></Route>
-      <Route path={SettingsPath} component={Settings}></Route>
-      <Route path={CreateAccountPath} component={CreateAccountPage}></Route>
-      <Route path={OnboardingBioPath} component={OnboardingBioPage}></Route>
-      <Route path={OnboardingPhotoPath} component={OnboardingPhotoPage}></Route>
-      <Route path={ViewMatchesPath} component={ViewMatches}></Route>
-      <Route path={MatchedUserProfilePath} component={MatchedUserProfilePage}></Route>
+        <Route exact path='/'>
+          <Redirect to='/welcome'></Redirect>
+        </Route>
+        <Route path={WelcomePath} component={WelcomePage}></Route>
+        <Route path={ProfilePath} component={ProfilePage}></Route>
+        <Route path={LoginPath} component={LoginPage}></Route>
+        <Route path={SurveyPath} component={Survey}></Route>
+        <Route path={SettingsPath} component={Settings}></Route>
+        <Route path={CreateAccountPath} component={CreateAccountPage}></Route>
+        <Route path={OnboardingBioPath} component={OnboardingBioPage}></Route>
+        <Route path={OnboardingPhotoPath} component={OnboardingPhotoPage}></Route>
+        <Route path={ViewMatchesPath} component={ViewMatches}></Route>
+        <Route path={MatchedUserProfilePath} component={MatchedUserProfilePage}></Route>
     </Router>
 
   );

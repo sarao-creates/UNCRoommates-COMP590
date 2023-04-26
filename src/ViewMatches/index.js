@@ -2,7 +2,7 @@ import './index.css';
 import Title from '../WelcomePage/Title';
 import React, { useState } from 'react';
 import NavigationTabs from '../NavigationTabs';
-//import { Link } from 'react-router-dom';
+//import { Link } from "react-router-dom";
 //import {Redirect} from 'react-router-dom';
 
 import {
