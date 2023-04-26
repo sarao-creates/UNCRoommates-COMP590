@@ -41,7 +41,7 @@ function CreateAccountPage() {
     const handleSignup = () => {
         createUserWithEmailAndPassword(auth, userInfo['email'], pwd).then((userCredential) => {
             console.log(userCredential.user)
-            history.push('/survey');
+            history.push('/onboarding-photo');
             return db.collection('users').doc(userCredential.user.uid).set(userInfo);
         })
         .catch((error) => {
@@ -105,7 +105,7 @@ function CreateAccountPage() {
                         style = {{width: 340, paddingBottom: 30}}
                         //onChange={}
                     />
-                    <a href="/createaccount"><button onClick={handleSignup} class="button button-create" type="button">Create Account</button></a>
+                    <button onClick={handleSignup} class="button button-create" type="button">Create Account</button>
 
                     {/* <button onClick={handleSignup} className="button button-create">Create Account</button> */}
                     <Snackbar open={snackbar.status} autoHideDuration={7500} onClose={() => setSnackbar({status: false})}> 

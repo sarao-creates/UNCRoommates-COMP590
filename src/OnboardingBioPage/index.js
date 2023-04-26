@@ -5,12 +5,33 @@ import './index.css'
 import { useState, useEffect } from 'react';
 import Title from '../WelcomePage/Title';
 import {TextField} from '@mui/material';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import { useHistory } from "react-router-dom";
+
 
 function OnboardingBioPage() {
-    const [count, setCount] = React.useState(0);
+
+    const history = useHistory();
+
+    const [count, setCount] = useState(0);
     const validate = () => {
-        return count >= 150 & count < 1500;
+        return (count >= 150 & count < 1500);
       };
+
+    const [snackbar, setSnackbar] = useState({
+        status: false,
+        message: '',
+    });
+
+    const handleBio = () => {
+        if (validate() == true) {
+            history.push('/survey');
+        }
+        else {
+            setSnackbar({status: true, message: `Bio needs to be between 150 and 1500 characters.`});
+        }
+    }
     return (
         <div>
             <Title></Title>
@@ -31,8 +52,11 @@ function OnboardingBioPage() {
                             onChange={e => setCount(e.target.value.length)}
                         />
                         <p><b>Character Count: {count}</b></p>
-                        <button class="button button-next" type="button" disabled={!validate()}>Next</button>
+                        <button onClick={handleBio} class="button button-next" type="button" disabled={!validate()}>Next</button>
                     </div>
+                    <Snackbar open={snackbar.status} autoHideDuration={7500} onClose={() => setSnackbar({status: false})}> 
+                        <Alert severity='info'>{snackbar.message}</Alert>
+                    </Snackbar>
                 </div>
         </div>
     )

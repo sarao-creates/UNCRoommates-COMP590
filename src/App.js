@@ -15,9 +15,9 @@ const WelcomePath = '/welcome';
 const LoginPath = '/login';
 const SurveyPath = '/survey';
 const SettingsPath = '/settings'
-const CreateAccountPath = '/createaccount';
-const OnboardingBioPath = '/onboardingbio';
-const OnboardingPhotoPath = '/onboardingphoto';
+const CreateAccountPath = '/create-account';
+const OnboardingBioPath = '/onboarding-bio';
+const OnboardingPhotoPath = '/onboarding-photo';
 const ViewMatchesPath = '/viewmatches'
 const MatchedUserProfilePath = '/matcheduserprofile';
 
