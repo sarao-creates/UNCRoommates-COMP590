@@ -226,6 +226,7 @@ function ViewMatches() {
     return (
         <div>
             <Title></Title>
+            <NavigationTabs></NavigationTabs>
             <Grid container spacing={2} sx={{ width: "66.66%", float:'right'}}>
       {responsesFiltered.map((profile) => (
         <Grid key={profile.order} item xs={6}>
