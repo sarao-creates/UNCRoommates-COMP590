@@ -17,10 +17,18 @@ import {
 } from '@mui/material';
 import db from '../Firebase/firebase.js';
 import { collection, addDoc } from "firebase/firestore";
+import { doc, updateDoc, getDoc } from 'firebase/firestore';
+import { getAuth } from "firebase/auth";
+
+
 //import {Redirect} from 'react-router-dom';
 //import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function Survey() {
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+
   const [name, setName] = useState('');
   const [birthYear, setBirthYear] = useState('');
   const [gender, setGender] = useState('');
@@ -40,27 +48,28 @@ function Survey() {
   const [setError] = useState('');
   const [setSuccess] = useState('');
 
-  useEffect(() => {
-    const surveyData = JSON.parse(localStorage.getItem("surveyData"));
-    if (surveyData) {
-      setName(surveyData.name);
-      setBirthYear(surveyData.birthYear);
-      setGender(surveyData.gender);
-      setClassYear(surveyData.classYear);
-      setMajor(surveyData.major);
-      setLocation(surveyData.location);
-      setBedTime(surveyData.bedTime);
-      setWakeTime(surveyData.wakeTime);
-      setNoiseLevel(surveyData.noiseLevel);
-      setGuestLevel(surveyData.guestLevel);
-      setTidiness(surveyData.setTidiness);
-      setAllergies(surveyData.allergies);
-      setAccomodations(surveyData.allergies);
-      setWindow(surveyData.window);
-      setAnimal(surveyData.animal);
-      setParty(surveyData.party);
-    }
-  }, []);
+
+  // useEffect(() => {
+  //   const surveyData = JSON.parse(localStorage.getItem("surveyData"));
+  //   if (surveyData) {
+  //     setName(surveyData.name);
+  //     setBirthYear(surveyData.birthYear);
+  //     setGender(surveyData.gender);
+  //     setClassYear(surveyData.classYear);
+  //     setMajor(surveyData.major);
+  //     setLocation(surveyData.location);
+  //     setBedTime(surveyData.bedTime);
+  //     setWakeTime(surveyData.wakeTime);
+  //     setNoiseLevel(surveyData.noiseLevel);
+  //     setGuestLevel(surveyData.guestLevel);
+  //     setTidiness(surveyData.setTidiness);
+  //     setAllergies(surveyData.allergies);
+  //     setAccomodations(surveyData.allergies);
+  //     setWindow(surveyData.window);
+  //     setAnimal(surveyData.animal);
+  //     setParty(surveyData.party);
+  //   }
+  // }, []);
   
 
   const handleSubmit = async(e) => {
@@ -88,9 +97,10 @@ function Survey() {
         name,
       };
       try {
-        const docRef = await addDoc(collection(db, "surveyResponses"), surveyData);
+        // const docRef = await addDoc(collection(db, "surveyResponses"), surveyData);
+        await updateDoc(doc(db, "users", user.uid), surveyData)
         localStorage.setItem("surveyData", JSON.stringify(surveyData));
-        console.log("Survey submitted with ID: ", docRef.id);
+        // console.log("Survey submitted with ID: ", docRef.id);
         //setSuccess(true);
       } catch (error) {
         console.error("Error adding survey: ", error);
@@ -297,7 +307,7 @@ function Survey() {
               <FormLabel component="legend">7. What time do you typically go to bed?<span style={{ color: 'red' }}>*</span></FormLabel>
               <RadioGroup aria-label="bedTime" name="bedTime" value={bedTime} onChange={handleBetTimeChange}>
                 <FormControlLabel value="Early" control={<Radio required/>} label="7:00pm - 10:00pm (Early)" />
-                <FormControlLabel value="Regular)" control={<Radio required/>} label="10:00pm - 1:00am (Regular)" />
+                <FormControlLabel value="Regular" control={<Radio required/>} label="10:00pm - 1:00am (Regular)" />
                 <FormControlLabel value="Late" control={<Radio required/>} label="1:00am - 4:00 am (Late)" />
               </RadioGroup>
             </FormControl>
