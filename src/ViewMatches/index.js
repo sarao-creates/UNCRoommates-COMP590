@@ -223,8 +223,19 @@ function ViewMatches() {
       const handleProfileClick = (id) => {
         console.log(`Clicked profile with ID ${id}`);
       };
+     if (responsesFiltered.length === 0) {
+        return (
+            <div>
+                <Title></Title>
+                <NavigationTabs></NavigationTabs>
+                <Grid container spacing={2} sx={{ width: "66.66%", float:'right'}}>
+                    <br></br>
+                    Please consider changing your survey responses or wait until we have more users for more matches!
+                </Grid>
+            </div>
+        )
+     }
 
-      
     return (
         <div>
             <Title></Title>
