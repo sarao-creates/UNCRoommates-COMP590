@@ -1,6 +1,7 @@
 import React from 'react'
 import {db} from '../Firebase/firebase.js'
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { collection, addDoc } from "firebase/firestore"; 
 import './index.css'
 import { useState, useEffect } from 'react';
 import LoginTitle from '../WelcomePage/LoginTitle';
@@ -39,10 +40,11 @@ function CreateAccountPage() {
     }
 
     const handleSignup = () => {
-        createUserWithEmailAndPassword(auth, userInfo['email'], pwd).then((userCredential) => {
+        createUserWithEmailAndPassword(auth, userInfo['email'], pwd).then(async (userCredential) => {
             console.log(userCredential.user)
             history.push('/onboarding-photo');
-            return db.collection('users').doc(userCredential.user.uid).set(userInfo);
+            // return db.collection('users').doc(userCredential.user.uid).set(userInfo);
+            await setDoc(doc(db, "users", userCredential.user.uid), userInfo);
         })
         .catch((error) => {
             console.log(error.code + " - " + error.message);

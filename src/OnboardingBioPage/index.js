@@ -1,6 +1,6 @@
 import React from 'react'
 import {db} from '../Firebase/firebase.js'
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, updateDoc, getDoc } from 'firebase/firestore';
 import './index.css'
 import { useState, useEffect } from 'react';
 import Title from '../WelcomePage/Title';
@@ -8,15 +8,23 @@ import {TextField} from '@mui/material';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { useHistory } from "react-router-dom";
+import { getAuth } from "firebase/auth";
 
 
 function OnboardingBioPage() {
 
+    const auth = getAuth();
+    const user = auth.currentUser;
+
     const history = useHistory();
 
-    const [count, setCount] = useState(0);
+    const [bioInfo, setBioInfo] = useState({
+        "count": 0,
+        "value": "",
+    });
+
     const validate = () => {
-        return (count >= 150 & count < 1500);
+        return (bioInfo["count"] >= 150 & bioInfo["count"] < 1500);
       };
 
     const [snackbar, setSnackbar] = useState({
@@ -24,8 +32,10 @@ function OnboardingBioPage() {
         message: '',
     });
 
-    const handleBio = () => {
+    const handleBio = async () => {
         if (validate() == true) {
+            console.log(user)
+            await updateDoc(doc(db, "users", user.uid), {"bio":bioInfo["value"]})
             history.push('/survey');
         }
         else {
@@ -49,9 +59,9 @@ function OnboardingBioPage() {
                             type="text"
                             rows={5}
                             className="full_height_Width"
-                            onChange={e => setCount(e.target.value.length)}
+                            onChange={e => setBioInfo({"count": e.target.value.length, "value":e.target.value})}
                         />
-                        <p><b>Character Count: {count}</b></p>
+                        <p><b>Character Count: {bioInfo['count']}</b></p>
                         <button onClick={handleBio} class="button button-next" type="button" disabled={!validate()}>Next</button>
                     </div>
                     <Snackbar open={snackbar.status} autoHideDuration={7500} onClose={() => setSnackbar({status: false})}> 
