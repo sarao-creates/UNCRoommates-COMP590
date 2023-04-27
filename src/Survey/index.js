@@ -82,11 +82,20 @@ function Survey() {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    if (!birthYear || !gender || !classYear || !major || !location || !bedTime || !wakeTime || !noiseLevel || !guestLevel || !tidiness) {
-        setError("Please fill in all required fields.");
-        return;
-      }
-      const surveyData = {
+    if (!birthYear || !gender || !classYear || !major || !location || !bedTime || !wakeTime || !noiseLevel || !guestLevel || !tidiness || !accomodations || !allergies) {
+      setError("Please fill in all required fields.");
+      return;
+    }
+    // if (allergies === undefined) {
+    //   console.log('do we get here?')
+    //   setAllergies("None")
+    // }
+
+    // if (accomodations === undefined) {
+    //   setAccomodations("None")
+    // }
+
+    const surveyData = {
         birthYear,
         gender,
         classYear,
@@ -105,6 +114,7 @@ function Survey() {
       };
       try {
         // const docRef = await addDoc(collection(db, "surveyResponses"), surveyData);
+        console.log(surveyData);
         await updateDoc(doc(db, "users", user.uid), {'responses': surveyData})
         localStorage.setItem("surveyData", JSON.stringify(surveyData));
         // console.log("Survey submitted with ID: ", docRef.id);
@@ -162,7 +172,9 @@ function Survey() {
   }
 
   function handleAccomodationsChange(event) {
+    
     setAccomodations(event.target.value);
+    
   }
 
   function handleWindowChange(event) {
@@ -369,11 +381,11 @@ function Survey() {
               fullWidth
               type="text"
               id="allergies"
-              label="11. Do you have any food restrictions or allergies?"
+              label="11. Do you have any food restrictions or allergies? (Enter None if none)"
               variant="outlined"
               value={allergies}
               onChange={handleAllergiiesChange}
-              helperText="Please enter your food restrictions or allergies (Optional)"
+              helperText="Please enter your food restrictions or allergies (Optional) (Enter None if none)"
             />
           </Grid>
           <Grid item xs={7}>
@@ -382,11 +394,11 @@ function Survey() {
               fullWidth
               type="text"
               id="accomodations"
-              label="12. Do you you need any other accomodations from your roommate?"
+              label="12. Do you you need any other accomodations from your roommate? (Enter None if none)"
               variant="outlined"
               value={accomodations}
               onChange={handleAccomodationsChange}
-              helperText="Please enter your desired accomodations (Optional)"
+              helperText="Please enter your desired accomodations (Optional) (Enter None if none)"
             />
           </Grid>
           <Grid item xs={7}>
