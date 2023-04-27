@@ -49,27 +49,34 @@ function Survey() {
   const [setSuccess] = useState('');
 
 
-  // useEffect(() => {
-  //   const surveyData = JSON.parse(localStorage.getItem("surveyData"));
-  //   if (surveyData) {
-  //     setName(surveyData.name);
-  //     setBirthYear(surveyData.birthYear);
-  //     setGender(surveyData.gender);
-  //     setClassYear(surveyData.classYear);
-  //     setMajor(surveyData.major);
-  //     setLocation(surveyData.location);
-  //     setBedTime(surveyData.bedTime);
-  //     setWakeTime(surveyData.wakeTime);
-  //     setNoiseLevel(surveyData.noiseLevel);
-  //     setGuestLevel(surveyData.guestLevel);
-  //     setTidiness(surveyData.setTidiness);
-  //     setAllergies(surveyData.allergies);
-  //     setAccomodations(surveyData.allergies);
-  //     setWindow(surveyData.window);
-  //     setAnimal(surveyData.animal);
-  //     setParty(surveyData.party);
-  //   }
-  // }, []);
+  useEffect(() => {
+    // const surveyData = JSON.parse(localStorage.getItem("surveyData"));
+    async function getSurveyData() {
+      const surveyData = await getDoc(doc(db, "users", user.uid));
+      console.log(user.uid)
+      console.log(surveyData)
+      if (surveyData) {
+        setName(surveyData.name);
+        setBirthYear(surveyData.birthYear);
+        setGender(surveyData.gender);
+        setClassYear(surveyData.classYear);
+        setMajor(surveyData.major);
+        setLocation(surveyData.location);
+        setBedTime(surveyData.bedTime);
+        setWakeTime(surveyData.wakeTime);
+        setNoiseLevel(surveyData.noiseLevel);
+        setGuestLevel(surveyData.guestLevel);
+        setTidiness(surveyData.setTidiness);
+        setAllergies(surveyData.allergies);
+        setAccomodations(surveyData.allergies);
+        setWindow(surveyData.window);
+        setAnimal(surveyData.animal);
+        setParty(surveyData.party);
+      }
+    }
+    getSurveyData();
+    
+  }, []);
   
 
   const handleSubmit = async(e) => {
@@ -98,7 +105,7 @@ function Survey() {
       };
       try {
         // const docRef = await addDoc(collection(db, "surveyResponses"), surveyData);
-        await updateDoc(doc(db, "users", user.uid), surveyData)
+        await updateDoc(doc(db, "users", user.uid), {'responses': surveyData})
         localStorage.setItem("surveyData", JSON.stringify(surveyData));
         // console.log("Survey submitted with ID: ", docRef.id);
         //setSuccess(true);
