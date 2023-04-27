@@ -223,6 +223,8 @@ function ViewMatches() {
       const handleProfileClick = (id) => {
         console.log(`Clicked profile with ID ${id}`);
       };
+
+      
     return (
         <div>
             <Title></Title>
