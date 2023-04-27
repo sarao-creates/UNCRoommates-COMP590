@@ -63,20 +63,6 @@ function CreateAccountPage() {
                     <br></br>
                     <div className='createaccount-container'>
                     <TextField
-                        id="email"
-                        label="UNC email"
-                        type="email"
-                        size="small"
-                        style = {{width: 340, paddingRight: 78}}
-                        onChange={handleInfo('email')}
-                    /><TextField
-                        id="phone"
-                        label="Phone number (Optional)"
-                        type="email"
-                        size="small"
-                        style = {{width: 340, paddingBottom: 30}}
-                        onChange={handleInfo('phone')}
-                    /><TextField
                         id="firstname"
                         label="First name"
                         type="email"
@@ -90,6 +76,21 @@ function CreateAccountPage() {
                         size="small"
                         style = {{width: 340, paddingBottom: 30}}
                         onChange={handleInfo('lastName')}
+                    />
+                    <TextField
+                        id="email"
+                        label="UNC email"
+                        type="email"
+                        size="small"
+                        style = {{width: 340, paddingRight: 78}}
+                        onChange={handleInfo('email')}
+                    /><TextField
+                        id="phone"
+                        label="Phone number (Optional)"
+                        type="email"
+                        size="small"
+                        style = {{width: 340, paddingBottom: 30}}
+                        onChange={handleInfo('phone')}
                     /><TextField
                         id="password"
                         label="Password"
