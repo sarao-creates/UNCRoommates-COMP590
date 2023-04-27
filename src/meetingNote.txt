@@ -11,7 +11,7 @@
 Apr 25
 
 1. update the steps (user needs to contact their matches) on the welcome page
-2. center the create account between
+2. center the create account button
 3. first row for create account page: first and last name, 2nd row would be email and phone number
 4. put a 2028 for class year option
 5. add the actual pills after the options for tagged question

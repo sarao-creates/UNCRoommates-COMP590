@@ -17,6 +17,7 @@ function WelcomePage() {
                         <div className='welcome-text'><span className='bulletpoint'><b>- </b></span>Create a free-text bio</div>
                         <div className='welcome-text'><span className='bulletpoint'><b>- </b></span>Upload an optional photo</div>
                         <div className='welcome-text'><span className='bulletpoint'><b>- </b></span>View your matches</div>
+                        <div className='welcome-text'><span className='bulletpoint'><b>- </b></span>Contact your matches</div>
                         <br></br>
                         <a href="/login"><button class="button">Login or Create an Account</button></a>
                     </div>
