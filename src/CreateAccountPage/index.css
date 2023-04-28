@@ -1,65 +1,61 @@
 .full-screen {
-    width: auto;
-    height: 100vh;
+  width: auto;
+  height: 100vh;
 }
 
 .button {
-  background-color: #13294B;
+background-color: #13294B;
+border: 2px solid #13294B;
+border-radius: 4px;
+color: white;
+padding: 10px 10px;
+text-decoration: none;
+font-size: 16px;
+transition-duration: 0.3s;
+text-align: center;
+}
+
+.button:hover {
+  background-color: white;
   border: 2px solid #13294B;
-  border-radius: 4px;
-  color: white;
-  padding: 10px 10px;
-  text-decoration: none;
-  font-size: 16px;
-  transition-duration: 0.3s;
-  text-align: center;
-}
-  
-  .button:hover {
-    background-color: white;
-    border: 2px solid #13294B;
-    color: #13294B;
-  }
-
-.centerstuff {
-  text-align: center;
+  color: #13294B;
 }
 
-  .button-create {
-    margin: 0 auto;
-    padding: 10px 40px 10px 40px;
-    font-size: 20px;
-    text-align: center;
-    background-color: #4B9CD3;
-    float: center;
+.button-create {
+  margin: 0 auto;
+  padding: 10px 40px 10px 40px;
+  font-size: 20px;
+  text-align: center;
+  background-color: #4B9CD3;
+  float: center;
 }
 
 .createaccount-header {
-    padding: 15px;
-    padding-bottom: 10px;
-    text-align: center;
-    font-size: 50px;
-    color: #13294B;
+  padding: 15px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-size: 50px;
+  color: #13294B;
 }
 
 .dashedline {
-    margin: 5px 370px;
-    height: 5px;
-    background: repeating-linear-gradient(
-      to right,
-      transparent,
-      transparent 10px,
-      #4B9CD3 10px,
-      #4B9CD3 20px
-    );
+  margin: 5px 370px;
+  height: 5px;
+  background: repeating-linear-gradient(
+    to right,
+    transparent,
+    transparent 10px,
+    #4B9CD3 10px,
+    #4B9CD3 20px
+  );
 }
 
 .createaccount-container {
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%;
-    border: #13294B 2px solid;
-    border-top: #13294B 15px solid;
-    height: auto;
-    padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  border: #13294B 2px solid;
+  border-top: #13294B 15px solid;
+  height: auto;
+  padding: 20px;
 }

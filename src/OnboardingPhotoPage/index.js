@@ -4,6 +4,8 @@ import { doc, getDoc } from 'firebase/firestore';
 import './index.css'
 import { useState, useEffect } from 'react';
 import Title from '../WelcomePage/Title/index.js';
+import { Link } from 'react-router-dom'
+
 
 function OnboardingPhotoPage() {
     const [file, setFile] = useState("");
@@ -35,7 +37,7 @@ function OnboardingPhotoPage() {
                             />
                         </div>
                     <br></br>
-                    <button class='button button-next'>Next</button>
+                    <Link to='/onboarding-bio'><button class='button button-next'>Next</button></Link>
                     </div>
                 </div>
         </div>

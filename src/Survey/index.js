@@ -1,7 +1,7 @@
 import './index.css'
 import Title from '../WelcomePage/Title'
 import NavigationTabs from '../NavigationTabs';
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import {
   Grid,
   TextField,
@@ -14,12 +14,23 @@ import {
   MenuItem,
   InputLabel,
   Select,
+  Typography,
 } from '@mui/material';
+import db from '../Firebase/firebase.js';
+import { collection, addDoc } from "firebase/firestore";
+import { doc, updateDoc, getDoc } from 'firebase/firestore';
+import { getAuth } from "firebase/auth";
+
+
+//import {Redirect} from 'react-router-dom';
 //import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Link } from "react-router-dom";
-import db from '../Firebase/firebase';
 
 function Survey() {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  
+  //const [name, setName] = useState('');
+
   const [birthYear, setBirthYear] = useState('');
   const [gender, setGender] = useState('');
   const [classYear, setClassYear] = useState('');
@@ -35,11 +46,84 @@ function Survey() {
   const [window, setWindow] = useState('');
   const [animal, setAnimal] = useState('');
   const [party, setParty] = useState('');
+  const [setError] = useState('');
+  const [setSuccess] = useState('');
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    //console.log(`Age: ${age}, Favorite Color: ${favoriteColor}, Gender: ${gender}`);
+
+  useEffect(() => {
+    // const surveyData = JSON.parse(localStorage.getItem("surveyData"));
+    async function getSurveyData() {
+      const surveyData = await getDoc(doc(db, "users", user.uid));
+      console.log(user.uid)
+      console.log(surveyData)
+      if (surveyData) {
+        // setName(surveyData.name);
+        setBirthYear(surveyData.birthYear);
+        setGender(surveyData.gender);
+        setClassYear(surveyData.classYear);
+        setMajor(surveyData.major);
+        setLocation(surveyData.location);
+        setBedTime(surveyData.bedTime);
+        setWakeTime(surveyData.wakeTime);
+        setNoiseLevel(surveyData.noiseLevel);
+        setGuestLevel(surveyData.guestLevel);
+        setTidiness(surveyData.setTidiness);
+        setAllergies(surveyData.allergies);
+        setAccomodations(surveyData.allergies);
+        setWindow(surveyData.window);
+        setAnimal(surveyData.animal);
+        setParty(surveyData.party);
+      }
+    }
+    getSurveyData();
     
+  }, []);
+  
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    if (!birthYear || !gender || !classYear || !major || !location || !bedTime || !wakeTime || !noiseLevel || !guestLevel || !tidiness || !accomodations || !allergies) {
+      setError("Please fill in all required fields.");
+      return;
+    }
+    // if (allergies === undefined) {
+    //   console.log('do we get here?')
+    //   setAllergies("None")
+    // }
+
+    // if (accomodations === undefined) {
+    //   setAccomodations("None")
+    // }
+
+    const surveyData = {
+        birthYear,
+        gender,
+        classYear,
+        major,
+        location,
+        bedTime,
+        wakeTime,
+        noiseLevel,
+        guestLevel,
+        tidiness,
+        allergies,
+        accomodations,
+        window,
+        animal,
+        party,
+      };
+      try {
+        // const docRef = await addDoc(collection(db, "surveyResponses"), surveyData);
+        console.log(surveyData);
+        await updateDoc(doc(db, "users", user.uid), {'responses': surveyData})
+        localStorage.setItem("surveyData", JSON.stringify(surveyData));
+        // console.log("Survey submitted with ID: ", docRef.id);
+        //setSuccess(true);
+      } catch (error) {
+        console.error("Error adding survey: ", error);
+      }
+      
+
   }
 
   function handleGenderChange(event) {
@@ -88,7 +172,9 @@ function Survey() {
   }
 
   function handleAccomodationsChange(event) {
+    
     setAccomodations(event.target.value);
+    
   }
 
   function handleWindowChange(event) {
@@ -103,13 +189,17 @@ function Survey() {
     setParty(event.target.value);
   }
 
+/*   function handleNameChange(event) {
+    setName(event.target.value);
+  } */
+
   return (
     <div>
         <Title></Title>
         <NavigationTabs></NavigationTabs>
         <br></br>
         <form onSubmit={handleSubmit}>
-      <Grid container spacing={3} justifyContent="center" height="100vh">
+      <Grid container spacing={2} justifyContent="center" height="100vh" alignitems="center">
         <p>Please take a short survey for more accurate matches. The questions with <span style={{ color: 'red' }}>*</span> are required.</p>
       <Grid item xs={7}>
             <TextField
@@ -124,12 +214,25 @@ function Survey() {
               helperText="Please enter your birth year (YYYY)"
             />
           </Grid>
+{/*            <Grid item xs={7}>
+            <TextField
+              required
+              fullWidth
+              type="text"
+              id="name"
+              label="2. Please indicate your first and last name."
+              variant="outlined"
+              value={name}
+              onChange={handleNameChange}
+              helperText="Please enter your first and last name"
+            />
+          </Grid>  */}
         <Grid item xs={7}>
           <FormControl component="fieldset">
-            <FormLabel component="legend">2. What is your Gender indicated to UNC?<span style={{ color: 'red' }}>*</span></FormLabel>
+            <FormLabel component="legend">2. What is your Gender indicated to UNC?<span style={{ color: 'red' }}>*</span>&nbsp;<span style={{ color: 'red' }}>(Tag)</span></FormLabel>
             <RadioGroup aria-label="gender" name="gender" value={gender} onChange={handleGenderChange}>
-              <FormControlLabel value="male" control={<Radio required />} label="Male" />
-              <FormControlLabel value="female" control={<Radio required />} label="Female" />
+            <div style={{ display: "flex", alignItems: "center" }}><FormControlLabel value="male" control={<Radio required />} label="Male" /><td class='size'><span2>Male</span2></td></div>
+            <div style={{ display: "flex", alignItems: "center" }}><FormControlLabel value="female" control={<Radio required />} label="Female" /><td class='size'><span>Female</span></td></div>
             </RadioGroup>
           </FormControl>
         </Grid>
@@ -137,6 +240,7 @@ function Survey() {
             <FormControl component="fieldset">
               <FormLabel component="legend">3. What is your class year?<span style={{ color: 'red' }}>*</span></FormLabel>
               <RadioGroup aria-label="classYear" name="classYear" value={classYear} onChange={handleClassYearChange}>
+                <FormControlLabel value="2028" control={<Radio required/>} label="2028" />
                 <FormControlLabel value="2027" control={<Radio required/>} label="2027" />
                 <FormControlLabel value="2026" control={<Radio required/>} label="2026" />
                 <FormControlLabel value="2025" control={<Radio required/>} label="2025" />
@@ -146,7 +250,7 @@ function Survey() {
           </Grid>
           <Grid item xs={7}>
             <FormControl fullWidth>
-              <InputLabel>4. What is your Major?<span style={{ color: 'red' }}>*</span></InputLabel>
+              <InputLabel>4. What is your primary major?<span style={{ color: 'red' }}>*</span></InputLabel>
               <Select value={major} onChange={handleMajorChange}>
                 <MenuItem value="Undecided">Undecided</MenuItem>
                 <MenuItem value="African, African American, and Diaspora Studies">African, African American, and Diaspora Studies</MenuItem>
@@ -214,7 +318,7 @@ function Survey() {
                 <FormControlLabel value="South Campus" control={<Radio required/>} label="South Campus (Ehaus, Craige, HoJo, Rams, etc.)" />
                 <FormControlLabel value="Middle Campus" control={<Radio required/>} label="Middle Campus (Carmichael, Avery, Teague, etc.)" />
                 <FormControlLabel value="North Campus" control={<Radio required/>} label="North Campus (Cobb, Graham, Connor, etc.)" />
-                <FormControlLabel value="Don't care" control={<Radio required/>} label="I don't care" />
+                <FormControlLabel value="I don't care" control={<Radio required/>} label="I don't care" />
               </RadioGroup>
             </FormControl>
           </Grid>
@@ -223,8 +327,8 @@ function Survey() {
               <FormLabel component="legend">6. What time do you typically go to bed?<span style={{ color: 'red' }}>*</span></FormLabel>
               <RadioGroup aria-label="bedTime" name="bedTime" value={bedTime} onChange={handleBetTimeChange}>
                 <FormControlLabel value="Early" control={<Radio required/>} label="7:00pm - 10:00pm (Early)" />
-                <FormControlLabel value="Regular)" control={<Radio required/>} label="10:00pm - 1:00am (Regular)" />
-                <FormControlLabel value="Late" control={<Radio required/>} label="1:00am - 4:00 am (Late)" />
+                <FormControlLabel value="Regular" control={<Radio required/>} label="10:00pm - 1:00am (Regular)" />
+                <div style={{ display: "flex", alignItems: "center" }}><FormControlLabel value="Late" control={<Radio required/>} label="1:00am - 4:00 am (Late)" /><td class='size'><span4>Night Owl</span4></td></div>
               </RadioGroup>
             </FormControl>
           </Grid>
@@ -232,12 +336,13 @@ function Survey() {
             <FormControl component="fieldset">
               <FormLabel component="legend">7. What time do you typically wake up?<span style={{ color: 'red' }}>*</span></FormLabel>
               <RadioGroup aria-label="wakeTime" name="wakeTime" value={wakeTime} onChange={handleWakeTimeChange}>
-                <FormControlLabel value="Early" control={<Radio required/>} label="5:00am - 8:00am (Early)" />
+                <div style={{ display: "flex", alignItems: "center" }}><FormControlLabel value="Early" control={<Radio required/>}label="5:00am - 8:00am (Early)" /><td class='size'><span3>Early Riser</span3></td></div>
                 <FormControlLabel value="Regular" control={<Radio required/>} label="8:00am - 10:00am (Regular)" />
                 <FormControlLabel value="Late" control={<Radio required/>} label="10:00am - 1:00pm (Late)" />
               </RadioGroup>
             </FormControl>
           </Grid>
+          
           <Grid item xs={7}>
             <FormControl component="fieldset">
               <FormLabel component="legend">8. What is your ideal noise level in the room?<span style={{ color: 'red' }}>*</span></FormLabel>
@@ -271,27 +376,16 @@ function Survey() {
             </FormControl>
           </Grid>
           <Grid item xs={7}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">10. How tidy do you keep your living spaces?<span style={{ color: 'red' }}>*</span></FormLabel>
-              <RadioGroup aria-label="tidiness" name="tidiness" value={tidiness} onChange={handleTidinessChange}>
-                <FormControlLabel value="Very tidy" control={<Radio required/>} label="Very tidy - I like to keep things organized and clean at all times." />
-                <FormControlLabel value="Slightly tidy" control={<Radio required/>} label="Slightly tidy - I try to keep things organized, but don't mind a little mess from time to time." />
-                <FormControlLabel value="Slightly messy" control={<Radio required/>} label="Slightly messy - I tend to be a little disorganized and may have a few items out of place." />
-                <FormControlLabel value="Very messy" control={<Radio required/>} label="Very messy - I am not very concerned with tidiness and may have a lot of clutter." />
-              </RadioGroup>
-            </FormControl>
-          </Grid>
-          <Grid item xs={7}>
             <TextField
               
               fullWidth
               type="text"
               id="allergies"
-              label="11. Do you have any food restrictions or allergies?"
+              label="11. Do you have any food restrictions or allergies? (Enter None if none)"
               variant="outlined"
               value={allergies}
               onChange={handleAllergiiesChange}
-              helperText="Please enter your food restrictions or allergies (Optional)"
+              helperText="Please enter your food restrictions or allergies (Optional) (Enter None if none)"
             />
           </Grid>
           <Grid item xs={7}>
@@ -300,37 +394,37 @@ function Survey() {
               fullWidth
               type="text"
               id="accomodations"
-              label="12. Do you you need any other accomodations from your roommate?"
+              label="12. Do you you need any other accomodations from your roommate? (Enter None if none)"
               variant="outlined"
               value={accomodations}
               onChange={handleAccomodationsChange}
-              helperText="Please enter your desired accomodations (Optional)"
+              helperText="Please enter your desired accomodations (Optional) (Enter None if none)"
             />
           </Grid>
           <Grid item xs={7}>
             <FormControl component="fieldset">
-              <FormLabel component="legend">13. Do you prefer the windows open or closed in your room?</FormLabel>
+              <FormLabel component="legend">13. Do you prefer the windows open or closed in your room?<span style={{ color: 'red' }}>(Tag)</span></FormLabel>
               <RadioGroup aria-label="window" name="window" value={window} onChange={handleWindowChange}>
-                <FormControlLabel value="Open" control={<Radio />} label="Open - I prefer to open the windows." />
+              <div style={{ display: "flex", alignItems: "center" }}><FormControlLabel value="Open" control={<Radio />} label="Open - I prefer to open the windows." /><td class='size'><span5>Window Opened</span5></td></div>
                 <FormControlLabel value="Neutral" control={<Radio />} label="Neutral - I don't have any preference." />
-                <FormControlLabel value="Closed" control={<Radio />} label="Closed - I prefer to close the windoes." />
+                <div style={{ display: "flex", alignItems: "center" }}><FormControlLabel value="Closed" control={<Radio />} label="Closed - I prefer to close the windoes." /><td class='size'><span6>Window Closed</span6></td></div>
               </RadioGroup>
             </FormControl>
           </Grid>
           <Grid item xs={7}>
             <FormControl component="fieldset">
-              <FormLabel component="legend">14. Are you going to have an animal in the room?</FormLabel>
+              <FormLabel component="legend">14. Are you going to have an animal in the room?<span style={{ color: 'red' }}>(Tag)</span></FormLabel>
               <RadioGroup aria-label="animal" name="animal" value={animal} onChange={handleAnimalChange}>
-                <FormControlLabel value="Yes" control={<Radio />} label="Yes - There will be an animal living with me." />
+              <div style={{ display: "flex", alignItems: "center" }}><FormControlLabel value="Yes" control={<Radio />} label="Yes - There will be an animal living with me." /><td class='size'><span8>Animal Friendly</span8></td></div>
                 <FormControlLabel value="No" control={<Radio />} label="No - There will not be an animal living with me." />
               </RadioGroup>
             </FormControl>
           </Grid>
           <Grid item xs={7}>
             <FormControl component="fieldset">
-              <FormLabel component="legend">15. What is your stance on parties?</FormLabel>
+              <FormLabel component="legend">15. What is your stance on parties?<span style={{ color: 'red' }}>(Tag)</span></FormLabel>
               <RadioGroup aria-label="party" name="party" value={party} onChange={handlePartyChange}>
-                <FormControlLabel value="I love to party" control={<Radio />} label="I love to party" />
+              <div style={{ display: "flex", alignItems: "center" }}><FormControlLabel value="I love to party" control={<Radio />} label="I love to party" /><td class='size'><span7>Party Friendly</span7></td></div>
                 <FormControlLabel value="I like to party occasionally" control={<Radio />} label="I like to party occasionally" />
                 <FormControlLabel value="I prefer not to party" control={<Radio />} label="I prefer not to party" />
               </RadioGroup>
@@ -338,7 +432,7 @@ function Survey() {
           </Grid>
           
         <Grid item xs={7}>
-        <Link to="/profile"><Button style={{maxWidth: '100px', maxHeight: '40px', minWidth: '100px', minHeight: '40px',backgroundColor:'#13294b'}}variant='contained'size='medium'type="submit">Submit</Button></Link>
+        <a href="/profile"><Button style={{maxWidth: '100px', maxHeight: '40px', minWidth: '100px', minHeight: '40px',backgroundColor:'#13294b'}}variant='contained'size='medium'type="submit">Submit</Button></a>
         </Grid>
       </Grid>
     </form>

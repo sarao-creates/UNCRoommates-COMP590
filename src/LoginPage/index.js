@@ -47,10 +47,32 @@ function LoginPage() {
             <LoginTitle></LoginTitle>
             <h1 className="login-text">Login to Your Account</h1>
             <div className='login-input'>
-                <h3>UNC Email:</h3> <TextField id="outlined-email-input" label="Email" type="email" onChange={handleEmail} />
-                <h3>Password:</h3> <TextField id="outlined-password-input" label="Password" type="password" autoComplete="current-password" onChange={handlePWD} />
-                <div><Button variant="contained" onClick={handleSignIn}>Login</Button></div>
-                <h4>Don't Have an Account? <Link to='/createaccount'><u>Click Here to Sign Up!</u></Link></h4>
+                <br></br>
+                <TextField 
+                    fullWidth
+                    id="outlined-email-input" 
+                    label="Email" 
+                    type="email" 
+                    size="small"
+                    onChange={handleEmail}
+                />
+                <br></br>
+                <br></br>
+                <TextField 
+                    fullWidth
+                    id="outlined-password-input" 
+                    label="Password" 
+                    type="password" 
+                    size="small"
+                    autoComplete="current-password" 
+                    onChange={handlePWD} 
+                />
+                <br></br>
+                <br></br>
+                <div className='textpadding'>
+                <div><button class="button" onClick={handleSignIn}>Login</button></div>
+                <h4>Don't Have an Account? <Link to='/create-account'><u>Click Here to Sign Up!</u></Link></h4>
+            </div>
             </div>
             <Snackbar open={snackbar.status} autoHideDuration={7500} onClose={() => setSnackbar({status: false})}> 
                     <Alert severity='info'>{snackbar.message}</Alert>

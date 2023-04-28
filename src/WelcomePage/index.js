@@ -1,7 +1,6 @@
 import React from 'react'
 import './index.css'
 import LoginTitle from './LoginTitle'
-import { Link } from "react-router-dom";
 
 function WelcomePage() {
     return (
@@ -18,8 +17,9 @@ function WelcomePage() {
                         <div className='welcome-text'><span className='bulletpoint'><b>- </b></span>Create a free-text bio</div>
                         <div className='welcome-text'><span className='bulletpoint'><b>- </b></span>Upload an optional photo</div>
                         <div className='welcome-text'><span className='bulletpoint'><b>- </b></span>View your matches</div>
+                        <div className='welcome-text'><span className='bulletpoint'><b>- </b></span>Contact your matches</div>
                         <br></br>
-                        <Link to="/login"><button class="button">Login or Create an Account</button></Link>
+                        <a href="/login"><button class="button">Login or Create an Account</button></a>
                     </div>
                 </div>
             </div>

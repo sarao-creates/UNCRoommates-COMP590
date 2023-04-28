@@ -9,14 +9,6 @@ import { fontSize } from '@mui/system';
 import { Link } from "react-router-dom";
 import NavigationTabs from '../NavigationTabs';
 
-// Code still needs to be created to allow user to type into the text boxes and press the save button
-// and have it update their info in firebase, updating the info displayed on the page as well.
-//
-// New password and confirm password needs to match. And confirm password box should be greyed out if 
-// there is nothing typed in the new password text box.
-//
-// WHY WONT SETTINGS PAGE HEADER CENTER?!!
-
 function SettingsPage() {
     const [Email, setEmail] = useState('')
     const [Phone, setPhone] = useState('')
@@ -39,9 +31,6 @@ function SettingsPage() {
             }    
     
         }
-
-        docLookup();
-
     }, []);
 
     return (
@@ -52,9 +41,7 @@ function SettingsPage() {
                 <div className='settings-container'>
                     <br></br>
                     <Link to="/profile"><button class="button button-save">Save Changes</button></Link>
-                    <div className='centerstuff'>
                         <div className='page-header'>Settings</div>
-                    </div>
                     <br></br>
                     <div className='smaller-container'>
                         <div className='headerpadding'>
@@ -67,7 +54,7 @@ function SettingsPage() {
                         <TextField
                             fullWidth
                             id="email"
-                            label="Edit email"
+                            label="New email"
                             type="email"
                             size="small"
                             //onChange={}
@@ -76,7 +63,7 @@ function SettingsPage() {
                         <TextField
                             fullWidth
                             id="phone"
-                            label="Edit phone number"
+                            label="New phone number"
                             type="email"
                             size="small"
                             //onChange={}
@@ -92,11 +79,21 @@ function SettingsPage() {
                         </div>
                     </div>
                     <div className='textpadding'>
-                        <div className='settingstextinputheader'><b>Current Password:</b> {Password}</div>
+                        <div className='settingstextinputheader'><b>New Password:</b> {Password}</div>
+                        <TextField
+                            fullWidth
+                            id="currentpassword"
+                            label="Enter your current password"
+                            type="email"
+                            size="small"
+                            //onChange={}
+                        />
+                        <br></br>
+                        <br></br>
                         <TextField
                             fullWidth
                             id="newpassword"
-                            label="Edit password"
+                            label="Re-enter new password"
                             type="email"
                             size="small"
                             //onChange={}
@@ -116,7 +113,8 @@ function SettingsPage() {
                 <br></br>
                 <div className='alignment-container'>
                     <button class="button button-status">Deactivate Account</button>
-                </div>    
+                </div>
+                <br></br>
                 </div> 
             </div>
         </div>

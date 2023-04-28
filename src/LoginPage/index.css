@@ -4,15 +4,43 @@
 }
 
 .login-text {
-    font-size: 60px;
-    font-family: 'Bitter';
-    margin: auto;
+    padding: 10px;
     text-align: center;
+    font-size: 50px;
+    color: #13294B;
 }
 
 .login-input {
-    margin: auto;
-    width: 75%;
-    border: #13294B 3px solid;
+    height: auto;
+    border: #13294B 2px solid;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding:10px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.textpadding {
     text-align: center;
 }
+
+.button {
+    background-color: #13294B;
+    border: 2px solid #13294B;
+    border-radius: 4px;
+    color: white;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-size: 16px;
+    transition-duration: 0.3s;
+    text-align: center;
+    }
+    
+    .button:hover {
+      background-color: white;
+      border: 2px solid #13294B;
+      color: #13294B;
+    }
