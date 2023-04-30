@@ -9,7 +9,7 @@ import { fontSize } from '@mui/system';
 import { Link } from "react-router-dom";
 import NavigationTabs from '../NavigationTabs';
 
-function SettingsPage() {
+function DeactivatedSettingsPage() {
     const [Email, setEmail] = useState('')
     const [Phone, setPhone] = useState('')
     const [Password, setPassword] = useState('')
@@ -42,6 +42,21 @@ function SettingsPage() {
                     <br></br>
                     <Link to="/profile"><button class="button button-save">Save Changes</button></Link>
                         <div className='page-header'>Settings</div>
+                    <br></br>
+                    <div className='smaller-container'>
+                        <div className='headerpadding'>
+                            <div className='alignment-container'>
+                                <div className='settings-header'>
+                                    &#x26A0; Account Currently Inactive &#x26A0;
+                                </div>
+                            </div>
+                         </div>
+                         <div className='text'><b>NOTE: Your account is currently deactivated.</b> Other users will be 
+                                unable to view your profile and be matched with you, and you will not 
+                                be matched with others. To reactivate your account, please visit the 
+                                settings page.</div>
+                    </div>
+                    <br></br>
                     <br></br>
                     <div className='smaller-container'>
                         <div className='headerpadding'>
@@ -111,8 +126,7 @@ function SettingsPage() {
                         </div>
                 </div>
                 <br></br>
-                <div className='alignment-container'>
-                    <Link to='deactivationconfirm'><button class="button button-status">Deactivate Account</button></Link>
+                <div className='alignment-container'><button class="button button-status">Reactivate Account</button>
                 </div>
                 <br></br>
                 </div> 
@@ -121,4 +135,4 @@ function SettingsPage() {
     )
 }
 
-export default SettingsPage
+export default DeactivatedSettingsPage

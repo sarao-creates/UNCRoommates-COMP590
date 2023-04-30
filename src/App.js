@@ -9,6 +9,8 @@ import OnboardingBioPage from './OnboardingBioPage';
 import OnboardingPhotoPage from './OnboardingPhotoPage';
 import ViewMatches from './ViewMatches';
 import MatchedUserProfilePage from './MatchedUserProfilePage';
+import DeactivationConfirmPage from './DeactivationConfirmPage';
+import DeactivatedSettingsPage from './DeactivatedSettingsPage';
 
 const ProfilePath = '/profile';
 const WelcomePath = '/welcome';
@@ -20,11 +22,12 @@ const OnboardingBioPath = '/onboarding-bio';
 const OnboardingPhotoPath = '/onboarding-photo';
 const ViewMatchesPath = '/viewmatches'
 const MatchedUserProfilePath = '/matcheduserprofile';
+const DeactivationConfirmPath = '/deactivationconfirm';
+const DeactivatedSettingsPath = '/deactivatedsettings';
 
 function App() {
   return (
     <Router>
-      <Switch>
       <Route exact path='/'>
         <Redirect to='/welcome'></Redirect>
       </Route>
@@ -38,7 +41,8 @@ function App() {
       <Route path={OnboardingPhotoPath} component={OnboardingPhotoPage}></Route>
       <Route path={ViewMatchesPath} component={ViewMatches}></Route>
       <Route path={MatchedUserProfilePath} component={MatchedUserProfilePage}></Route>
-      </Switch>
+      <Route path={DeactivationConfirmPath} component={DeactivationConfirmPage}></Route>
+      <Route path={DeactivatedSettingsPath} component={DeactivatedSettingsPage}></Route>
     </Router>
   );
 }

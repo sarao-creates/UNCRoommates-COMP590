@@ -1,0 +1,107 @@
+.full-screen {
+    width: 100vw;
+    height: 100vh;
+}
+
+.centerstuff {
+    text-align: center;
+}
+
+.button {
+    background-color: #13294B;
+    border: 2px solid #13294B;
+    border-radius: 4px;
+    color: white;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-size: 16px;
+    transition-duration: 0.3s;
+  }
+  
+  .button:hover {
+    background-color: white;
+    border: 2px solid #13294B;
+    color: #13294B;
+  }
+
+.button-save {
+    float: right;
+}
+
+.text {
+    text-align: left;
+    padding: 10px;
+    padding-bottom: 2px;
+}
+
+.alignment-container {
+    text-align: center;
+ }
+
+.button-status {
+    display: block;
+    padding: 15px 25px;
+    font-size: 20px;
+    background-color: #4B9CD3;
+    margin: 0 auto;
+}
+
+.page-header {
+    padding: 40px;
+    padding-bottom: 10px;
+    padding-left: 170px;
+    text-align: center;
+    font-size: 50px;
+    color: #13294B;
+}
+
+.headerpadding {
+    padding-left: 10px;
+    background-color: #13294B;
+}
+
+.textpadding {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.settings-header {
+    margin-top: auto;
+    text-align: relative;
+    font-size: 20px;
+    background-color: #13294B;
+    color: white;
+}
+
+.settings-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 59.4%;
+    border: #13294B 2px solid;
+    height: auto;
+    padding-bottom: auto;
+    padding-right: 15px;
+}
+
+.smaller-container {
+    height: auto;
+    border: #13294B 2px solid;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 15px;
+}
+
+.settingstextinputheader {
+    padding-top: 45px;
+    padding-bottom: 8px;
+    margin-top: -30px;
+    text-align: relative;
+    font-size: 15px;
+    color: black;
+}
