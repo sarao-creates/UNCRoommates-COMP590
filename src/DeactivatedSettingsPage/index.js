@@ -44,17 +44,16 @@ function DeactivatedSettingsPage() {
                         <div className='page-header'>Settings</div>
                     <br></br>
                     <div className='smaller-container'>
-                        <div className='headerpadding'>
-                            <div className='alignment-container'>
-                                <div className='settings-header'>
-                                    &#x26A0; Account Currently Inactive &#x26A0;
-                                </div>
+                        <div className='alignment-container'>
+                            <div className='settings-header'>
+                                &#x26A0; Account Currently Inactive &#x26A0;
                             </div>
-                         </div>
-                         <div className='text'><b>NOTE: Your account is currently deactivated.</b> Other users will be 
+                        </div>
+                    <div className='text'><b>NOTE: Your account is currently deactivated.</b> Other users will be 
                                 unable to view your profile and be matched with you, and you will not 
                                 be matched with others. To reactivate your account, please visit the 
-                                settings page.</div>
+                                settings page.
+                    </div>
                     </div>
                     <br></br>
                     <br></br>

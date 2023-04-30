@@ -39,6 +39,10 @@
 
 }
 
+.iconsize {
+    font-size: 20;
+}
+
 .Settings-text {
     position: absolute;
     right: 0px;
