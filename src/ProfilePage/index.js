@@ -57,6 +57,9 @@ function ProfilePage() {
                     <div className='image-container'></div>
                 </div>
                 <div className='right-container'>
+                <div className='editbutton-container'>
+                        <button className='button'>Edit Bio/Photo</button>
+                    </div>
                     <div className='name-container'>
                         <h1>{firstName} {lastName}</h1>
                     </div>
