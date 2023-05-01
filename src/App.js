@@ -11,6 +11,7 @@ import ViewMatches from './ViewMatches';
 import MatchedUserProfilePage from './MatchedUserProfilePage';
 import DeactivationConfirmPage from './DeactivationConfirmPage';
 import DeactivatedSettingsPage from './DeactivatedSettingsPage';
+import EditBioandPhotoPage from './EditBioandPhotoPage';
 
 const ProfilePath = '/profile';
 const WelcomePath = '/welcome';
@@ -24,6 +25,7 @@ const ViewMatchesPath = '/viewmatches'
 const MatchedUserProfilePath = '/matcheduserprofile';
 const DeactivationConfirmPath = '/deactivationconfirm';
 const DeactivatedSettingsPath = '/deactivatedsettings';
+const EditBioandPhotoPath = '/editbioandphoto';
 
 function App() {
   return (
@@ -43,6 +45,7 @@ function App() {
       <Route path={MatchedUserProfilePath} component={MatchedUserProfilePage}></Route>
       <Route path={DeactivationConfirmPath} component={DeactivationConfirmPage}></Route>
       <Route path={DeactivatedSettingsPath} component={DeactivatedSettingsPage}></Route>
+      <Route path={EditBioandPhotoPath} component={EditBioandPhotoPage}></Route>
     </Router>
   );
 }

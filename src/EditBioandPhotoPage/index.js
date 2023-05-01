@@ -1,12 +1,16 @@
 import {db} from '../Firebase/firebase.js'
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, updateDoc, getDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import './index.css';
 import Title from '../WelcomePage/Title';
 import NavigationTabs from '../NavigationTabs';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import {TextField} from '@mui/material';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import { getAuth } from "firebase/auth";
 
-function ProfilePage() {
+function EditBioandPhotoPage() {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [gender, setGender] = useState('')
@@ -19,6 +23,34 @@ function ProfilePage() {
     const [year, setYear] = useState('')
     const [allergies, setAllergies] = useState('')
 
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    const history = useHistory();
+    const [bioInfo, setBioInfo] = useState({
+        "count": 0,
+        "value": "",
+    });
+
+    const validate = () => {
+        return (bioInfo["count"] >= 150 & bioInfo["count"] < 1500);
+      };
+
+      const [snackbar, setSnackbar] = useState({
+        status: false,
+        message: '',
+    });
+
+      const handleBio = async () => {
+        if (validate() == true) {
+            console.log(user)
+            await updateDoc(doc(db, "users", user.uid), {"bio":bioInfo["value"]})
+            history.push('/survey');
+        }
+        else {
+            setSnackbar({status: true, message: `Bio needs to be between 150 and 1500 characters.`});
+        }
+    }
 
     useEffect(() => {
 
@@ -62,7 +94,7 @@ function ProfilePage() {
                 <div className='right-container'>
                     <br></br>
                 <div className='editbutton-container'>
-                        <Link to='editbioandphoto'><button className='button'>&#x270E; Edit Bio/Photo</button></Link>
+                        <Link to='profile'><button class="button" onClick={handleBio} type="button" disabled={!validate()}>Save Changes</button></Link>
                     </div>
                     <br></br>
                     <br></br>
@@ -96,11 +128,21 @@ function ProfilePage() {
                     </div>
                 </div>
                 <div className='bio-container'>
-                   {bio}
+                <TextField
+                    fullWidth
+                    multiline
+                    id="bio"
+                    value={bio}
+                    type="text"
+                    rows={5}
+                    className="full_height_Width"
+                    onChange={e => setBioInfo({"count": e.target.value.length, "value":e.target.value})}
+                />
+                <p><b>Character Count: {bioInfo['count']}</b></p>
                 </div>
             </div>
         </div>
     )
 }
 
-export default ProfilePage
+export default EditBioandPhotoPage;
