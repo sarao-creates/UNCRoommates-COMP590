@@ -53,7 +53,7 @@ function Survey() {
   useEffect(() => {
     // const surveyData = JSON.parse(localStorage.getItem("surveyData"));
     async function getSurveyData() {
-      const surveyData = await getDoc(doc(db, "users", user.uid));
+      const surveyData = (await getDoc(doc(db, "users", user.uid))).data().responses;
       console.log(user.uid)
       console.log(surveyData)
       if (surveyData) {
@@ -407,7 +407,7 @@ function Survey() {
               <RadioGroup aria-label="window" name="window" value={window} onChange={handleWindowChange}>
               <div style={{ display: "flex", alignItems: "center" }}><FormControlLabel value="Open" control={<Radio />} label="Open - I prefer to open the windows." /><td class='size'><span5>Window Opened</span5></td></div>
                 <FormControlLabel value="Neutral" control={<Radio />} label="Neutral - I don't have any preference." />
-                <div style={{ display: "flex", alignItems: "center" }}><FormControlLabel value="Closed" control={<Radio />} label="Closed - I prefer to close the windows." /><td class='size'><span6>Window Closed</span6></td></div>
+                <div style={{ display: "flex", alignItems: "center" }}><FormControlLabel value="Closed" control={<Radio />} label="Closed - I prefer to close the windoes." /><td class='size'><span6>Window Closed</span6></td></div>
               </RadioGroup>
             </FormControl>
           </Grid>
