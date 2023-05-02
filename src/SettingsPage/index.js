@@ -16,20 +16,41 @@ function SettingsPage() {
     const [AccountStatus, setAccountStatus] = useState('')
 
     useEffect(() => {
+    const history = useHistory();
+    const [pwd, setPWD] = useState('');
+    const [snackbar, setSnackbar] = useState({
+        status: false,
+        message: '',
+    });
+    
+    const handlePWD = (event) => {
+        setPWD(event.target.value);
+    }
 
-        const docLookup = async () => {
-            const docRef = doc(db, "Users", "rkEcudx9k33I5nD8TC9a");
-            const docSnap = await getDoc(docRef);
+    const handlePasswordChange = () => {
+        checkPassword(auth, pwd).then((userCredential) => {
+            console.log('Original password check successful');
+            history.push('/profile');
+        }).catch((error) => {
+            let errorCode = error.code;
+            let errorMessage = error.message;
+            setSnackbar({status: true, message: `${errorCode} - ${errorMessage}`});
 
-            if (docSnap.exists()) {
-                setEmail(docSnap.data()["Email"])
-                setPhone(docSnap.data()["Phone Number"])
-                setPassword(docSnap.data()["Password"])
-                setAccountStatus(docSnap.data()["Account Status"])
-              } else {
+            console.log(`${errorCode} - ${errorMessage}`);
+        })
+    }
+
+    const docLookup = async () => {
+    const docRef = doc(db, "Users", "rkEcudx9k33I5nD8TC9a");
+    const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            setEmail(docSnap.data()["Email"])
+            setPhone(docSnap.data()["Phone Number"])
+            setPassword(docSnap.data()["Password"])
+            setAccountStatus(docSnap.data()["Account Status"])
+            } else {
                 setEmail("Error")
             }    
-    
         }
     }, []);
 
