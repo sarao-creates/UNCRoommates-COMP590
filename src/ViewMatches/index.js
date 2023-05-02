@@ -40,6 +40,7 @@ function ViewMatches() {
         "window": "Neutral",
         "id": 0
     }
+    
   useEffect(() => {
     // Function to fetch all survey responses from Firebase
     const getResponses = async () => {
