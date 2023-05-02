@@ -21,13 +21,14 @@ import {
 function ViewMatches() {
   const auth = getAuth();
   const user = auth.currentUser;
-    //const [responses, setResponses] = useState([]);
     const [responses, setResponses] = useState([]);
-    const [sampleResponse, setSampleResponse] = useState('');
+    //const [sampleResponse, setSampleResponse] = useState('');
 
     // TODO: we might want to change this sample response to the current user's response.
 
-    useEffect(() => {
+// The commenten out section pulls survey data from the database, but I can't get the uid stuff working after page refreshes.
+// I'll use local data for now
+/*     useEffect(() => {
       // const surveyData = JSON.parse(localStorage.getItem("surveyData"));
       async function getSurveyData() {
         const surveyData = (await getDoc(doc(db, "users", user.uid))).data().responses;
@@ -38,7 +39,9 @@ function ViewMatches() {
       }
       getSurveyData();
       
-    }, []);
+    }, []); */
+
+    const sampleResponse = JSON.parse(localStorage.getItem("surveyData"));
 
 
 
@@ -90,7 +93,9 @@ function ViewMatches() {
     getResponses();
   }, []);
 
-  console.log(responses);
+  //console.log(responses);
+
+
 
 
 
@@ -160,6 +165,7 @@ function ViewMatches() {
         }
         return score;
       };
+
 
 
 
@@ -257,6 +263,8 @@ function ViewMatches() {
                 <Grid container spacing={2} sx={{ width: "66.66%", float:'right'}}>
                     <br></br>
                     Please consider changing your survey responses or wait until we have more users for more matches!
+                    <br></br>
+                    There are currently {responses.length} users. Come back later!
                 </Grid>
             </div>
         )
@@ -276,7 +284,7 @@ function ViewMatches() {
           >
             <Typography variant="h6" color='#4b9cd3'>{profile.name}</Typography>
             <Typography variant="body1">
-              Year: {profile.classYear} | Age: {2023-profile.birthYear} | Location: {((profile.location)==="Don't care") ? "Any" : profile.location}
+              Year: {profile.classYear} | Age: {2023-profile.birthYear} | Location: {((profile.location)==="I don't care") ? "Any" : profile.location}
             </Typography>
             <Typography variant="body2"><b>Bio: </b>{profile.bio}</Typography>
           </Paper>
