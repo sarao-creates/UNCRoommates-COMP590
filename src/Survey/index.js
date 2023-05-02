@@ -67,9 +67,9 @@ function Survey() {
         setWakeTime(surveyData.wakeTime);
         setNoiseLevel(surveyData.noiseLevel);
         setGuestLevel(surveyData.guestLevel);
-        setTidiness(surveyData.setTidiness);
+        setTidiness(surveyData.tidiness);
         setAllergies(surveyData.allergies);
-        setAccomodations(surveyData.allergies);
+        setAccomodations(surveyData.accomodations);
         setWindow(surveyData.window);
         setAnimal(surveyData.animal);
         setParty(surveyData.party);
