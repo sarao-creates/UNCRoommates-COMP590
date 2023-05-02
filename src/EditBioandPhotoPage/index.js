@@ -1,4 +1,5 @@
-import {db} from '../Firebase/firebase.js'
+import {db} from '../Firebase/firebase.js';
+import React from 'react';
 import { doc, updateDoc, getDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import './index.css';
@@ -9,6 +10,7 @@ import {TextField} from '@mui/material';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { getAuth } from "firebase/auth";
+
 
 function EditBioandPhotoPage() {
     const [firstName, setFirstName] = useState('')
@@ -31,6 +33,12 @@ function EditBioandPhotoPage() {
         "count": 0,
         "value": "",
     });
+    
+    const [file, setFile] = useState("");
+    function handleChange(e) {
+        console.log(e.target.files);
+        setFile(URL.createObjectURL(e.target.files[0]));
+    }
 
     const validate = () => {
         return (bioInfo["count"] >= 150 & bioInfo["count"] < 1500);
@@ -89,7 +97,18 @@ function EditBioandPhotoPage() {
                     <br></br>
                     <br></br>
                     <br></br>
-                    <div className='image-container'></div>
+                    <div className='image-container'>
+                        <img src={file} class="img-photo" value={file}/>
+                    </div>
+                    <input 
+                        type="file" 
+                        id="file"
+                        value={file}
+                        accept="image/*"
+                        onChange={handleChange}
+                    />
+                    <br></br>
+                    <br></br>
                 </div>
                 <div className='right-container'>
                     <br></br>
