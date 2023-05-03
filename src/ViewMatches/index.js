@@ -6,7 +6,8 @@ import NavigationTabs from '../NavigationTabs';
 //import { Link } from 'react-router-dom';
 //import {Redirect} from 'react-router-dom';
 import db from '../Firebase/firebase.js';
-import { addDoc, doc, getDocs, collection } from "firebase/firestore";
+import { getDoc, doc, getDocs, collection } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 import {
   Grid,
@@ -18,11 +19,34 @@ import {
 //import { collection, addDoc } from "firebase/firestore";
 
 function ViewMatches() {
-    //const [responses, setResponses] = useState([]);
+  const auth = getAuth();
+  const user = auth.currentUser;
     const [responses, setResponses] = useState([]);
+    //const [sampleResponse, setSampleResponse] = useState('');
 
     // TODO: we might want to change this sample response to the current user's response.
-    const sampleResponse = {
+
+// The commenten out section pulls survey data from the database, but I can't get the uid stuff working after page refreshes.
+// I'll use local data for now
+/*     useEffect(() => {
+      // const surveyData = JSON.parse(localStorage.getItem("surveyData"));
+      async function getSurveyData() {
+        const surveyData = (await getDoc(doc(db, "users", user.uid))).data().responses;
+        //console.log(user.uid)
+        //console.log(surveyData)
+        if (surveyData) setSampleResponse(surveyData);
+        //console.log(sampleResponse);
+      }
+      getSurveyData();
+      
+    }, []); */
+
+    const sampleResponse = JSON.parse(localStorage.getItem("surveyData"));
+
+
+
+
+/*     const sampleResponse = {
         "birthYear": "1999",
         "animal": "No",
         "location": "North Campus",
@@ -39,18 +63,24 @@ function ViewMatches() {
         "wakeTime": "Early",
         "window": "Neutral",
         "id": 0
-    }
+    } */
+    
   useEffect(() => {
     // Function to fetch all survey responses from Firebase
     const getResponses = async () => {
-        const responseRef = await getDocs(collection(db,"surveyResponses"));
+        const responseRef = await getDocs(collection(db,"users"));
         //const snapshot = await responseRef.get();
         let i = 0;
         const newResponses = [];
         responseRef.forEach((doc) => {
-            const response = doc.data();
+            const fn = doc.data().firstName;
+            const ln = doc.data().lastName;
+            const bio = doc.data().bio;
+            const response = doc.data().responses;
             response.id = i;
+            response.name = fn + " " + ln;
             response.score = calculateScore(response,sampleResponse)
+            response.bio = bio;
             //console.log(response.score);
             newResponses.push(response);
             i++;
@@ -71,13 +101,15 @@ function ViewMatches() {
 
 
 
+
+
   
     // Function to calculate score between two responses
     const calculateScore = (response1, response2) => {
         let score = 0;
 
         // filtering out users with different gender or different location preference
-        if ((response1.gender !== response2.gender) || ((response1.location !== response2.location) && (response1.location !== "Don't care") && (response2.location !== "Don't care"))) {
+        if ((response1.gender !== response2.gender) || ((response1.location !== response2.location) && (response1.location !== "I don't care") && (response2.location !== "I don't care"))) {
             return -1;
           }
 
@@ -139,6 +171,7 @@ function ViewMatches() {
 
 
 
+
     // Function to sort responses based on their scores
 
     responses.sort((a, b) => b.score - a.score);
@@ -147,7 +180,7 @@ function ViewMatches() {
 
     // Function to generate a list of displayed info with the same format as 'profiles'.
 
-    const responsesFiltered = responses.filter((r) => r.score >= 40);
+    const responsesFiltered = responses.filter((r) => (r.score >= 40 && r.score !== 120));
     let j = 1;
 
     responsesFiltered.forEach((r) => {
@@ -158,11 +191,10 @@ function ViewMatches() {
 
     //console.log(responsesFiltered);
 
-    const profiles = [];
 
-    responsesFiltered.forEach((response) => {
+  /*   responsesFiltered.forEach((response) => {
         response.bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor ipsum vel justo maximus lacinia.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor ipsum vel justo maximus lacinia.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor ipsum vel justo maximus lacinia.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor ipsum vel justo maximus lacinia.";
-    })
+    }) */
 
 
 
@@ -231,6 +263,8 @@ function ViewMatches() {
                 <Grid container spacing={2} sx={{ width: "66.66%", float:'right'}}>
                     <br></br>
                     Please consider changing your survey responses or wait until we have more users for more matches!
+                    <br></br>
+                    There are currently {responses.length} users. Come back later!
                 </Grid>
             </div>
         )
@@ -250,7 +284,7 @@ function ViewMatches() {
           >
             <Typography variant="h6" color='#4b9cd3'>{profile.name}</Typography>
             <Typography variant="body1">
-              Year: {profile.classYear} | Age: {2023-profile.birthYear} | Location: {((profile.location)==="Don't care") ? "Any" : profile.location}
+              Year: {profile.classYear} | Age: {2023-profile.birthYear} | Location: {((profile.location)==="I don't care") ? "Any" : profile.location}
             </Typography>
             <Typography variant="body2"><b>Bio: </b>{profile.bio}</Typography>
           </Paper>

@@ -53,7 +53,7 @@ function Survey() {
   useEffect(() => {
     // const surveyData = JSON.parse(localStorage.getItem("surveyData"));
     async function getSurveyData() {
-      const surveyData = await getDoc(doc(db, "users", user.uid));
+      const surveyData = (await getDoc(doc(db, "users", user.uid))).data().responses;
       console.log(user.uid)
       console.log(surveyData)
       if (surveyData) {
@@ -67,9 +67,9 @@ function Survey() {
         setWakeTime(surveyData.wakeTime);
         setNoiseLevel(surveyData.noiseLevel);
         setGuestLevel(surveyData.guestLevel);
-        setTidiness(surveyData.setTidiness);
+        setTidiness(surveyData.tidiness);
         setAllergies(surveyData.allergies);
-        setAccomodations(surveyData.allergies);
+        setAccomodations(surveyData.accomodations);
         setWindow(surveyData.window);
         setAnimal(surveyData.animal);
         setParty(surveyData.party);
