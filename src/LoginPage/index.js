@@ -9,9 +9,12 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { getAuth } from "firebase/auth";
+
+
 
 function LoginPage() {
-
+    const auth = getAuth();
     const history = useHistory();
     
     const [email, setEmail] = useState('');
