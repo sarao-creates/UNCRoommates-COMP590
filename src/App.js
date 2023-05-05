@@ -19,7 +19,7 @@ const CreateAccountPath = '/create-account';
 const OnboardingBioPath = '/onboarding-bio';
 const OnboardingPhotoPath = '/onboarding-photo';
 const ViewMatchesPath = '/viewmatches'
-const MatchedUserProfilePath = '/matcheduserprofile';
+const MatchedUserProfilePath = '/matcheduserprofile/:id';
 
 function App() {
   return (

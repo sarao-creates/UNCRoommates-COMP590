@@ -4,8 +4,14 @@ import { useState, useEffect } from 'react';
 import './index.css';
 import Title from '../WelcomePage/Title';
 import NavigationTabs from '../NavigationTabs';
+import { useParams } from 'react-router-dom';
 
-function MatchedUserProfilePage() {
+function MatchedUserProfilePage(profiles) {
+    //console.log(profiles.location.state.profile);
+    const profile = profiles.location.state.profile;
+    console.log(profile);
+    //const profile = profiles.find((p) => p.id === id);
+    
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [gender, setGender] = useState('')
@@ -17,36 +23,32 @@ function MatchedUserProfilePage() {
     const [wake, setWake] = useState('')
     const [year, setYear] = useState('')
     const [allergies, setAllergies] = useState('')
-    
-
 
     useEffect(() => {
+        if (profile) {
+            //console.log("here");
+            const fn = (profile.name).split(" ")[0];
+            const ln = (profile.name).split(" ")[1];
+            setFirstName(fn);
+            setLastName(ln);
+            setGender(profile.gender);
+            setBio(profile.bio);
+            setBirthday(profile.birthYear);
+            setLocation(profile.location);
+            setParty(profile.party);
+            setSleep(profile.bedTime);
+            setWake(profile.wakeTime);
+            setYear(profile.classYear);
+            setAllergies(profile.allergies);
 
-        const docLookup = async () => {
-            const docRef = doc(db, "Users", "rkEcudx9k33I5nD8TC9a");
-            const docSnap = await getDoc(docRef);
-
-            if (docSnap.exists()) {
-                setFirstName(docSnap.data()["First Name"])
-                setLastName(docSnap.data()["Last Name"])
-                setBio(docSnap.data()["Bio"])
-                setGender(docSnap.data()["Gender"])
-                setBirthday(docSnap.data()["Birthday"])
-                setLocation(docSnap.data()["Location Preference"])
-                setParty(docSnap.data()["PartyPref"])
-                setSleep(docSnap.data()["SleepTime"])
-                setWake(docSnap.data()["WakeTime"])
-                setYear(docSnap.data()["Year"])
-                setAllergies(docSnap.data()["Allergies"])
-              } else {
-                setFirstName("Error")
-            }    
-    
         }
 
-        docLookup();
 
-    }, []);
+    })
+
+
+
+
     
     return (
         <div className='full-screen'>
