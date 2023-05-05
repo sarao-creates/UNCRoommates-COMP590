@@ -17,6 +17,7 @@ function MatchedUserProfilePage() {
     const [wake, setWake] = useState('')
     const [year, setYear] = useState('')
     const [allergies, setAllergies] = useState('')
+    
 
 
     useEffect(() => {
