@@ -33,9 +33,8 @@
 
 .Logout-text {
     position: absolute;
-    right: 25px;
-    width: 200;
-    padding: 10px;
+    right: 3%;
+    top: 7%;
 
 }
 
@@ -45,9 +44,48 @@
 
 .Settings-text {
     position: absolute;
-    right: 0px;
-    top: 15px;
-    height: 15%;
-    width: 200;
-    padding: 10px;
+    right: 3%;
+    top: 19%;
+}
+
+.titlebuttonlogout {
+    background-color: #13294B;
+    border: 2px solid #13294B;
+    border-radius: 4px;
+    width: 89px;
+    color: white;
+    padding: 5px 15px !important;
+    text-decoration: none;
+    font-size: 18px !important;
+    transition-duration: 0.3s;
+    text-align: center;
+    margin: 0 auto;
+    float: center;
+}
+    
+.titlebuttonlogout:hover {
+    background-color: #4b9cd3;
+    border: 2px solid white;
+    color: white;
+}
+
+.titlebuttonsettings {
+    background-color: #13294B;
+    border: 2px solid #13294B;
+    border-radius: 4px;
+    color: white;
+    width: 89px;
+    padding: 5px 15px 5px 10px !important;
+    text-decoration: none;
+    font-size: 18px !important;
+    transition-duration: 0.3s;
+    text-align: center !important;
+    margin: 0 auto;
+    float: center;
+}
+    
+.titlebuttonsettings:hover {
+    background-color: #4b9cd3;
+    border: 2px solid white;
+    color: white;
 }

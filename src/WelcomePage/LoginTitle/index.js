@@ -10,10 +10,10 @@ function LoginTitle() {
       <Link to="/welcome"><img src={require('./images/logo.png')} alt="UNC logo of well." /></Link>
       </div>
       <Link to="/welcome"><h1 className='Text'>UNCRoommates</h1></Link>
-      <h2 className='Login-text'>
+      <div className='Login-text'>
         <br></br>
-        <Link to="/login"><Button style={{maxWidth: '100px', maxHeight: '40px', minWidth: '100px', minHeight: '40px',backgroundColor:'#13294b'}}variant='contained'size='medium'>Login</Button></Link>
-      </h2>
+        <Link to="/login"><button class="logintitlebutton">Login</button></Link>
+      </div>
     </div>
   )
 }

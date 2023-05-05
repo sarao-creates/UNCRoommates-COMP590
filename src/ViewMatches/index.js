@@ -227,10 +227,12 @@ function ViewMatches() {
             <div>
                 <Title></Title>
                 <NavigationTabs></NavigationTabs>
-                <Grid container spacing={2} sx={{ width: "66.66%", float:'right'}}>
+                <div className='centercontainer'>
+                <Grid container spacing={3} sx={{ width: "66.66%", float:'right'}}>
                     <br></br>
                     Please consider changing your survey responses or wait until we have more users for more matches!
                 </Grid>
+                </div>
             </div>
         )
      }
@@ -239,7 +241,8 @@ function ViewMatches() {
         <div>
             <Title></Title>
             <NavigationTabs></NavigationTabs>
-            <Grid container spacing={2} sx={{ width: "66.66%", float:'right'}}>
+            <div className='centercontainer'>
+            <Grid container spacing={3} sx={{ width: "66.66%", float:'right'}}>
       {responsesFiltered.map((profile) => (
         <Grid key={profile.order} item xs={6}>
           <Paper
@@ -251,11 +254,17 @@ function ViewMatches() {
             <Typography variant="body1">
               Year: {profile.classYear} | Age: {2023-profile.birthYear} | Location: {((profile.location)==="Don't care") ? "Any" : profile.location}
             </Typography>
-            <Typography variant="body2"><b>Bio: </b>{profile.bio}</Typography>
+            <Typography sx={{
+              display: '-webkit-box',
+              overflow: 'hidden',
+              WebkitBoxOrient: 'vertical',
+              WebkitLineClamp: 5,
+              }}variant="body2"><b>Bio: </b>{profile.bio}</Typography>
           </Paper>
         </Grid>
       ))}
     </Grid>
+    </div>
     </div>
     )
 }

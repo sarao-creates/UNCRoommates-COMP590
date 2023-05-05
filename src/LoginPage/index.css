@@ -6,7 +6,7 @@
 .login-text {
     padding: 10px;
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
     color: #13294B;
 }
 
@@ -32,9 +32,9 @@
     border: 2px solid #13294B;
     border-radius: 4px;
     color: white;
-    padding: 10px 10px;
+    padding: 5px 15px !important;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 17px !important;
     transition-duration: 0.3s;
     text-align: center;
     }

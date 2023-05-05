@@ -10,15 +10,14 @@ function Title() {
       <Link to="/welcome"><img src={require('./images/logo.png')} alt="UNC logo of well." /></Link>
       </div>
       <Link to="/welcome"><h1 className='Text'>UNCRoommates</h1></Link>
-      <h2 className='Logout-text'>
       <br></br>
-        <Link to="/login"><Button style={{maxWidth: '100px', maxHeight: '40px', minWidth: '100px', minHeight: '40px',backgroundColor:'#13294b'}}variant='contained'size='medium'>Logout</Button></Link>
-        <div className='Settings-text'>
+      <div className='Logout-text'>
         <br></br>
-        <br></br>
-        <Link to="/settings"><Button style={{maxWidth: '100px', maxHeight: '40px', minWidth: '100px', minHeight: '40px',backgroundColor:'#13294b', marginTop: '10px'}}variant='contained'size='medium'>Settings</Button></Link>
+        <Link to="/login"><button class="titlebuttonlogout">Logout</button></Link>
         </div>
-      </h2>
+        <div className='Settings-text'>
+        <Link to="/settings"><button class="titlebuttonsettings">Settings</button></Link>
+        </div>
     </div>
   )
 }

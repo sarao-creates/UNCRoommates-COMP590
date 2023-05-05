@@ -45,7 +45,7 @@ function LoginPage() {
     return (
         <div className="full-screen">
             <LoginTitle></LoginTitle>
-            <h1 className="login-text">Login to Your Account</h1>
+            <div className="login-text">Login to Your Account</div>
             <div className='login-input'>
                 <br></br>
                 <TextField 
@@ -77,6 +77,7 @@ function LoginPage() {
             <Snackbar open={snackbar.status} autoHideDuration={7500} onClose={() => setSnackbar({status: false})}> 
                     <Alert severity='info'>{snackbar.message}</Alert>
             </Snackbar>
+            <br></br>
         </div>
     )
 }
