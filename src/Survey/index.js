@@ -281,7 +281,7 @@ function Survey() {
             <FormControl component="fieldset">
               <FormLabel component="legend">3. What is your class year?<span style={{ color: 'red' }}>*</span></FormLabel>
               <RadioGroup aria-label="classYear" name="classYear" value={classYear} onChange={handleClassYearChange}>
-                <FormControlLabel value="2028" control={<Radio required/>} label="2027" />
+                <FormControlLabel value="2028" control={<Radio required/>} label="2028" />
                 <FormControlLabel value="2027" control={<Radio required/>} label="2027" />
                 <FormControlLabel value="2026" control={<Radio required/>} label="2026" />
                 <FormControlLabel value="2025" control={<Radio required/>} label="2025" />

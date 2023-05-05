@@ -9,48 +9,27 @@ import { fontSize } from '@mui/system';
 import { Link } from "react-router-dom";
 import NavigationTabs from '../NavigationTabs';
 
-function SettingsPage() {
+function DeactivatedSettingsPage() {
     const [Email, setEmail] = useState('')
     const [Phone, setPhone] = useState('')
     const [Password, setPassword] = useState('')
     const [AccountStatus, setAccountStatus] = useState('')
 
     useEffect(() => {
-    const history = useHistory();
-    const [pwd, setPWD] = useState('');
-    const [snackbar, setSnackbar] = useState({
-        status: false,
-        message: '',
-    });
-    
-    const handlePWD = (event) => {
-        setPWD(event.target.value);
-    }
 
-    const handlePasswordChange = () => {
-        checkPassword(auth, pwd).then((userCredential) => {
-            console.log('Original password check successful');
-            history.push('/profile');
-        }).catch((error) => {
-            let errorCode = error.code;
-            let errorMessage = error.message;
-            setSnackbar({status: true, message: `${errorCode} - ${errorMessage}`});
+        const docLookup = async () => {
+            const docRef = doc(db, "Users", "rkEcudx9k33I5nD8TC9a");
+            const docSnap = await getDoc(docRef);
 
-            console.log(`${errorCode} - ${errorMessage}`);
-        })
-    }
-
-    const docLookup = async () => {
-    const docRef = doc(db, "Users", "rkEcudx9k33I5nD8TC9a");
-    const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-            setEmail(docSnap.data()["Email"])
-            setPhone(docSnap.data()["Phone Number"])
-            setPassword(docSnap.data()["Password"])
-            setAccountStatus(docSnap.data()["Account Status"])
-            } else {
+            if (docSnap.exists()) {
+                setEmail(docSnap.data()["Email"])
+                setPhone(docSnap.data()["Phone Number"])
+                setPassword(docSnap.data()["Password"])
+                setAccountStatus(docSnap.data()["Account Status"])
+              } else {
                 setEmail("Error")
             }    
+    
         }
     }, []);
 
@@ -63,6 +42,20 @@ function SettingsPage() {
                     <br></br>
                     <Link to="/profile"><button class="button button-save">Save Changes</button></Link>
                         <div className='page-header'>Settings</div>
+                    <br></br>
+                    <div className='smaller-container'>
+                        <div className='alignment-container'>
+                            <div className='settings-header'>
+                                &#x26A0; Account Currently Inactive &#x26A0;
+                            </div>
+                        </div>
+                    <div className='text'><b>NOTE: Your account is currently deactivated.</b> Other users will be 
+                                unable to view your profile and be matched with you, and you will not 
+                                be matched with others. To reactivate your account, please visit the 
+                                settings page.
+                    </div>
+                    </div>
+                    <br></br>
                     <br></br>
                     <div className='smaller-container'>
                         <div className='headerpadding'>
@@ -132,8 +125,7 @@ function SettingsPage() {
                         </div>
                 </div>
                 <br></br>
-                <div className='alignment-container'>
-                    <Link to='deactivationconfirm'><button class="button button-status">Deactivate Account</button></Link>
+                <div className='alignment-container'><button class="button button-status">Reactivate Account</button>
                 </div>
                 <br></br>
                 </div> 
@@ -142,4 +134,4 @@ function SettingsPage() {
     )
 }
 
-export default SettingsPage
+export default DeactivatedSettingsPage
