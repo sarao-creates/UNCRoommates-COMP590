@@ -30,6 +30,7 @@ const EditBioandPhotoPath = '/editbioandphoto';
 function App() {
   return (
     <Router>
+      <Switch>
       <Route exact path='/'>
         <Redirect to='/welcome'></Redirect>
       </Route>
@@ -46,6 +47,7 @@ function App() {
       <Route path={DeactivationConfirmPath} component={DeactivationConfirmPage}></Route>
       <Route path={DeactivatedSettingsPath} component={DeactivatedSettingsPage}></Route>
       <Route path={EditBioandPhotoPath} component={EditBioandPhotoPage}></Route>
+      </Switch>
     </Router>
   );
 }

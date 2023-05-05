@@ -5,6 +5,7 @@ import './index.css';
 import Title from '../WelcomePage/Title';
 import NavigationTabs from '../NavigationTabs';
 import { Link } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 function ProfilePage() {
     const [firstName, setFirstName] = useState('')
@@ -18,33 +19,65 @@ function ProfilePage() {
     const [wake, setWake] = useState('')
     const [year, setYear] = useState('')
     const [allergies, setAllergies] = useState('')
+    const [user, setUser] = useState({});
+
+    const auth = getAuth();
+
 
 
     useEffect(() => {
 
-        const docLookup = async () => {
-            const docRef = doc(db, "Users", "rkEcudx9k33I5nD8TC9a");
-            const docSnap = await getDoc(docRef);
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const docRef = doc(db, "users", user.uid);
+                const docSnap = await getDoc(docRef);
 
-            if (docSnap.exists()) {
-                setFirstName(docSnap.data()["First Name"])
-                setLastName(docSnap.data()["Last Name"])
-                setBio(docSnap.data()["Bio"])
-                setGender(docSnap.data()["Gender"])
-                setBirthday(docSnap.data()["Birthday"])
-                setLocation(docSnap.data()["Location Preference"])
-                setParty(docSnap.data()["PartyPref"])
-                setSleep(docSnap.data()["SleepTime"])
-                setWake(docSnap.data()["WakeTime"])
-                setYear(docSnap.data()["Year"])
-                setAllergies(docSnap.data()["Allergies"])
-              } else {
-                setFirstName("Error")
-            }    
+                if (docSnap.exists()) {
+                    setFirstName(docSnap.data()["firstName"])
+                    setLastName(docSnap.data()["lastName"])
+                    setBio(docSnap.data()["bio"])
+                    setGender(docSnap.data()["gender"])
+                    setBirthday(2023 - docSnap.data()['responses']['birthYear'])
+                    setLocation(docSnap.data()["responses"]['location'])
+                    setParty(docSnap.data()["responses"]["party"])
+                    setSleep(docSnap.data()["responses"]["bedTime"])
+                    setWake(docSnap.data()["responses"]["wakeTime"])
+                    setYear(docSnap.data()["responses"]["classYear"])
+                    setAllergies(docSnap.data()["Allergies"])
+                  } else {
+                    setFirstName("Error")
+                }    
+
+            } else {
+
+            }
+
+            
+        });
+
+        // const docLookup = async () => {
+        //     const docRef = doc(db, "users", "rkEcudx9k33I5nD8TC9a");
+        //     const docSnap = await getDoc(docRef);
+
+        //     if (docSnap.exists()) {
+        //         setFirstName(docSnap.data()["First Name"])
+        //         setLastName(docSnap.data()["Last Name"])
+        //         setBio(docSnap.data()["Bio"])
+        //         setGender(docSnap.data()["Gender"])
+        //         setBirthday(docSnap.data()["Birthday"])
+        //         setLocation(docSnap.data()["Location Preference"])
+        //         setParty(docSnap.data()["PartyPref"])
+        //         setSleep(docSnap.data()["SleepTime"])
+        //         setWake(docSnap.data()["WakeTime"])
+        //         setYear(docSnap.data()["Year"])
+        //         setAllergies(docSnap.data()["Allergies"])
+        //       } else {
+        //         setFirstName("Error")
+        //     }    
     
-        }
+        // }
 
-        docLookup();
+        // docLookup();
 
     }, []);
     
@@ -88,9 +121,9 @@ function ProfilePage() {
                                 <td>Allergies</td>
                             </tr>
                             <tr>
-                                <td class='size'><span>{gender}</span>&nbsp;&nbsp;<span>{wake}</span>&nbsp;&nbsp;<span>{party}</span></td>
+                                <td className='size'><span>{gender}</span>&nbsp;&nbsp;<span>{wake}</span>&nbsp;&nbsp;<span>{party}</span></td>
                                 <td></td>
-                                <td class='size'>{allergies}</td>
+                                <td className='size'>{allergies}</td>
                             </tr>
                         </table>
                     </div>
