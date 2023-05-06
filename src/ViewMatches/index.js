@@ -259,6 +259,22 @@ function ViewMatches() {
         const profile = responsesFiltered.find(p => p.id===id);
         history.push( '/matcheduserprofile/${id}', {profile});
       };
+      if (user===null) {
+        return (
+          <div>
+          <Title></Title>
+          <NavigationTabs></NavigationTabs>
+          <div className='centercontainer'>
+          <Grid container spacing={3} sx={{ width: "66.66%", float:'right'}}>
+              <br></br>
+              Please log in or register an account to view matches!
+              <br></br>
+              Come back later!
+          </Grid>
+          </div>
+      </div>
+        )
+      }
      if (responsesFiltered.length === 0) {
         return (
             <div>
