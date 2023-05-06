@@ -15,15 +15,15 @@ function SettingsPage() {
     const [Password, setPassword] = useState('')
     const [AccountStatus, setAccountStatus] = useState('')
 
-    useEffect(() => {
+  /*   useEffect(() => {
     const history = useHistory();
     const [pwd, setPWD] = useState('');
     const [snackbar, setSnackbar] = useState({
         status: false,
         message: '',
-    });
+    }); */
     
-    const handlePWD = (event) => {
+    /* const handlePWD = (event) => {
         setPWD(event.target.value);
     }
 
@@ -39,8 +39,8 @@ function SettingsPage() {
             console.log(`${errorCode} - ${errorMessage}`);
         })
     }
-
-    const docLookup = async () => {
+ */
+    /* const docLookup = async () => {
     const docRef = doc(db, "Users", "rkEcudx9k33I5nD8TC9a");
     const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
@@ -52,26 +52,50 @@ function SettingsPage() {
                 setEmail("Error")
             }    
         }
-    }, []);
+    }, []); */
 
     return (
         <div>
             <Title></Title>
             <NavigationTabs></NavigationTabs>
             <div className='full-screen'>
-                <div className='settings-container'>
+                <div className='originalsettings-container'>
+                <Link to="/profile"><button class="settingsbutton settingsbutton-goBack">Back to Profile<br></br><span className='tinytext'>&#x28;Does <u><b>NOT</b></u> Save Changes!&#x29;</span></button></Link>
+                        <div className='settingspage-header'>Settings</div>
                     <br></br>
-                    <Link to="/profile"><button class="button button-save">Save Changes</button></Link>
-                        <div className='page-header'>Settings</div>
+                    <div className='settingsSaveChangessmaller-container'>
+                        <div className='settingsSaveChangesheaderpadding'>
+                            <div className='originalsettingsSaveChanges-header'>
+                            <span className='warning'>&#x26A0;</span> <b>Save Changes</b> <span className='warning'>&#x26A0;</span>
+                            </div>
+                        </div>
+                        <div className='settingstextpadding'>
+                        <div className='originalsettingstextinputheader'>To apply <b><u>ANY</u></b> changes you have made to your settings, please enter your current password below and click "Save Changes." This page should then reload and display your updated settings.</div>
+                        <TextField
+                            fullWidth
+                            id="currentpassword"
+                            label="Enter your current password"
+                            type="email"
+                            size="small"
+                            //onChange={}
+                        />
+                        <br></br>
+                        <br></br>
+                        <div className='settingsalignment-container'>
+                            <Link to="/settings"><button class="settingsbutton settingsbutton-save"><span className='checkmark'><b>&#x2713; </b></span> Save Changes</button></Link>
+                        </div>
+                        </div>
+                    </div>
                     <br></br>
-                    <div className='smaller-container'>
-                        <div className='headerpadding'>
-                            <div className='settings-header'>
+                    <br></br>
+                    <div className='settingssmaller-container'>
+                        <div className='settingsheaderpadding'>
+                            <div className='originalsettings-header'>
                                 Contact Info:
                             </div>
                         </div>
-                        <div className='textpadding'>
-                        <div className='settingstextinputheader'><b>Current Email:</b> {Email}</div>
+                        <div className='settingstextpadding'>
+                        <div className='originalsettingstextinputheader'><b>Current Email:</b> {Email}</div>
                         <TextField
                             fullWidth
                             id="email"
@@ -80,7 +104,7 @@ function SettingsPage() {
                             size="small"
                             //onChange={}
                         />
-                    <div className='settingstextinputheader'><b>Current Phone Number:</b> {Phone}</div>
+                    <div className='originalsettingstextinputheader'><b>Current Phone Number:</b> {Phone}</div>
                         <TextField
                             fullWidth
                             id="phone"
@@ -93,14 +117,14 @@ function SettingsPage() {
                     </div>
                 <br></br>
                 <br></br>
-                <div className='smaller-container'>
-                    <div className='headerpadding'>
-                        <div className='settings-header'>
+                <div className='settingssmaller-container'>
+                    <div className='settingsheaderpadding'>
+                        <div className='originalsettings-header'>
                             Password Settings:
                         </div>
                     </div>
-                    <div className='textpadding'>
-                        <div className='settingstextinputheader'><b>New Password:</b> {Password}</div>
+                    <div className='settingstextpadding'>
+                        <div className='originalsettingstextinputheader'><b>New Password:</b> {Password}</div>
                         <TextField
                             fullWidth
                             id="currentpassword"
@@ -119,24 +143,15 @@ function SettingsPage() {
                             size="small"
                             //onChange={}
                         />
-                        <br></br>
-                        <br></br>
-                        <TextField
-                            fullWidth
-                            id="confirmpassword"
-                            label="Re-enter new password"
-                            type="email"
-                            size="small"
-                            //onChange={}
-                        />
                         </div>
                 </div>
                 <br></br>
-                <div className='alignment-container'>
-                    <Link to='deactivationconfirm'><button class="button button-status">Deactivate Account</button></Link>
+                <div className='settingsalignment-container'>
+                    <Link to='deactivationconfirm'><button class="settingsbutton settingsbutton-status">Deactivate Account</button></Link>
                 </div>
                 <br></br>
                 </div> 
+                <br></br>
             </div>
         </div>
     )
