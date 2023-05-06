@@ -1,4 +1,3 @@
-
 import './index.css'
 import Title from '../WelcomePage/Title';
 import React, { useState , useEffect} from 'react';
@@ -265,12 +264,14 @@ function ViewMatches() {
             <div>
                 <Title></Title>
                 <NavigationTabs></NavigationTabs>
-                <Grid container spacing={2} sx={{ width: "66.66%", float:'right'}}>
+                <div className='centercontainer'>
+                <Grid container spacing={3} sx={{ width: "66.66%", float:'right'}}>
                     <br></br>
                     Please consider changing your survey responses or wait until we have more users for more matches!
                     <br></br>
                     There are currently {responses.length} users. Come back later!
                 </Grid>
+                </div>
             </div>
         )
      }
@@ -279,7 +280,8 @@ function ViewMatches() {
         <div>
             <Title></Title>
             <NavigationTabs></NavigationTabs>
-            <Grid container spacing={2} sx={{ width: "66.66%", float:'right'}}>
+            <div className='centercontainer'>
+            <Grid container spacing={3} sx={{ width: "66.66%", float:'right'}}>
       {responsesFiltered.map((profile) => (
         <Grid key={profile.order} item xs={6}>
           <Paper
@@ -296,6 +298,7 @@ function ViewMatches() {
         </Grid>
       ))}
     </Grid>
+    </div>
     </div>
     )
 }

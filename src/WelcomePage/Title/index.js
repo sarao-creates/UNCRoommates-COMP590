@@ -1,22 +1,23 @@
 import React from 'react'
 import './index.css';
 import Button from '@mui/material/Button';
+import { Link } from "react-router-dom";
+
 function Title() {
   return (
     <div className = "Title">
       <div className='App-logo'>
-      <a href="/welcome"><img src={require('./images/logo.png')} alt="UNC logo of well." /></a>
+      <Link to="/welcome"><img src={require('./images/logo.png')} alt="UNC logo of well." /></Link>
       </div>
-      <a href="/welcome"><h1 className='Text'>UNCRoommates</h1></a>
-      <h2 className='Logout-text'>
+      <Link to="/welcome"><h1 className='Text'>UNCRoommates</h1></Link>
       <br></br>
-        <a href="/login"><Button style={{maxWidth: '100px', maxHeight: '40px', minWidth: '100px', minHeight: '40px',backgroundColor:'#13294b'}}variant='contained'size='medium'>Logout</Button></a>
-        <div className='Settings-text'>
+      <div className='Logout-text'>
         <br></br>
-        <br></br>
-        <a href="/settings"><Button style={{maxWidth: '100px', maxHeight: '40px', minWidth: '100px', minHeight: '40px',backgroundColor:'#13294b', marginTop: '10px'}}variant='contained'size='medium'>Settings</Button></a>
+        <Link to="/login"><button class="titlebuttonlogout">Logout</button></Link>
         </div>
-      </h2>
+        <div className='Settings-text'>
+        <Link to="/settings"><button class="titlebuttonsettings">Settings</button></Link>
+        </div>
     </div>
   )
 }

@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import './index.css';
 import Title from '../WelcomePage/Title';
 import NavigationTabs from '../NavigationTabs';
+import { Link } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-
 
 function ProfilePage() {
     const [firstName, setFirstName] = useState('')
@@ -117,9 +117,17 @@ function ProfilePage() {
             <div className='profile-container'>
                 <div className='left-container'>
                     <br></br>
+                    <br></br>
+                    <br></br>
                     <div className='image-container'></div>
                 </div>
                 <div className='right-container'>
+                    <br></br>
+                <div className='editbutton-container'>
+                        <Link to='editbioandphoto'><button className='button'>&#x270E; Edit Bio/Photo</button></Link>
+                    </div>
+                    <br></br>
+                    <br></br>
                     <div className='name-container'>
                         <h1>{firstName} {lastName}</h1>
                     </div>
@@ -149,9 +157,8 @@ function ProfilePage() {
                         </table>
                     </div>
                 </div>
-    
                 <div className='bio-container'>
-                    {bio}
+                   {bio}
                 </div>
             </div>
         </div>

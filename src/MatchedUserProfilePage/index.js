@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import './index.css';
 import Title from '../WelcomePage/Title';
 import NavigationTabs from '../NavigationTabs';
-import { useParams } from 'react-router-dom';
+import { Link , useParams } from "react-router-dom";
+
 
 function MatchedUserProfilePage(profiles) {
     //console.log(profiles.location.state.profile);
@@ -124,10 +125,10 @@ function MatchedUserProfilePage(profiles) {
                     <br></br>
                     <br></br>
                     <div className='alignright'>
-                    <a href="/viewmatches"><button class="button button-decline" type="button">&#x2716; Decline</button></a>
+                    <Link to="/viewmatches"><button class="button button-decline" type="button">&#x2716; Decline</button></Link>
                     </div>
                     <div className='alignright'>
-                    <a href="/viewmatches"><button class="button button-connect" type="button">&#x2714; Connect</button></a>
+                    <Link to="/viewmatches"><button class="button button-connect" type="button">&#x2714; Connect</button></Link>
                     </div>
                 </div>
             </div>

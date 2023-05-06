@@ -28,6 +28,12 @@
     float: right;
 }
 
+.text {
+    text-align: left;
+    padding: 10px;
+    padding-bottom: 2px;
+}
+
 .alignment-container {
     text-align: center;
  }
@@ -43,7 +49,7 @@
 .page-header {
     padding: 40px;
     padding-bottom: 10px;
-    padding-left: 170px;
+    padding-left: 130px;
     text-align: center;
     font-size: 50px;
     color: #13294B;

@@ -1,6 +1,10 @@
 .full-screen {
-    width: auto;
-    height: fit-content;
+    width: 100vw;
+    height: 100vh;
+}
+
+html {
+    overflow-x: hidden;
 }
 
 .welcome-container {
@@ -24,14 +28,14 @@
     padding: 15px;
     padding-bottom: 5px;
     text-align: center;
-    font-size: 52px;
+    font-size: 40px;
     color: #13294B;
 }
 
 .welcome-subtitle {
     padding-bottom: 20px;
     text-align: center;
-    font-size: 20px;
+    font-size: 16px;
     color: #13294B;
 }
 
@@ -42,14 +46,14 @@
     width: 92%;
     height: auto;
     padding: 20px;
-    padding-top: 30px;
+    padding-top: 20px;
 }
-
 
 .welcome-text {
     text-align: left;
     font-size: 16px;
 }
+
 span.bulletpoint {
     font-size:20px;
     color: #4B9CD3;
@@ -66,7 +70,6 @@ span.bulletpoint {
     transition-duration: 0.3s;
     text-align: center;
     margin: 0 auto;
-    padding: 10px 40px 10px 40px;
     font-size: 20px;
     float: center;
   }

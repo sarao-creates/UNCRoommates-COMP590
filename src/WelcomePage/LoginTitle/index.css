@@ -34,12 +34,30 @@
 .Login-text {
     position: absolute;
     right: 3%;
-    top: 8%;
-    width: 200;
-    padding: 10px;
+    top: 15%;
 
 }
 
 a { 
     text-decoration: none; 
+}
+
+.logintitlebutton {
+    background-color: #13294B;
+    border: 2px solid #13294B;
+    border-radius: 4px;
+    color: white;
+    padding: 5px 15px !important;
+    text-decoration: none;
+    font-size: 18px !important;
+    transition-duration: 0.3s;
+    text-align: center;
+    margin: 0 auto;
+    float: center;
+}
+    
+.logintitlebutton:hover {
+    background-color: #4b9cd3;
+    border: 2px solid white;
+    color: white;
 }
