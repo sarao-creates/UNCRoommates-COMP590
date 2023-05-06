@@ -57,7 +57,7 @@
 }
 
 .table-size {
-    width: 33%;
+    width: 10%;
 }
 
 table {
@@ -71,7 +71,7 @@ table {
   }
   
   td.size {
-    max-width: fit-content;
+    min-width: fit-content;
   }
 
   td.size span {

@@ -23,6 +23,8 @@ function MatchedUserProfilePage(profiles) {
     const [wake, setWake] = useState('')
     const [year, setYear] = useState('')
     const [allergies, setAllergies] = useState('')
+    const [window, setWindow] = useState('');
+    const [animal, setAnimal] = useState('');
 
     useEffect(() => {
         if (profile) {
@@ -40,11 +42,37 @@ function MatchedUserProfilePage(profiles) {
             setWake(profile.wakeTime);
             setYear(profile.classYear);
             setAllergies(profile.allergies);
-
+            setWindow(profile.window);
+            setAnimal(profile.animal);
         }
 
 
     })
+
+    let text = '';
+    if (gender === 'male') {
+        text = text + "<span2>Male</span2>&nbsp;"
+    } else {
+        text = text + "<span>Female</span>&nbsp;"
+    }
+    if (wake === "Early") {
+        text = text + "<span3>Early Riser</span3>&nbsp;"
+    }
+    if (sleep === "Late") {
+        text = text + "<span4>Night Owl</span4>&nbsp;"
+    }
+    if (window === "Open") {
+        text = text + "<span5>Window Opened</span5>&nbsp;"
+    }
+    if (window === "Closed") {
+        text = text + "<span6>Window Closed</span6>&nbsp;"
+    }
+    if (party === "I love to party") {
+        text = text + "<span7>Party Friendly</span7>&nbsp;"
+    }
+    if (animal === "Yes") {
+        text = text + "<span8>Animal Friendly</span8>&nbsp;"
+    }
 
 
 
@@ -67,8 +95,8 @@ function MatchedUserProfilePage(profiles) {
                         <table>
                             <tr>
                                 <td className='table-size'>Year</td>
-                                <td>Birthday</td>
-                                <td>Location Preference</td>
+                                <td className='table-size'>Birthday</td>
+                                <td className='table-size'>Location Preference</td>
                             </tr>
                             <tr>
                                 <td>{year}</td>
@@ -82,7 +110,8 @@ function MatchedUserProfilePage(profiles) {
                                 <td>Allergies</td>
                             </tr>
                             <tr>
-                                <td class='size'><span>{gender}</span>&nbsp;&nbsp;<span>{wake}</span>&nbsp;&nbsp;<span>{party}</span></td>
+                                <td class='size' dangerouslySetInnerHTML={{ __html: text }}></td>
+                                
                                 <td></td>
                                 <td class='size'>{allergies}</td>
                             </tr>
