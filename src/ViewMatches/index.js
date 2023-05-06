@@ -13,8 +13,10 @@ import { useHistory , Link } from 'react-router-dom';
 import {
   Grid,
   Paper, 
-  Typography
+  Typography,
+  Icon
 } from '@mui/material';
+
 //import { createTheme, ThemeProvider } from '@mui/material/styles';
 //import db from '../Firebase/firebase.js';
 //import { collection, addDoc } from "firebase/firestore";
@@ -292,6 +294,8 @@ function ViewMatches() {
         )
      }
 
+    
+
     return (
         <div>
             <Title></Title>
@@ -300,6 +304,7 @@ function ViewMatches() {
             <Grid container spacing={3} sx={{ width: "66.66%", float:'right'}}>
       {responsesFiltered.map((profile) => (
         <Grid key={profile.order} item xs={6}>
+          
           <Paper
             elevation={3}
             sx={{ height: "80%", padding: 2, display: "flex", flexDirection: "column", justifyContent: "space-between", cursor: "pointer" }}

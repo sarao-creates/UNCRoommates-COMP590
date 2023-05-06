@@ -44,8 +44,8 @@ function ProfilePage() {
                     setSleep(docSnap.data()["responses"]["bedTime"])
                     setWake(docSnap.data()["responses"]["wakeTime"])
                     setYear(docSnap.data()["responses"]["classYear"])
-                    setAllergies(docSnap.data()["Allergies"])
-                    setAnimal(docSnap.data()["animal"])
+                    setAllergies(docSnap.data()["responses"]["allergies"])
+                    setAnimal(docSnap.data()["responses"]["animal"])
                   } else {
                     setFirstName("Error")
                 }    
@@ -85,7 +85,6 @@ function ProfilePage() {
 
     }, []);
     let text = '';
-    console.log(gender);
     if (gender === 'male') {
         text = text + "<span2>Male</span2>&nbsp;"
     } else if (gender === 'female') {
@@ -106,6 +105,7 @@ function ProfilePage() {
     if (party === "I love to party") {
         text = text + "<span7>Party Friendly</span7>&nbsp;"
     }
+    console.log(animal);
     if (animal === "Yes") {
         text = text + "<span8>Animal Friendly</span8>&nbsp;"
     }
