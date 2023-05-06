@@ -4,9 +4,15 @@ import { useState, useEffect } from 'react';
 import './index.css';
 import Title from '../WelcomePage/Title';
 import NavigationTabs from '../NavigationTabs';
-import { Link } from "react-router-dom";
+import { Link , useParams } from "react-router-dom";
 
-function MatchedUserProfilePage() {
+
+function MatchedUserProfilePage(profiles) {
+    //console.log(profiles.location.state.profile);
+    const profile = profiles.location.state.profile;
+    console.log(profile);
+    //const profile = profiles.find((p) => p.id === id);
+    
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [gender, setGender] = useState('')
@@ -18,35 +24,60 @@ function MatchedUserProfilePage() {
     const [wake, setWake] = useState('')
     const [year, setYear] = useState('')
     const [allergies, setAllergies] = useState('')
-
+    const [window, setWindow] = useState('');
+    const [animal, setAnimal] = useState('');
 
     useEffect(() => {
-
-        const docLookup = async () => {
-            const docRef = doc(db, "Users", "rkEcudx9k33I5nD8TC9a");
-            const docSnap = await getDoc(docRef);
-
-            if (docSnap.exists()) {
-                setFirstName(docSnap.data()["First Name"])
-                setLastName(docSnap.data()["Last Name"])
-                setBio(docSnap.data()["Bio"])
-                setGender(docSnap.data()["Gender"])
-                setBirthday(docSnap.data()["Birthday"])
-                setLocation(docSnap.data()["Location Preference"])
-                setParty(docSnap.data()["PartyPref"])
-                setSleep(docSnap.data()["SleepTime"])
-                setWake(docSnap.data()["WakeTime"])
-                setYear(docSnap.data()["Year"])
-                setAllergies(docSnap.data()["Allergies"])
-              } else {
-                setFirstName("Error")
-            }    
-    
+        if (profile) {
+            //console.log("here");
+            const fn = (profile.name).split(" ")[0];
+            const ln = (profile.name).split(" ")[1];
+            setFirstName(fn);
+            setLastName(ln);
+            setGender(profile.gender);
+            setBio(profile.bio);
+            setBirthday(profile.birthYear);
+            setLocation(profile.location);
+            setParty(profile.party);
+            setSleep(profile.bedTime);
+            setWake(profile.wakeTime);
+            setYear(profile.classYear);
+            setAllergies(profile.allergies);
+            setWindow(profile.window);
+            setAnimal(profile.animal);
         }
 
-        docLookup();
 
-    }, []);
+    })
+
+    let text = '';
+    if (gender === 'male') {
+        text = text + "<span2>Male</span2>&nbsp;"
+    } else {
+        text = text + "<span>Female</span>&nbsp;"
+    }
+    if (wake === "Early") {
+        text = text + "<span3>Early Riser</span3>&nbsp;"
+    }
+    if (sleep === "Late") {
+        text = text + "<span4>Night Owl</span4>&nbsp;"
+    }
+    if (window === "Open") {
+        text = text + "<span5>Window Opened</span5>&nbsp;"
+    }
+    if (window === "Closed") {
+        text = text + "<span6>Window Closed</span6>&nbsp;"
+    }
+    if (party === "I love to party") {
+        text = text + "<span7>Party Friendly</span7>&nbsp;"
+    }
+    if (animal === "Yes") {
+        text = text + "<span8>Animal Friendly</span8>&nbsp;"
+    }
+
+
+
+
     
     return (
         <div className='full-screen'>
@@ -65,8 +96,8 @@ function MatchedUserProfilePage() {
                         <table>
                             <tr>
                                 <td className='table-size'>Year</td>
-                                <td>Birthday</td>
-                                <td>Location Preference</td>
+                                <td className='table-size'>Birthday</td>
+                                <td className='table-size'>Location Preference</td>
                             </tr>
                             <tr>
                                 <td>{year}</td>
@@ -80,7 +111,8 @@ function MatchedUserProfilePage() {
                                 <td>Allergies</td>
                             </tr>
                             <tr>
-                                <td class='size'><span>{gender}</span>&nbsp;&nbsp;<span>{wake}</span>&nbsp;&nbsp;<span>{party}</span></td>
+                                <td class='size' dangerouslySetInnerHTML={{ __html: text }}></td>
+                                
                                 <td></td>
                                 <td class='size'>{allergies}</td>
                             </tr>

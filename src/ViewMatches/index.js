@@ -7,6 +7,8 @@ import NavigationTabs from '../NavigationTabs';
 import db from '../Firebase/firebase.js';
 import { getDoc, doc, getDocs, collection } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { useHistory , Link } from 'react-router-dom';
+
 
 import {
   Grid,
@@ -251,8 +253,11 @@ function ViewMatches() {
            bio: "Suspendisse imperdiet ex et varius tristique. Sed vel nisi vel nunc eleifend auctor eget eu ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor ipsum vel justo maximus lacinia.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor ipsum vel justo maximus lacinia.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor ipsum vel justo maximus lacinia.",
           },
       ]; */
+      const history = useHistory();
       const handleProfileClick = (id) => {
         console.log(`Clicked profile with ID ${id}`);
+        const profile = responsesFiltered.find(p => p.id===id);
+        history.push( '/matcheduserprofile/${id}', {profile});
       };
      if (responsesFiltered.length === 0) {
         return (

@@ -19,6 +19,7 @@ function ProfilePage() {
     const [wake, setWake] = useState('')
     const [year, setYear] = useState('')
     const [allergies, setAllergies] = useState('')
+    const [animal, setAnimal] = useState('');
     const [user, setUser] = useState({});
 
     const auth = getAuth();
@@ -36,7 +37,7 @@ function ProfilePage() {
                     setFirstName(docSnap.data()["firstName"])
                     setLastName(docSnap.data()["lastName"])
                     setBio(docSnap.data()["bio"])
-                    setGender(docSnap.data()["gender"])
+                    setGender(docSnap.data()['responses']["gender"])
                     setBirthday(2023 - docSnap.data()['responses']['birthYear'])
                     setLocation(docSnap.data()["responses"]['location'])
                     setParty(docSnap.data()["responses"]["party"])
@@ -44,6 +45,7 @@ function ProfilePage() {
                     setWake(docSnap.data()["responses"]["wakeTime"])
                     setYear(docSnap.data()["responses"]["classYear"])
                     setAllergies(docSnap.data()["Allergies"])
+                    setAnimal(docSnap.data()["animal"])
                   } else {
                     setFirstName("Error")
                 }    
@@ -54,6 +56,8 @@ function ProfilePage() {
 
             
         });
+
+        console.log(gender);
 
         // const docLookup = async () => {
         //     const docRef = doc(db, "users", "rkEcudx9k33I5nD8TC9a");
@@ -80,6 +84,31 @@ function ProfilePage() {
         // docLookup();
 
     }, []);
+    let text = '';
+    console.log(gender);
+    if (gender === 'male') {
+        text = text + "<span2>Male</span2>&nbsp;"
+    } else if (gender === 'female') {
+        text = text + "<span>Female</span>&nbsp;"
+    }
+    if (wake === "Early") {
+        text = text + "<span3>Early Riser</span3>&nbsp;"
+    }
+    if (sleep === "Late") {
+        text = text + "<span4>Night Owl</span4>&nbsp;"
+    }
+    if (window === "Open") {
+        text = text + "<span5>Window Opened</span5>&nbsp;"
+    }
+    if (window === "Closed") {
+        text = text + "<span6>Window Closed</span6>&nbsp;"
+    }
+    if (party === "I love to party") {
+        text = text + "<span7>Party Friendly</span7>&nbsp;"
+    }
+    if (animal === "Yes") {
+        text = text + "<span8>Animal Friendly</span8>&nbsp;"
+    }
     
     return (
         <div className='full-screen'>
@@ -106,8 +135,8 @@ function ProfilePage() {
                         <table>
                             <tr>
                                 <td className='table-size'>Year</td>
-                                <td>Birthday</td>
-                                <td>Location Preference</td>
+                                <td className='table-size'>Birthday</td>
+                                <td className='table-size'>Location Preference</td>
                             </tr>
                             <tr>
                                 <td>{year}</td>
@@ -121,7 +150,7 @@ function ProfilePage() {
                                 <td>Allergies</td>
                             </tr>
                             <tr>
-                                <td className='size'><span>{gender}</span>&nbsp;&nbsp;<span>{wake}</span>&nbsp;&nbsp;<span>{party}</span></td>
+                                <td className='size' dangerouslySetInnerHTML={{ __html: text }}></td>
                                 <td></td>
                                 <td className='size'>{allergies}</td>
                             </tr>

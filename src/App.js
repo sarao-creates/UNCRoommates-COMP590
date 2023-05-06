@@ -22,10 +22,11 @@ const CreateAccountPath = '/create-account';
 const OnboardingBioPath = '/onboarding-bio';
 const OnboardingPhotoPath = '/onboarding-photo';
 const ViewMatchesPath = '/viewmatches'
-const MatchedUserProfilePath = '/matcheduserprofile';
+const MatchedUserProfilePath = '/matcheduserprofile/:id';
 const DeactivationConfirmPath = '/deactivationconfirm';
 const DeactivatedSettingsPath = '/deactivatedsettings';
 const EditBioandPhotoPath = '/editbioandphoto';
+
 
 function App() {
   return (
