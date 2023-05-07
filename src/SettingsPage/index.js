@@ -1,3 +1,196 @@
+import './index.css'
+import Title from '../WelcomePage/Title'
+import NavigationTabs from '../NavigationTabs';
+import React, { useState , useEffect } from 'react';
+import {
+  Grid,
+  TextField,
+  Radio,
+  RadioGroup,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Button,
+  MenuItem,
+  InputLabel,
+  Select,
+  Snackbar,
+  Alert
+} from '@mui/material';
+
+import db from '../Firebase/firebase.js';
+import { doc, updateDoc, getDoc } from 'firebase/firestore';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useHistory } from 'react-router-dom';
+
+
+
+//import {Redirect} from 'react-router-dom';
+//import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+function Survey() {
+  const auth = getAuth();
+  const history = useHistory();
+  // const user = auth.currentUser;
+  
+  //const [name, setName] = useState('');
+
+  const [birthYear, setBirthYear] = useState('');
+  const [gender, setGender] = useState('');
+  const [classYear, setClassYear] = useState('');
+  const [major, setMajor] = useState('');
+  const [location, setLocation] = useState('');
+  const [bedTime, setBedTime] = useState('');
+  const [wakeTime, setWakeTime] = useState('');
+  const [noiseLevel, setNoiseLevel] = useState('');
+  const [guestLevel, setGuestLevel] = useState('');
+  const [tidiness, setTidiness] = useState('');
+  const [allergies, setAllergies] = useState('');
+  const [accomodations, setAccomodations] = useState('');
+  const [window, setWindow] = useState('');
+  const [animal, setAnimal] = useState('');
+  const [party, setParty] = useState('');
+  // const [setError] = useState('');
+  const [user, setUser] = useState({});
+  const [snackbar, setSnackbar] = useState({
+    status: false,
+    message: '',
+  })
+
+  useEffect(() => {
+    // const surveyData = JSON.parse(localStorage.getItem("surveyData"));
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setUser(user);
+
+        const surveyData = (await getDoc(doc(db, "users", user.uid))).data().responses;
+        console.log(user.uid)
+        console.log(surveyData)
+        if (surveyData) {
+          // setName(surveyData.name);
+          setBirthYear(surveyData.birthYear);
+          setGender(surveyData.gender);
+          setClassYear(surveyData.classYear);
+          setMajor(surveyData.major);
+          setLocation(surveyData.location);
+          setBedTime(surveyData.bedTime);
+          setWakeTime(surveyData.wakeTime);
+          setNoiseLevel(surveyData.noiseLevel);
+          setGuestLevel(surveyData.guestLevel);
+          setTidiness(surveyData.tidiness);
+          setAllergies(surveyData.allergies);
+          setAccomodations(surveyData.accomodations);
+          setWindow(surveyData.window);
+          setAnimal(surveyData.animal);
+          setParty(surveyData.party);
+        }
+
+
+      } else {
+        console.log('not signed in')
+      }
+      
+    });
+
+    // async function getSurveyData() {
+    //   const surveyData = (await getDoc(doc(db, "users", uid))).data().responses;
+    //   console.log(uid)
+    //   console.log(surveyData)
+    //   if (surveyData) {
+    //     // setName(surveyData.name);
+    //     setBirthYear(surveyData.birthYear);
+    //     setGender(surveyData.gender);
+    //     setClassYear(surveyData.classYear);
+    //     setMajor(surveyData.major);
+    //     setLocation(surveyData.location);
+    //     setBedTime(surveyData.bedTime);
+    //     setWakeTime(surveyData.wakeTime);
+    //     setNoiseLevel(surveyData.noiseLevel);
+    //     setGuestLevel(surveyData.guestLevel);
+    //     setTidiness(surveyData.tidiness);
+    //     setAllergies(surveyData.allergies);
+    //     setAccomodations(surveyData.accomodations);
+    //     setWindow(surveyData.window);
+    //     setAnimal(surveyData.animal);
+    //     setParty(surveyData.party);
+    //   }
+    // }
+    // getSurveyData();
+    
+  }, [auth]);
+  
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    if (!birthYear || !gender || !classYear || !major || !location || !bedTime || !wakeTime || !noiseLevel || !guestLevel || !tidiness || !accomodations || !allergies) {
+      setSnackbar({status: true, message: `Please fill in all required fields.`});
+      return;
+    }
+    // if (allergies === undefined) {
+    //   console.log('do we get here?')
+    //   setAllergies("None")
+    // }
+
+    // if (accomodations === undefined) {
+    //   setAccomodations("None")
+    // }
+
+    const surveyData = {
+        birthYear,
+        gender,
+        classYear,
+        major,
+        location,
+        bedTime,
+        wakeTime,
+        noiseLevel,
+        guestLevel,
+        tidiness,
+        allergies,
+        accomodations,
+        window,
+        animal,
+        party,
+      };
+      try {
+        // const docRef = await addDoc(collection(db, "surveyResponses"), surveyData);
+        console.log(surveyData);
+        await updateDoc(doc(db, "users", user.uid), {'responses': surveyData})
+        // localStorage.setItem("surveyData", JSON.stringify(surveyData));
+        // console.log("Survey submitted with ID: ", docRef.id);
+        //setSuccess(true);
+        history.push('/profile')
+      } catch (error) {
+        console.error("Error adding survey: ", error);
+      }
+      
+
+  }
+
+  function handleGenderChange(event) {
+    setGender(event.target.value);
+  }
+
+  function handleBirthYearChange(event) {
+    const value = event.target.value.replace(/[^0-9]/g, '').slice(0, 4); // Only allow 4 digits
+    setBirthYear(value);
+  }
+
+  function handleClassYearChange(event) {
+    setClassYear(event.target.value);
+  }
+
+  function handleMajorChange(event) {
+    setMajor(event.target.value);
+  }
+
+  function handleLocationChange(event) {
+    setLocation(event.target.value);
+  }
+
+  function handleBetTimeChange(event) {
+    setBedTime(event.target.value);
+  }
 import React from 'react'
 import {db} from '../Firebase/firebase.js'
 import { doc, getDoc } from 'firebase/firestore';
@@ -26,7 +219,6 @@ function SettingsPage() {
     /* const handlePWD = (event) => {
         setPWD(event.target.value);
     }
-
     const handlePasswordChange = () => {
         checkPassword(auth, pwd).then((userCredential) => {
             console.log('Original password check successful');
@@ -35,7 +227,6 @@ function SettingsPage() {
             let errorCode = error.code;
             let errorMessage = error.message;
             setSnackbar({status: true, message: `${errorCode} - ${errorMessage}`});
-
             console.log(`${errorCode} - ${errorMessage}`);
         })
     }

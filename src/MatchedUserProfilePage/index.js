@@ -124,14 +124,18 @@ function MatchedUserProfilePage(profiles) {
                     {bio}
                     <br></br>
                     <br></br>
-                    <div className='alignright'>
-                    <Link to="/viewmatches"><button class="button button-decline" type="button">&#x2716; Decline</button></Link>
-                    </div>
-                    <div className='alignright'>
-                    <Link to="/viewmatches"><button class="button button-connect" type="button">&#x2714; Connect</button></Link>
+                    <div className="buttonsdivider">
+                        <div className='alignright'>
+                            <Link to="/viewmatches"><button class="button button-acceptdecline" type="button">&#x2716; Decline</button></Link>
+                        </div>
+                        <div className='alignleft'>
+                            <Link to="/viewmatches"><button class="button button-acceptdecline" type="button">&#x2714; Connect</button></Link>
+                        </div>
                     </div>
                 </div>
+                <br></br>
             </div>
+            <br></br>
         </div>
     )
 }

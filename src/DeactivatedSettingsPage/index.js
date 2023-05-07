@@ -26,7 +26,6 @@ function SettingsPage() {
     /* const handlePWD = (event) => {
         setPWD(event.target.value);
     }
-
     const handlePasswordChange = () => {
         checkPassword(auth, pwd).then((userCredential) => {
             console.log('Original password check successful');
@@ -35,7 +34,6 @@ function SettingsPage() {
             let errorCode = error.code;
             let errorMessage = error.message;
             setSnackbar({status: true, message: `${errorCode} - ${errorMessage}`});
-
             console.log(`${errorCode} - ${errorMessage}`);
         })
     }
