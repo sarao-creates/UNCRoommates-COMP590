@@ -44,8 +44,8 @@ function ViewMatches() {
       getSurveyData();
       
     }, []); */
-
-    const sampleResponse = JSON.parse(localStorage.getItem("surveyData"));
+    const currentSurvey = "surveyData" + user.uid;
+    const sampleResponse = JSON.parse(localStorage.getItem(currentSurvey));
 
 
 
