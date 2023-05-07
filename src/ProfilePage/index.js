@@ -137,7 +137,7 @@ function ProfilePage() {
                         <table>
                             <tr>
                                 <td className='table-size'>Year</td>
-                                <td className='table-size'>Birthday</td>
+                                <td className='table-size'>Age</td>
                                 <td className='table-size'>Location Preference</td>
                             </tr>
                             <tr>
