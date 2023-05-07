@@ -20,6 +20,7 @@ function ProfilePage() {
     const [year, setYear] = useState('')
     const [allergies, setAllergies] = useState('')
     const [animal, setAnimal] = useState('');
+    const [window, setWindow] = useState('');
     const [user, setUser] = useState({});
 
     const auth = getAuth();
@@ -46,6 +47,7 @@ function ProfilePage() {
                     setYear(docSnap.data()["responses"]["classYear"])
                     setAllergies(docSnap.data()["responses"]["allergies"])
                     setAnimal(docSnap.data()["responses"]["animal"])
+                    setWindow(docSnap.data()["responses"]["window"])
                   } else {
                     setFirstName("Error")
                 }    
