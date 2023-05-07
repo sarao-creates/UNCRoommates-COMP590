@@ -96,7 +96,7 @@ function MatchedUserProfilePage(profiles) {
                         <table>
                             <tr>
                                 <td className='table-size'>Year</td>
-                                <td className='table-size'>Birthday</td>
+                                <td className='table-size'>Birth Year</td>
                                 <td className='table-size'>Location Preference</td>
                             </tr>
                             <tr>

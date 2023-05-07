@@ -39,8 +39,8 @@ function ProfilePage() {
                     setLastName(docSnap.data()["lastName"])
                     setBio(docSnap.data()["bio"])
                     setGender(docSnap.data()['responses']["gender"])
-                    setBirthday(2023 - docSnap.data()['responses']['birthYear'])
-                    setLocation(docSnap.data()["responses"]['location'])
+                    setBirthday(docSnap.data()['responses']['birthYear'])
+                    setLocation(docSnap.data()["responses"]['location'] === "I don't care" ? "Any" : docSnap.data()["responses"]['location'])
                     setParty(docSnap.data()["responses"]["party"])
                     setSleep(docSnap.data()["responses"]["bedTime"])
                     setWake(docSnap.data()["responses"]["wakeTime"])
@@ -59,7 +59,12 @@ function ProfilePage() {
             
         });
 
-        console.log(gender);
+       // console.log(gender);
+
+
+       //if (location === "I don't care") {setLocation("Any")}
+
+
 
         // const docLookup = async () => {
         //     const docRef = doc(db, "users", "rkEcudx9k33I5nD8TC9a");
@@ -107,7 +112,7 @@ function ProfilePage() {
     if (party === "I love to party") {
         text = text + "<span7>Party Friendly</span7>&nbsp;"
     }
-    console.log(animal);
+    //console.log(animal);
     if (animal === "Yes") {
         text = text + "<span8>Animal Friendly</span8>&nbsp;"
     }
@@ -137,7 +142,7 @@ function ProfilePage() {
                         <table>
                             <tr>
                                 <td className='table-size'>Year</td>
-                                <td className='table-size'>Age</td>
+                                <td className='table-size'>Birth Year</td>
                                 <td className='table-size'>Location Preference</td>
                             </tr>
                             <tr>
