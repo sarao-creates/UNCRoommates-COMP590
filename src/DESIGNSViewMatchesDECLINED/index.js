@@ -21,7 +21,7 @@ import {
 //import db from '../Firebase/firebase.js';
 //import { collection, addDoc } from "firebase/firestore";
 
-function ViewMatches() {
+function DESIGNSViewMatchesDECLINED() {
   const auth = getAuth();
   const user = auth.currentUser;
     const [responses, setResponses] = useState([]);
@@ -301,16 +301,20 @@ function ViewMatches() {
             <Title></Title>
             <NavigationTabs></NavigationTabs>
             <div className='centercontainer'>
-            <Grid container spacing={3} sx={{ width: "73%", float:'right'}}>
+            <Grid container spacing={3} sx={{ width: "66.66%", float:'right'}}>
       {responsesFiltered.map((profile) => (
         <Grid key={profile.order} item xs={6}>
-          
           <Paper
             elevation={3}
-            sx={{ height: "80%", padding: 2, display: "flex", flexDirection: "column", justifyContent: "space-between", cursor: "pointer" }}
+            sx={{ height: "80%", padding: 2, display: "flex", border: "solid red 3px", flexDirection: "column", justifyContent: "space-between", cursor: "pointer" }}
             onClick={() => handleProfileClick(profile.id)}
           >
-            <Typography variant="h6" color='#4b9cd3'>{profile.name}</Typography>
+            <div className="divider">
+              <Typography variant="h6" color='#4b9cd3'>{profile.name}</Typography>
+              <div className='declinedText'>
+              <Typography variant="h6"><b>&#x2713;</b> ACCEPTED</Typography>
+              </div>
+            </div>
             <Typography variant="body1">
               Year: {profile.classYear} | Age: {2023-profile.birthYear} | Location: {((profile.location)==="I don't care") ? "Any" : profile.location}
             </Typography>
@@ -329,4 +333,4 @@ function ViewMatches() {
     )
 }
 
-export default ViewMatches
+export default DESIGNSViewMatchesDECLINED

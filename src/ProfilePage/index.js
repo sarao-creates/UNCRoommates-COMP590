@@ -1,106 +1,47 @@
+import React from 'react'
 import {db} from '../Firebase/firebase.js'
 import { doc, getDoc } from 'firebase/firestore';
+import './index.css'
 import { useState, useEffect } from 'react';
-import './index.css';
-import Title from '../WelcomePage/Title';
-import NavigationTabs from '../NavigationTabs';
-import { Link } from "react-router-dom";
-
-function ProfilePage() {
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [gender, setGender] = useState('')
-    const [bio, setBio] = useState('')
-    const [birthday, setBirthday] = useState('')
-    const [location, setLocation] = useState('')
-    const [party, setParty] = useState('')
-    const [sleep, setSleep] = useState('')
-    const [wake, setWake] = useState('')
-    const [year, setYear] = useState('')
-    const [allergies, setAllergies] = useState('')
+import Title from '../WelcomePage/Title/index.js';
+import { Link } from 'react-router-dom'
 
 
-    useEffect(() => {
-
-        const docLookup = async () => {
-            const docRef = doc(db, "Users", "rkEcudx9k33I5nD8TC9a");
-            const docSnap = await getDoc(docRef);
-
-            if (docSnap.exists()) {
-                setFirstName(docSnap.data()["First Name"])
-                setLastName(docSnap.data()["Last Name"])
-                setBio(docSnap.data()["Bio"])
-                setGender(docSnap.data()["Gender"])
-                setBirthday(docSnap.data()["Birthday"])
-                setLocation(docSnap.data()["Location Preference"])
-                setParty(docSnap.data()["PartyPref"])
-                setSleep(docSnap.data()["SleepTime"])
-                setWake(docSnap.data()["WakeTime"])
-                setYear(docSnap.data()["Year"])
-                setAllergies(docSnap.data()["Allergies"])
-              } else {
-                setFirstName("Error")
-            }    
-    
-        }
-
-        docLookup();
-
-    }, []);
-    
+function OnboardingPhotoPage() {
+    const [file, setFile] = useState("");
+    function handleChange(e) {
+        console.log(e.target.files);
+        setFile(URL.createObjectURL(e.target.files[0]));
+    }
     return (
-        <div className='full-screen'>
+        <div>
             <Title></Title>
-            <NavigationTabs></NavigationTabs>
-            <div className='profile-container'>
-                <div className='left-container'>
+                <div className='full-screen'>
+                    <div className='onboardingphoto-header'>Upload Optional Photo</div>
+                    <div class="dashedline"></div>
                     <br></br>
+                    <div className='onboardingphoto-container'>
+                        <p className='largertext'>You can upload an <b>optional</b> photo of yourself here, which
+                        will appear on your profile page for other users to see!</p>
+                        <p>Try to use an image
+                        that is clear and not one taken from too far away.
+                        </p>
+                        <div className='smallcontainer'>
+                            <img src={file} class="img-border img-photo"/>
+                            <br></br>
+                            <input 
+                            type="file" 
+                            id="file"
+                            accept="image/*"
+                            onChange={handleChange}
+                            />
+                        </div>
                     <br></br>
-                    <br></br>
-                    <div className='image-container'></div>
-                </div>
-                <div className='right-container'>
-                    <br></br>
-                <div className='editbutton-container'>
-                        <Link to='editbioandphoto'><button className='button'>&#x270E; Edit Bio/Photo</button></Link>
-                    </div>
-                    <br></br>
-                    <br></br>
-                    <div className='name-container'>
-                        <h1>{firstName} {lastName}</h1>
-                    </div>
-                    <div className='profile-characteristics'>
-                        <table>
-                            <tr>
-                                <td className='table-size'>Year</td>
-                                <td>Birthday</td>
-                                <td>Location Preference</td>
-                            </tr>
-                            <tr>
-                                <td>{year}</td>
-                                <td>{birthday}</td>
-                                <td>{location}</td>
-                            </tr>
-                            <tr className="blank-row"><td colspan="3"></td></tr>
-                            <tr>
-                                <td>Identifies as</td>
-                                <td></td>
-                                <td>Allergies</td>
-                            </tr>
-                            <tr>
-                                <td class='size'><span>{gender}</span>&nbsp;&nbsp;<span>{wake}</span>&nbsp;&nbsp;<span>{party}</span></td>
-                                <td></td>
-                                <td class='size'>{allergies}</td>
-                            </tr>
-                        </table>
+                    <Link to='/onboarding-bio'><button class='button button-next'>Next</button></Link>
                     </div>
                 </div>
-                <div className='bio-container'>
-                   {bio}
-                </div>
-            </div>
         </div>
     )
 }
 
-export default ProfilePage
+export default OnboardingPhotoPage

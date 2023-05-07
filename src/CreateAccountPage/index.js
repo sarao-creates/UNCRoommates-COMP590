@@ -12,10 +12,6 @@ import { useHistory } from "react-router-dom";
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
-
-
-
-
 function CreateAccountPage() {
 
     const history = useHistory();

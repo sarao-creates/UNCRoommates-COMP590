@@ -8,6 +8,8 @@ import CreateAccountPage from './CreateAccountPage';
 import OnboardingBioPage from './OnboardingBioPage';
 import OnboardingPhotoPage from './OnboardingPhotoPage';
 import ViewMatches from './ViewMatches';
+import DESIGNSViewMatchesACCEPTED from './DESIGNSViewMatchesACCEPTED';
+import DESIGNSViewMatchesDECLINED from './DESIGNSViewMatchesDECLINED';
 import MatchedUserProfilePage from './MatchedUserProfilePage';
 import DeactivationConfirmPage from './DeactivationConfirmPage';
 import DeactivatedSettingsPage from './DeactivatedSettingsPage';
@@ -22,6 +24,8 @@ const CreateAccountPath = '/create-account';
 const OnboardingBioPath = '/onboarding-bio';
 const OnboardingPhotoPath = '/onboarding-photo';
 const ViewMatchesPath = '/viewmatches'
+const DESIGNSViewMatchesACCEPTEDPath = '/DESIGNSviewmatchesACCEPTED'
+const DESIGNSViewMatchesDECLINEDPath = '/DESIGNSviewmatchesDECLINED'
 const MatchedUserProfilePath = '/matcheduserprofile';
 const DeactivationConfirmPath = '/deactivationconfirm';
 const DeactivatedSettingsPath = '/deactivatedsettings';
@@ -42,6 +46,8 @@ function App() {
       <Route path={OnboardingBioPath} component={OnboardingBioPage}></Route>
       <Route path={OnboardingPhotoPath} component={OnboardingPhotoPage}></Route>
       <Route path={ViewMatchesPath} component={ViewMatches}></Route>
+      <Route path={DESIGNSViewMatchesACCEPTEDPath} component={DESIGNSViewMatchesACCEPTED}></Route>
+      <Route path={DESIGNSViewMatchesDECLINEDPath} component={DESIGNSViewMatchesDECLINED}></Route>
       <Route path={MatchedUserProfilePath} component={MatchedUserProfilePage}></Route>
       <Route path={DeactivationConfirmPath} component={DeactivationConfirmPage}></Route>
       <Route path={DeactivatedSettingsPath} component={DeactivatedSettingsPage}></Route>
