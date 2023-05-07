@@ -4,13 +4,13 @@ import { useState, useEffect } from 'react';
 import './index.css';
 import Title from '../WelcomePage/Title';
 import NavigationTabs from '../NavigationTabs';
-import { Link , useParams } from "react-router-dom";
+import { Link , useHistory } from "react-router-dom";
 
 
 function MatchedUserProfilePage(profiles) {
     //console.log(profiles.location.state.profile);
     const profile = profiles.location.state.profile;
-    console.log(profile);
+    //console.log(profile);
     //const profile = profiles.find((p) => p.id === id);
     
     const [firstName, setFirstName] = useState('')
@@ -76,6 +76,60 @@ function MatchedUserProfilePage(profiles) {
     }
 
 
+    const history = useHistory();
+
+    function handleDecline(name) {
+        // change the value of the variable in the previous page
+        const declinedList = JSON.parse(localStorage.getItem("declinedList"));
+        const acceptedList = JSON.parse(localStorage.getItem("acceptedList"));
+        for (let i = 0; i < acceptedList.length; i++) {
+            if (acceptedList[i] === name) {
+              acceptedList.splice(i, 1);
+              i--;
+            }
+          }
+        if (declinedList.includes(name)) {
+            
+            //console.log(acceptedList);
+
+            localStorage.setItem("declinedList", JSON.stringify(declinedList));
+            localStorage.setItem("acceptedList", JSON.stringify(acceptedList));
+            return (history.push('/viewmatches'));
+        }
+        declinedList.push(name);
+        
+        localStorage.setItem("declinedList", JSON.stringify(declinedList));
+        localStorage.setItem("acceptedList", JSON.stringify(acceptedList));
+        history.push('/viewmatches');
+      }
+
+
+      function handleAccept(name) {
+        const acceptedList = JSON.parse(localStorage.getItem("acceptedList"));
+        const declinedList = JSON.parse(localStorage.getItem("declinedList"));
+        for (let i = 0; i < declinedList.length; i++) {
+            if (declinedList[i] === name) {
+              declinedList.splice(i, 1);
+              i--;
+            }
+          }
+        if (acceptedList.includes(name)) {
+            
+            localStorage.setItem("declinedList", JSON.stringify(declinedList));
+            localStorage.setItem("acceptedList", JSON.stringify(acceptedList));
+            history.push('/viewmatches');
+            return;
+        }
+        acceptedList.push(name);
+        
+        localStorage.setItem("declinedList", JSON.stringify(declinedList));
+        localStorage.setItem("acceptedList", JSON.stringify(acceptedList));
+        history.push('/viewmatches');
+        
+      }
+
+
+
 
 
     
@@ -126,10 +180,10 @@ function MatchedUserProfilePage(profiles) {
                     <br></br>
                     <div className="buttonsdivider">
                         <div className='alignright'>
-                            <Link to="/viewmatches"><button class="button button-acceptdecline" type="button">&#x2716; Decline</button></Link>
+                            <button onClick={() => handleDecline(profile.name)} class="button button-acceptdecline" type="button">&#x2716; Decline</button>
                         </div>
                         <div className='alignleft'>
-                            <Link to="/viewmatches"><button class="button button-acceptdecline" type="button">&#x2714; Connect</button></Link>
+                            <button onClick={() => handleAccept(profile.name)} class="button button-acceptdecline" type="button">&#x2714; Connect</button>
                         </div>
                     </div>
                 </div>
