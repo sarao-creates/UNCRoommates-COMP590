@@ -43,7 +43,7 @@ function ProfilePage() {
                     setSleep(docSnap.data()["responses"]["bedTime"])
                     setWake(docSnap.data()["responses"]["wakeTime"])
                     setYear(docSnap.data()["responses"]["classYear"])
-                    setAllergies(docSnap.data()["Allergies"])
+                    setAllergies(docSnap.data()['responses']["allergies"])
                   } else {
                     setFirstName("Error")
                 }    
