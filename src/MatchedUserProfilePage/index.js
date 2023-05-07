@@ -89,9 +89,6 @@ function MatchedUserProfilePage(profiles) {
             }
           }
         if (declinedList.includes(name)) {
-            
-            //console.log(acceptedList);
-
             localStorage.setItem("declinedList", JSON.stringify(declinedList));
             localStorage.setItem("acceptedList", JSON.stringify(acceptedList));
             return (history.push('/viewmatches'));

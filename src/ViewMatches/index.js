@@ -259,15 +259,12 @@ function ViewMatches() {
       ]; */
       const acceptedNames = JSON.parse(localStorage.getItem("acceptedList"));
       const declinedNames = JSON.parse(localStorage.getItem("declinedList"));
-      //console.log(acceptedNames);
-      //console.log(declinedNames);
+
       
       const acceptedList = responsesFiltered.filter((r) => (acceptedNames.includes(r.name)));
       const declinedList = responsesFiltered.filter((r) => (declinedNames.includes(r.name)));
       const blankList = responsesFiltered.filter((r) => ((!declinedNames.includes(r.name)) && (!acceptedNames.includes(r.name))));
-      //console.log(acceptedList);
-      //console.log(declinedList);
-      //console.log(blankList);
+
 
 
       
