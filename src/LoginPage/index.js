@@ -41,8 +41,13 @@ function LoginPage() {
             console.log(`${errorCode} - ${errorMessage}`);
         })
     }
-        localStorage.setItem("declinedList", JSON.stringify([]));
+    if (JSON.parse(localStorage.getItem("acceptedList"))===null) {
         localStorage.setItem("acceptedList", JSON.stringify([]));
+    }
+    if (JSON.parse(localStorage.getItem("acceptedList"))===null) {
+        localStorage.setItem("acceptedList", JSON.stringify([]));
+    }
+        
     
     return (
         <div className="full-screen">
