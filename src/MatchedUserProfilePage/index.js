@@ -5,6 +5,7 @@ import './index.css';
 import Title from '../WelcomePage/Title';
 import NavigationTabs from '../NavigationTabs';
 import { Link , useHistory } from "react-router-dom";
+import { getAuth } from "firebase/auth";
 
 
 function MatchedUserProfilePage(profiles) {
@@ -12,6 +13,12 @@ function MatchedUserProfilePage(profiles) {
     const profile = profiles.location.state.profile;
     //console.log(profile);
     //const profile = profiles.find((p) => p.id === id);
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const currentAccepted = "acceptedList" + user.uid;
+    const currentDeclined = "declinedList" + user.uid;
+
+
     
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
@@ -80,8 +87,8 @@ function MatchedUserProfilePage(profiles) {
 
     function handleDecline(name) {
         // change the value of the variable in the previous page
-        const declinedList = JSON.parse(localStorage.getItem("declinedList"));
-        const acceptedList = JSON.parse(localStorage.getItem("acceptedList"));
+        const declinedList = JSON.parse(localStorage.getItem(currentDeclined));
+        const acceptedList = JSON.parse(localStorage.getItem(currentAccepted));
         for (let i = 0; i < acceptedList.length; i++) {
             if (acceptedList[i] === name) {
               acceptedList.splice(i, 1);
@@ -89,21 +96,21 @@ function MatchedUserProfilePage(profiles) {
             }
           }
         if (declinedList.includes(name)) {
-            localStorage.setItem("declinedList", JSON.stringify(declinedList));
-            localStorage.setItem("acceptedList", JSON.stringify(acceptedList));
+            localStorage.setItem(currentDeclined, JSON.stringify(declinedList));
+            localStorage.setItem(currentAccepted, JSON.stringify(acceptedList));
             return (history.push('/viewmatches'));
         }
         declinedList.push(name);
         
-        localStorage.setItem("declinedList", JSON.stringify(declinedList));
-        localStorage.setItem("acceptedList", JSON.stringify(acceptedList));
+        localStorage.setItem(currentDeclined, JSON.stringify(declinedList));
+        localStorage.setItem(currentAccepted, JSON.stringify(acceptedList));
         history.push('/viewmatches');
       }
 
 
       function handleAccept(name) {
-        const acceptedList = JSON.parse(localStorage.getItem("acceptedList"));
-        const declinedList = JSON.parse(localStorage.getItem("declinedList"));
+        const acceptedList = JSON.parse(localStorage.getItem(currentAccepted));
+        const declinedList = JSON.parse(localStorage.getItem(currentDeclined));
         for (let i = 0; i < declinedList.length; i++) {
             if (declinedList[i] === name) {
               declinedList.splice(i, 1);
@@ -112,15 +119,15 @@ function MatchedUserProfilePage(profiles) {
           }
         if (acceptedList.includes(name)) {
             
-            localStorage.setItem("declinedList", JSON.stringify(declinedList));
-            localStorage.setItem("acceptedList", JSON.stringify(acceptedList));
+            localStorage.setItem(currentDeclined, JSON.stringify(declinedList));
+            localStorage.setItem(currentAccepted, JSON.stringify(acceptedList));
             history.push('/viewmatches');
             return;
         }
         acceptedList.push(name);
         
-        localStorage.setItem("declinedList", JSON.stringify(declinedList));
-        localStorage.setItem("acceptedList", JSON.stringify(acceptedList));
+        localStorage.setItem(currentDeclined, JSON.stringify(declinedList));
+        localStorage.setItem(currentAccepted, JSON.stringify(acceptedList));
         history.push('/viewmatches');
         
       }

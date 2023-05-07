@@ -257,8 +257,17 @@ function ViewMatches() {
            bio: "Suspendisse imperdiet ex et varius tristique. Sed vel nisi vel nunc eleifend auctor eget eu ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor ipsum vel justo maximus lacinia.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor ipsum vel justo maximus lacinia.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor ipsum vel justo maximus lacinia.",
           },
       ]; */
-      const acceptedNames = JSON.parse(localStorage.getItem("acceptedList"));
-      const declinedNames = JSON.parse(localStorage.getItem("declinedList"));
+      const currentAccepted = "acceptedList" + user.uid;
+      const currentDeclined = "declinedList" + user.uid;
+    if (JSON.parse(localStorage.getItem(currentAccepted))===null) {
+      localStorage.setItem(currentAccepted, JSON.stringify([]));
+    }
+    if (JSON.parse(localStorage.getItem(currentDeclined))===null) {
+        localStorage.setItem(currentDeclined, JSON.stringify([]));
+    }
+      
+      const acceptedNames = JSON.parse(localStorage.getItem(currentAccepted));
+      const declinedNames = JSON.parse(localStorage.getItem(currentDeclined));
 
       
       const acceptedList = responsesFiltered.filter((r) => (acceptedNames.includes(r.name)));
@@ -291,6 +300,7 @@ function ViewMatches() {
       </div>
         )
       }
+
      if (responsesFiltered.length === 0) {
         return (
             <div>
