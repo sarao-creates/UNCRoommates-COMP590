@@ -24,6 +24,7 @@ function ProfilePage() {
     const [window, setWindow] = useState('');
     const [user, setUser] = useState({});
     const [flag, setFlag] = useState(false)
+    const [photoURL, setPhotoURL] = useState('');
 
     const auth = getAuth();
 
@@ -52,6 +53,7 @@ function ProfilePage() {
                     setAllergies(docSnap.data()["responses"]["allergies"])
                     setAnimal(docSnap.data()["responses"]["animal"])
                     setWindow(docSnap.data()["responses"]["window"])
+                    setPhotoURL(docSnap.data()['photoURL'])
                   } else {
                     setFirstName("Error")
                 }    
@@ -62,37 +64,6 @@ function ProfilePage() {
 
             
         });
-
-       // console.log(gender);
-
-
-       //if (location === "I don't care") {setLocation("Any")}
-
-
-
-        // const docLookup = async () => {
-        //     const docRef = doc(db, "users", "rkEcudx9k33I5nD8TC9a");
-        //     const docSnap = await getDoc(docRef);
-
-        //     if (docSnap.exists()) {
-        //         setFirstName(docSnap.data()["First Name"])
-        //         setLastName(docSnap.data()["Last Name"])
-        //         setBio(docSnap.data()["Bio"])
-        //         setGender(docSnap.data()["Gender"])
-        //         setBirthday(docSnap.data()["Birthday"])
-        //         setLocation(docSnap.data()["Location Preference"])
-        //         setParty(docSnap.data()["PartyPref"])
-        //         setSleep(docSnap.data()["SleepTime"])
-        //         setWake(docSnap.data()["WakeTime"])
-        //         setYear(docSnap.data()["Year"])
-        //         setAllergies(docSnap.data()["Allergies"])
-        //       } else {
-        //         setFirstName("Error")
-        //     }    
-    
-        // }
-
-        // docLookup();
 
     }, []);
     let text = '';
@@ -132,7 +103,7 @@ function ProfilePage() {
                     <br></br>
                     <br></br>
                     <br></br>
-                    <div className='url-container'>Photo URL:</div>
+                    <div className='url-container'>Photo URL: {photoURL}</div>
                 </div>
                 <div className='right-container'>
                     <br></br>
