@@ -22,14 +22,11 @@
     border: #13294B 2px solid;
 }
 
-.image-container {
-    height: 150px;
-    width: 150px;
-    border: #000000 2px solid;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
+.url-container {
+  height: 150px;
+  width: 150px;
+  padding: 3px;
+  text-align: center;
 }
 
 .name-container {

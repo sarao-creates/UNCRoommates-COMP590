@@ -22,18 +22,11 @@
   border: #13294B 2px solid;
 }
 
-.image-container {
+.url-container {
   height: 150px;
   width: 150px;
-  background-image:url('../OnboardingPhotoPage/images/default-profile-pic.PNG');
-  background-size:cover;            
-  background-repeat:no-repeat;
-  background-position:center center; 
-  border: #000000 2px solid;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: auto;
-  margin-bottom: auto;
+  padding: 3px;
+  text-align: center;
 }
 
 .name-container {
@@ -134,20 +127,6 @@ td.size span:nth-child(3) {
   height: 20px;
 }
 
-.img-photo{
-  object-fit: cover;
-  background-size:cover;            
-  background-repeat:no-repeat;
-  background-position:center center; 
-}
-
-input[type=file]{
-color: white;
-background:#13294B;
-width: 134px;
-margin-left: 19px;
-margin-right: 19px;
-}
 .smallcontainer{
   border: 3px solid #13294B;
   padding: 10px;

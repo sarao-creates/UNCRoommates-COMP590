@@ -59,6 +59,37 @@ function ProfilePage() {
             
         });
 
+       // console.log(gender);
+
+
+       //if (location === "I don't care") {setLocation("Any")}
+
+
+
+        // const docLookup = async () => {
+        //     const docRef = doc(db, "users", "rkEcudx9k33I5nD8TC9a");
+        //     const docSnap = await getDoc(docRef);
+
+        //     if (docSnap.exists()) {
+        //         setFirstName(docSnap.data()["First Name"])
+        //         setLastName(docSnap.data()["Last Name"])
+        //         setBio(docSnap.data()["Bio"])
+        //         setGender(docSnap.data()["Gender"])
+        //         setBirthday(docSnap.data()["Birthday"])
+        //         setLocation(docSnap.data()["Location Preference"])
+        //         setParty(docSnap.data()["PartyPref"])
+        //         setSleep(docSnap.data()["SleepTime"])
+        //         setWake(docSnap.data()["WakeTime"])
+        //         setYear(docSnap.data()["Year"])
+        //         setAllergies(docSnap.data()["Allergies"])
+        //       } else {
+        //         setFirstName("Error")
+        //     }    
+    
+        // }
+
+        // docLookup();
+
     }, []);
     let text = '';
     if (gender === 'male') {
@@ -95,7 +126,8 @@ function ProfilePage() {
                     <br></br>
                     <br></br>
                     <br></br>
-                    <div className='image-container'></div>
+                    <br></br>
+                    <div className='url-container'>Photo URL:</div>
                 </div>
                 <div className='right-container'>
                     <br></br>
@@ -137,6 +169,7 @@ function ProfilePage() {
                    {bio}
                 </div>
             </div>
+            <br></br>
         </div>
     )
 }

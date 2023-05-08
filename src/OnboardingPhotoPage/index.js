@@ -4,42 +4,40 @@ import { doc, getDoc } from 'firebase/firestore';
 import './index.css'
 import { useState, useEffect } from 'react';
 import Title from '../WelcomePage/Title/index.js';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import {TextField} from '@mui/material';
 
 
 function OnboardingPhotoPage() {
-    const [file, setFile] = useState("");
-    function handleChange(e) {
-        console.log(e.target.files);
-        setFile(URL.createObjectURL(e.target.files[0]));
-    }
     return (
         <div>
-            <Title></Title>
-                <div className='full-screen'>
-                    <div className='onboardingphoto-header'>Upload Optional Photo</div>
-                    <div class="dashedline"></div>
+            <div className='full-screen'>
+                <Title></Title>
+                <div className='onboardingphoto-header'>Upload Optional Photo</div>
+                <div class="dashedline"></div>
+                <br></br>
+                <div className='onboardingphoto-container'>
+                    <p className='largertext'>You can enter an <b>optional</b> URL of a photo of yourself here, which
+                    will appear on your profile page for other users to see! If you do not wish to include a photo,
+                    leave the text box blank.</p>
+                    <p>Try to use an image
+                    that is clear and not one taken from too far away.
+                    </p>
+                    <TextField
+                        id="url"
+                        label="Enter the URL of Your Photo Here"
+                        type="email"
+                        size="small"
+                        style = {{width: 340}}
+                        // onChange={handleInfo('imageURL')}
+                    />
                     <br></br>
-                    <div className='onboardingphoto-container'>
-                        <p className='largertext'>You can upload an <b>optional</b> photo of yourself here, which
-                        will appear on your profile page for other users to see!</p>
-                        <p>Try to use an image
-                        that is clear and not one taken from too far away.
-                        </p>
-                        <div className='smallcontainer'>
-                            <img src={file} class="img-border img-photo"/>
-                            <br></br>
-                            <input 
-                            type="file" 
-                            id="file"
-                            accept="image/*"
-                            onChange={handleChange}
-                            />
-                        </div>
                     <br></br>
-                    <Link to='/onboarding-bio'><button class='button button-next'>Next</button></Link>
-                    </div>
+                <Link to='/onboarding-bio'><button class='button button-urlnext'>Next</button></Link>
                 </div>
+                <br></br>
+                <br></br>
+            </div>
         </div>
     )
 }
