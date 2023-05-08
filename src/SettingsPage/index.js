@@ -9,6 +9,7 @@ import { fontSize } from '@mui/system';
 import { Link } from "react-router-dom";
 import NavigationTabs from '../NavigationTabs';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import NotLoggedIn from '../NotLoggedInPage/index.js';
 
 
 function SettingsPage() {
@@ -17,6 +18,7 @@ function SettingsPage() {
     const [AccountStatus, setAccountStatus] = useState('')
     const [newEmail, setNewEmail] = useState('');
     const [newPhone, setNewPhone] = useState('');
+    const flag = false;
 
     const [user, setUser] = useState({});
 
@@ -26,6 +28,7 @@ function SettingsPage() {
 
         onAuthStateChanged(auth, async (user) => {
             if (user) {
+                flag = true;
                 const docRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(docRef);
                 setUser(user)
@@ -33,6 +36,7 @@ function SettingsPage() {
                 setCurrentPhone(docSnap.data()["phone"])
 
             } else {
+                flag = false;
                 console.log('user isnt signed in')
             }
 
@@ -53,7 +57,7 @@ function SettingsPage() {
     }
 
 
-
+    if (flag === true) {
     return (
         <div>
             <Title></Title>
@@ -155,6 +159,9 @@ function SettingsPage() {
             </div>
         </div>
     )
+} else {
+    return (<NotLoggedIn />)
+}
 }
 
 export default SettingsPage

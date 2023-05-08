@@ -22,6 +22,7 @@ import db from '../Firebase/firebase.js';
 import { doc, updateDoc, getDoc } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useHistory } from 'react-router-dom';
+import NotLoggedIn from '../NotLoggedInPage';
 
 
 
@@ -31,6 +32,7 @@ import { useHistory } from 'react-router-dom';
 function Survey() {
   const auth = getAuth();
   const history = useHistory();
+  const flag = false;
   // const user = auth.currentUser;
   
   //const [name, setName] = useState('');
@@ -61,6 +63,7 @@ function Survey() {
     // const surveyData = JSON.parse(localStorage.getItem("surveyData"));
     onAuthStateChanged(auth, async (user) => {
       if (user) {
+        flag = true;
         setUser(user);
 
         const surveyData = (await getDoc(doc(db, "users", user.uid))).data().responses;
@@ -87,6 +90,7 @@ function Survey() {
 
 
       } else {
+        flag = false;
         console.log('not signed in')
       }
       
@@ -234,7 +238,7 @@ function Survey() {
 /*   function handleNameChange(event) {
     setName(event.target.value);
   } */
-
+if (flag === true) {
   return (
     <div>
         <Title></Title>
@@ -242,7 +246,9 @@ function Survey() {
         <br></br>
         <form onSubmit={handleSubmit}>
       <Grid container spacing={2} justifyContent="center" height="100vh" alignitems="center">
-        <p>Please take a short survey for more accurate matches. The questions with <span style={{ color: 'red' }}>*</span> are required.</p>
+      <Grid item xs={7}>
+        <h3 className="para-block">Please take a short survey for more accurate matches. The questions with <span style={{ color: 'red' }}>*</span> are required.</h3>
+      </Grid>
       <Grid item xs={7}>
             <TextField
               required
@@ -256,19 +262,6 @@ function Survey() {
               helperText="Please enter your birth year (YYYY)"
             />
           </Grid>
-{/*            <Grid item xs={7}>
-            <TextField
-              required
-              fullWidth
-              type="text"
-              id="name"
-              label="2. Please indicate your first and last name."
-              variant="outlined"
-              value={name}
-              onChange={handleNameChange}
-              helperText="Please enter your first and last name"
-            />
-          </Grid>  */}
         <Grid item xs={7}>
           <FormControl component="fieldset">
             <FormLabel component="legend">2. What is your Gender indicated to UNC?<span style={{ color: 'red' }}>*</span>&nbsp;<span style={{ color: 'red' }}>(Tag)</span></FormLabel>
@@ -449,7 +442,7 @@ function Survey() {
               <RadioGroup aria-label="window" name="window" value={window} onChange={handleWindowChange}>
               <div style={{ display: "flex", alignItems: "center" }}><FormControlLabel value="Open" control={<Radio />} label="Open - I prefer to open the windows." /><td className='size'><span5>Window Opened</span5></td></div>
                 <FormControlLabel value="Neutral" control={<Radio />} label="Neutral - I don't have any preference." />
-                <div style={{ display: "flex", alignItems: "center" }}><FormControlLabel value="Closed" control={<Radio />} label="Closed - I prefer to close the windoes." /><td className='size'><span6>Window Closed</span6></td></div>
+                <div style={{ display: "flex", alignItems: "center" }}><FormControlLabel value="Closed" control={<Radio />} label="Closed - I prefer to close the windows." /><td className='size'><span6>Window Closed</span6></td></div>
               </RadioGroup>
             </FormControl>
           </Grid>
@@ -483,6 +476,9 @@ function Survey() {
       </Snackbar>
     </div>
   );
+} else {
+   return (<NotLoggedIn />)
+}
 }
 
 export default Survey;

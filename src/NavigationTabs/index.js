@@ -4,8 +4,7 @@ import './index.css';
 
 
 
-// Cannot get the navlinks to actually go to the pages. I have researched for hours on how to do this
-// and I cannot figure it out.
+
 
 function NavigationTabs() {
     return (

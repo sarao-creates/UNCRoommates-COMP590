@@ -8,6 +8,8 @@ import db from '../Firebase/firebase.js';
 import { getDoc, doc, getDocs, collection } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useHistory , Link } from 'react-router-dom';
+import NotLoggedIn from '../NotLoggedInPage/index.js';
+
 
 
 import {
@@ -25,6 +27,7 @@ import {
 function ViewMatches() {
   const auth = getAuth();
   const user = auth.currentUser;
+  const flag = false;
     const [responses, setResponses] = useState([]);
     //const [sampleResponse, setSampleResponse] = useState('');
 
@@ -74,6 +77,7 @@ function ViewMatches() {
 
     onAuthStateChanged(auth, async (user) => { 
       if (user) {
+        const flag = true;
         const getResponses = async () => {
           const responseRef = await getDocs(collection(db,"users"));
           //const snapshot = await responseRef.get();
@@ -102,6 +106,7 @@ function ViewMatches() {
         
       }
       else {
+        flag = false;
         console.log("not logged in")
       }
     });
@@ -293,21 +298,26 @@ function ViewMatches() {
         
         history.push( '/matcheduserprofile/${id}', {profile});
       };
-      if (user===null) {
-        return (
-          <div>
-          <Title></Title>
-          <NavigationTabs></NavigationTabs>
-          <div className='centercontainer'>
-          <Grid container spacing={3} sx={{ width: "66.66%", float:'right'}}>
-              <br></br>
-              Please log in or register an account to view matches!
-              <br></br>
-              Come back later!
-          </Grid>
-          </div>
-      </div>
-        )
+      // if (user===null) {
+      //   return (
+      //     <div>
+      //     <Title></Title>
+      //     <NavigationTabs></NavigationTabs>
+      //     <div className='centercontainer'>
+      //     <Grid container spacing={3} sx={{ width: "66.66%", float:'right'}}>
+      //         <br></br>
+      //         Please log in or register an account to view matches!
+      //         <br></br>
+      //         Come back later!
+      //     </Grid>
+      //     </div>
+      // </div>
+      //   )
+      // }
+
+      if (flag === false) {
+        <NotLoggedIn />
+        
       }
 
      if (responsesFiltered.length === 0) {
@@ -394,7 +404,7 @@ function ViewMatches() {
             <div className="divider">
               <Typography variant="h6" color='#4b9cd3'>{profile.name}</Typography>
               <div className='acceptedText'>
-              <Typography variant="h6"><b>&#x2713;</b> ACCEPTED</Typography>
+              <Typography variant="h6"><b>&#x2713;</b> CONNECTED</Typography>
               </div>
             </div>
             <Typography variant="body1">

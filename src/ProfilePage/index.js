@@ -6,6 +6,7 @@ import Title from '../WelcomePage/Title';
 import NavigationTabs from '../NavigationTabs';
 import { Link } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import NotLoggedIn from '../NotLoggedInPage/index.js';
 
 function ProfilePage() {
     const [firstName, setFirstName] = useState('')
@@ -25,6 +26,8 @@ function ProfilePage() {
 
     const auth = getAuth();
 
+    const flag = false;
+
 
 
     useEffect(() => {
@@ -33,6 +36,7 @@ function ProfilePage() {
             if (user) {
                 const docRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(docRef);
+                flag = true;
 
                 if (docSnap.exists()) {
                     setFirstName(docSnap.data()["firstName"])
@@ -53,7 +57,7 @@ function ProfilePage() {
                 }    
 
             } else {
-
+                flag = false;
             }
 
             
@@ -86,6 +90,7 @@ function ProfilePage() {
         text = text + "<span8>Animal Friendly</span8>&nbsp;"
     }
     
+    if (flag === true) {
     return (
         <div className='full-screen'>
             <Title></Title>
@@ -139,6 +144,11 @@ function ProfilePage() {
             </div>
         </div>
     )
+    } else {
+        return (
+            <NotLoggedIn />
+        )
+    }
 }
 
 export default ProfilePage
