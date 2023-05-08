@@ -27,7 +27,7 @@ import {
 function ViewMatches() {
   const auth = getAuth();
   const user = auth.currentUser;
-  const flag = false;
+  const [flag, setFlag] = useState(false);
     const [responses, setResponses] = useState([]);
     //const [sampleResponse, setSampleResponse] = useState('');
 
@@ -77,7 +77,7 @@ function ViewMatches() {
 
     onAuthStateChanged(auth, async (user) => { 
       if (user) {
-        const flag = true;
+        setFlag(true);
         const getResponses = async () => {
           const responseRef = await getDocs(collection(db,"users"));
           //const snapshot = await responseRef.get();
@@ -106,7 +106,7 @@ function ViewMatches() {
         
       }
       else {
-        flag = false;
+        setFlag(false);
         console.log("not logged in")
       }
     });

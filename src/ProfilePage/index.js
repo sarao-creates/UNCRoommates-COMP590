@@ -23,10 +23,10 @@ function ProfilePage() {
     const [animal, setAnimal] = useState('');
     const [window, setWindow] = useState('');
     const [user, setUser] = useState({});
+    const [flag, setFlag] = useState(false)
 
     const auth = getAuth();
 
-    const flag = false;
 
 
 
@@ -36,7 +36,7 @@ function ProfilePage() {
             if (user) {
                 const docRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(docRef);
-                flag = true;
+                setFlag(true);
 
                 if (docSnap.exists()) {
                     setFirstName(docSnap.data()["firstName"])
@@ -57,7 +57,7 @@ function ProfilePage() {
                 }    
 
             } else {
-                flag = false;
+                setFlag(false);
             }
 
             
