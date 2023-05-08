@@ -84,6 +84,8 @@ function ViewMatches() {
           let i = 0;
           const newResponses = [];
           responseRef.forEach((doc) => {
+            //console.log(doc.data().active);
+            if (doc.data().active) {
               const fn = doc.data().firstName;
               const ln = doc.data().lastName;
               const bio = doc.data().bio;
@@ -96,7 +98,7 @@ function ViewMatches() {
               //console.log(response.score);
               newResponses.push(response);
               i++;
-              
+            }
           });
           setResponses(newResponses);
           
