@@ -1,14 +1,29 @@
 import React from 'react'
 import {db} from '../Firebase/firebase.js'
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import './index.css'
 import { useState, useEffect } from 'react';
 import Title from '../WelcomePage/Title/index.js';
 import { Link } from 'react-router-dom';
 import {TextField} from '@mui/material';
+import { getAuth } from "firebase/auth";
 
 
 function OnboardingPhotoPage() {
+
+    const [photoURL, setPhotoURL] = useState('');
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    const handleURL = (event) => {
+        setPhotoURL(event.target.value)
+    }
+
+    const handleNext = async () => {
+        await updateDoc(doc(db, "users", user.uid), {"photoURL":photoURL})
+
+    }
+
     return (
         <div>
             <div className='full-screen'>
@@ -29,11 +44,11 @@ function OnboardingPhotoPage() {
                         type="email"
                         size="small"
                         style = {{width: 340}}
-                        // onChange={handleInfo('imageURL')}
+                        onChange={handleURL}
                     />
                     <br></br>
                     <br></br>
-                <Link to='/onboarding-bio'><button class='button button-urlnext'>Next</button></Link>
+                <Link to='/onboarding-bio'><button onClick={handleNext} class='button button-urlnext'>Next</button></Link>
                 </div>
                 <br></br>
                 <br></br>

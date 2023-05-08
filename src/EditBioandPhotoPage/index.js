@@ -7,9 +7,9 @@ import Title from '../WelcomePage/Title';
 import NavigationTabs from '../NavigationTabs';
 import { Link, useHistory } from "react-router-dom";
 import {TextField} from '@mui/material';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 
 function EditBioandPhotoPage() {
@@ -28,6 +28,8 @@ function EditBioandPhotoPage() {
     const [animal, setAnimal] = useState('');
     const [user, setUser] = useState({});
 
+    const [photo, setPhoto] = useState('');
+
     const auth = getAuth();
 
 
@@ -41,9 +43,11 @@ function EditBioandPhotoPage() {
                 const docSnap = await getDoc(docRef);
 
                 if (docSnap.exists()) {
+                    console.log(docSnap.data())
                     setFirstName(docSnap.data()["firstName"])
                     setLastName(docSnap.data()["lastName"])
                     setBio(docSnap.data()["bio"])
+                    setPhoto(docSnap.data()["photoURL"])
                     setGender(docSnap.data()['responses']["gender"])
                     setBirthday(2023 - docSnap.data()['responses']['birthYear'])
                     setLocation(docSnap.data()["responses"]['location'])
@@ -64,10 +68,8 @@ function EditBioandPhotoPage() {
             
         });
 
-        console.log(gender);
 
-
-    }, []);
+    }, [auth]);
     let text = '';
     if (gender === 'male') {
         text = text + "<span2>Male</span2>&nbsp;"
@@ -100,11 +102,11 @@ function EditBioandPhotoPage() {
         "value": "",
     });
     
-    const [file, setFile] = useState("");
-    function handleChange(e) {
-        console.log(e.target.files);
-        setFile(URL.createObjectURL(e.target.files[0]));
-    }
+    // const [file, setFile] = useState("");
+    // function handleChange(e) {
+    //     console.log(e.target.files);
+    //     setFile(URL.createObjectURL(e.target.files[0]));
+    // }
 
     const validate = () => {
         return (bioInfo["count"] >= 150 & bioInfo["count"] < 1500);
@@ -114,11 +116,15 @@ function EditBioandPhotoPage() {
         status: false,
         message: '',
     });
+    
+    const handlePhotoURL = (event) => {
+        setPhoto(event.target.value);
+    }
 
-      const handleBio = async () => {
-        if (validate() == true) {
+    const handleSubmit = async () => {
+        if (validate() === true) {
             console.log(user)
-            await updateDoc(doc(db, "users", user.uid), {"bio":bioInfo["value"]})
+            await updateDoc(doc(db, "users", user.uid), {"bio":bioInfo["value"], "photoURL":photo})
             history.push('/profile');
         }
         else {
@@ -142,10 +148,11 @@ function EditBioandPhotoPage() {
                     <TextField
                         id="url"
                         label="Enter URL of Photo"
+                        value={photo}
                         type="email"
                         size="small"
                         style = {{width: 180, paddingLeft:"3px", PaddingRight:"3px"}}
-                        // onChange={handleInfo('imageURL')}
+                        onChange={handlePhotoURL}
                     />
                     </div>
                     <br></br>
@@ -153,7 +160,7 @@ function EditBioandPhotoPage() {
                 <div className='right-container'>
                     <br></br>
                 <div className='editbutton-container'>
-                        <Link to='profile'><button class="button" onClick={handleBio} type="button" disabled={!validate()}>Save Changes</button></Link>
+                        <Link to='profile'><button class="button" onClick={handleSubmit} type="button" disabled={!validate()}>Save Changes</button></Link>
                     </div>
                     <br></br>
                     <br></br>
@@ -200,6 +207,9 @@ function EditBioandPhotoPage() {
                 <p><b>Character Count: {bioInfo['count']}</b></p>
                 </div>
             </div>
+            <Snackbar open={snackbar.status} autoHideDuration={7500} onClose={() => setSnackbar({status: false})}> 
+                    <Alert severity='info'>{snackbar.message}</Alert>
+            </Snackbar>
             <br></br>
         </div>
     )

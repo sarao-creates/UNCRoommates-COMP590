@@ -24,9 +24,10 @@
 
 .url-container {
   height: 150px;
-  width: 150px;
+  width: 90%;
   padding: 3px;
   text-align: center;
+  overflow-wrap: break-word;
 }
 
 .name-container {
