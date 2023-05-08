@@ -1,25 +1,25 @@
 .full-screen {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 .left-container {
-    float: left;
-    width: 25%;
-    height: auto;
+  float: left;
+  width: 25%;
+  height: auto;
 }
 
 .right-container {
-    float: left;
-    width: 75%;
-    height: 50%;
+  float: left;
+  width: 75%;
+  height: 50%;
 }
 
 .profile-container {
-    margin-left: auto;
-    margin-right:auto ;
-    width: 60%;
-    border: #13294B 2px solid;
+  margin-left: auto;
+  margin-right:auto ;
+  width: 60%;
+  border: #13294B 2px solid;
 }
 
 .url-container {
@@ -30,25 +30,25 @@
 }
 
 .name-container {
-    background: #4B9CD3;
-    width: auto;
+  background: #4B9CD3;
+  width: auto;
 }
 
 .editbutton-container {
-    float: right;
-    height: auto;
-    padding-right: 15px;
+  float: right;
+  height: auto;
+  padding-right: 15px;
 }
 
 .button {
-    background-color: #13294B;
-    border: 2px solid #13294B;
-    border-radius: 4px;
-    color: white;
-    padding: 10px 10px;
-    text-decoration: none;
-    font-size: 16px;
-    transition-duration: 0.3s;
+  background-color: #13294B;
+  border: 2px solid #13294B;
+  border-radius: 4px;
+  color: white;
+  padding: 10px 10px;
+  text-decoration: none;
+  font-size: 16px;
+  transition-duration: 0.3s;
   }
   
   .button:hover {
@@ -58,31 +58,31 @@
   }
 
 .bio-container {
-    height:fit-content;
-    width: auto;
-    padding: 10px;
+  height:fit-content;
+  width: auto;
+  padding: 10px;
 }
 
 .profile-characteristics {
-    background: #E8F6FF;
-    font-size: smaller;
+  background: #E8F6FF;
+  font-size: smaller;
 }
 
 .characteristics-left{
-    align-content: left;
+  align-content: left;
 }
 
 .characteristics-right{
-    align-content: right;
+  align-content: right;
 }
 
 .table-size {
-    width: 33%;
+  width: 33%;
 }
 
 table {
-    white-space: nowrap;
-    width: 100%;
+  white-space: nowrap;
+  width: 100%;
   }
   
   td {
@@ -123,6 +123,6 @@ table {
   }
 
 .blank-row {
-    background-color: #E8F6FF;
-    height: 20px;
+  background-color: #E8F6FF;
+  height: 20px;
 }
