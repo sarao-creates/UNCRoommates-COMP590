@@ -9,7 +9,7 @@ import { fontSize } from '@mui/system';
 import { Link } from "react-router-dom";
 import NavigationTabs from '../NavigationTabs';
 
-function SettingsPage() {
+function DeactivatedSettingsPage() {
     const [Email, setEmail] = useState('')
     const [Phone, setPhone] = useState('')
     const [Password, setPassword] = useState('')
@@ -26,7 +26,6 @@ function SettingsPage() {
     /* const handlePWD = (event) => {
         setPWD(event.target.value);
     }
-
     const handlePasswordChange = () => {
         checkPassword(auth, pwd).then((userCredential) => {
             console.log('Original password check successful');
@@ -35,7 +34,6 @@ function SettingsPage() {
             let errorCode = error.code;
             let errorMessage = error.message;
             setSnackbar({status: true, message: `${errorCode} - ${errorMessage}`});
-
             console.log(`${errorCode} - ${errorMessage}`);
         })
     }
@@ -157,4 +155,4 @@ function SettingsPage() {
     )
 }
 
-export default SettingsPage
+export default DeactivatedSettingsPage

@@ -14,15 +14,14 @@ import {
   Grid,
   Paper, 
   Typography,
-  Icon,
-  accordionClasses
+  Icon
 } from '@mui/material';
 
 //import { createTheme, ThemeProvider } from '@mui/material/styles';
 //import db from '../Firebase/firebase.js';
 //import { collection, addDoc } from "firebase/firestore";
 
-function ViewMatches() {
+function DESIGNSViewMatchesDECLINED() {
   const auth = getAuth();
   const user = auth.currentUser;
     const [responses, setResponses] = useState([]);
@@ -44,8 +43,8 @@ function ViewMatches() {
       getSurveyData();
       
     }, []); */
-    const currentSurvey = "surveyData" + user.uid;
-    const sampleResponse = JSON.parse(localStorage.getItem(currentSurvey));
+
+    const sampleResponse = JSON.parse(localStorage.getItem("surveyData"));
 
 
 
@@ -85,7 +84,6 @@ function ViewMatches() {
             response.name = fn + " " + ln;
             response.score = calculateScore(response,sampleResponse)
             response.bio = bio;
-            response.status = '';
             //console.log(response.score);
             newResponses.push(response);
             i++;
@@ -257,31 +255,10 @@ function ViewMatches() {
            bio: "Suspendisse imperdiet ex et varius tristique. Sed vel nisi vel nunc eleifend auctor eget eu ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor ipsum vel justo maximus lacinia.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor ipsum vel justo maximus lacinia.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor ipsum vel justo maximus lacinia.",
           },
       ]; */
-      const currentAccepted = "acceptedList" + user.uid;
-      const currentDeclined = "declinedList" + user.uid;
-    if (JSON.parse(localStorage.getItem(currentAccepted))===null) {
-      localStorage.setItem(currentAccepted, JSON.stringify([]));
-    }
-    if (JSON.parse(localStorage.getItem(currentDeclined))===null) {
-        localStorage.setItem(currentDeclined, JSON.stringify([]));
-    }
-      
-      const acceptedNames = JSON.parse(localStorage.getItem(currentAccepted));
-      const declinedNames = JSON.parse(localStorage.getItem(currentDeclined));
-
-      
-      const acceptedList = responsesFiltered.filter((r) => (acceptedNames.includes(r.name)));
-      const declinedList = responsesFiltered.filter((r) => (declinedNames.includes(r.name)));
-      const blankList = responsesFiltered.filter((r) => ((!declinedNames.includes(r.name)) && (!acceptedNames.includes(r.name))));
-
-
-
-      
       const history = useHistory();
       const handleProfileClick = (id) => {
         console.log(`Clicked profile with ID ${id}`);
         const profile = responsesFiltered.find(p => p.id===id);
-        
         history.push( '/matcheduserprofile/${id}', {profile});
       };
       if (user===null) {
@@ -300,7 +277,6 @@ function ViewMatches() {
       </div>
         )
       }
-
      if (responsesFiltered.length === 0) {
         return (
             <div>
@@ -325,31 +301,8 @@ function ViewMatches() {
             <Title></Title>
             <NavigationTabs></NavigationTabs>
             <div className='centercontainer'>
-            <Grid container spacing={3} sx={{ width: "73%", float:'right'}}>
-      {blankList.map((profile) => (
-        <Grid key={profile.order} item xs={6}>
-          
-        <Paper
-          elevation={3}
-          sx={{ height: "80%", padding: 2, display: "flex", flexDirection: "column", justifyContent: "space-between", cursor: "pointer" }}
-          onClick={() => handleProfileClick(profile.id)}
-        >
-          <Typography variant="h6" color='#4b9cd3'>{profile.name}</Typography>
-          <Typography variant="body1">
-            Year: {profile.classYear} | Age: {2023-profile.birthYear} | Location: {((profile.location)==="I don't care") ? "Any" : profile.location}
-          </Typography>
-          <Typography sx={{
-            display: '-webkit-box',
-            overflow: 'hidden',
-            WebkitBoxOrient: 'vertical',
-            WebkitLineClamp: 5,
-            }} variant="body2"><b>Bio: </b>{profile.bio}</Typography>
-        </Paper>
-      </Grid>
-       
-      ))}
-
-{declinedList.map((profile) => (
+            <Grid container spacing={3} sx={{ width: "66.66%", float:'right'}}>
+      {responsesFiltered.map((profile) => (
         <Grid key={profile.order} item xs={6}>
           <Paper
             elevation={3}
@@ -374,37 +327,10 @@ function ViewMatches() {
           </Paper>
         </Grid>
       ))}
-
-{acceptedList.map((profile) => (
-        <Grid key={profile.order} item xs={6}>
-          <Paper
-            elevation={3}
-            sx={{ height: "80%", padding: 2, display: "flex", border: "solid green 3px", flexDirection: "column", justifyContent: "space-between", cursor: "pointer" }}
-            onClick={() => handleProfileClick(profile.id)}
-          >
-            <div className="divider">
-              <Typography variant="h6" color='#4b9cd3'>{profile.name}</Typography>
-              <div className='acceptedText'>
-              <Typography variant="h6"><b>&#x2713;</b> ACCEPTED</Typography>
-              </div>
-            </div>
-            <Typography variant="body1">
-              Year: {profile.classYear} | Age: {2023-profile.birthYear} | Location: {((profile.location)==="I don't care") ? "Any" : profile.location}
-            </Typography>
-            <Typography sx={{
-              display: '-webkit-box',
-              overflow: 'hidden',
-              WebkitBoxOrient: 'vertical',
-              WebkitLineClamp: 5,
-              }}
-              variant="body2"><b>Bio: </b>{profile.bio}</Typography>
-          </Paper>
-        </Grid>
-      ))}
     </Grid>
     </div>
     </div>
     )
 }
 
-export default ViewMatches
+export default DESIGNSViewMatchesDECLINED

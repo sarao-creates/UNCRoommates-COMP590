@@ -1,18 +1,11 @@
 .centercontainer {
     padding: 20px;
-    padding-right: 130px;
+    padding-right: 150px;
 }
 
 .divider {
     display:flex;
     justify-content:space-between;
-}
-
-.declinedText {
-    color: red;
-    background-color: white;
-    border: 3px solid red;
-    padding: 0 3px 0 3px;
 }
 
 .acceptedText {

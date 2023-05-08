@@ -156,7 +156,8 @@ function Survey() {
         // const docRef = await addDoc(collection(db, "surveyResponses"), surveyData);
         console.log(surveyData);
         await updateDoc(doc(db, "users", user.uid), {'responses': surveyData})
-        // localStorage.setItem("surveyData", JSON.stringify(surveyData));
+        const currentSurvey = "surveyData" + user.uid;
+        localStorage.setItem(currentSurvey, JSON.stringify(surveyData));
         // console.log("Survey submitted with ID: ", docRef.id);
         //setSuccess(true);
         history.push('/profile')
@@ -291,7 +292,7 @@ function Survey() {
           </Grid>
           <Grid item xs={7}>
             <FormControl fullWidth>
-              <InputLabel>4. What is your primary major?<span style={{ color: 'red' }}>*</span></InputLabel>
+              <InputLabel >4. What is your primary major?<span style={{ color: 'red' }}>*</span></InputLabel>
               <Select value={major} onChange={handleMajorChange}>
                 <MenuItem value="Undecided">Undecided</MenuItem>
                 <MenuItem value="African, African American, and Diaspora Studies">African, African American, and Diaspora Studies</MenuItem>

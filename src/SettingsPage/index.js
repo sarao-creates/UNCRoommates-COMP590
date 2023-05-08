@@ -31,6 +31,7 @@ function SettingsPage() {
                 setUser(user)
                 setCurrentEmail(docSnap.data()["email"])
                 setCurrentPhone(docSnap.data()["phone"])
+
             } else {
                 console.log('user isnt signed in')
             }
