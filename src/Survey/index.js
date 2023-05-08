@@ -286,7 +286,7 @@ if (flag === true) {
           <Grid item xs={7}>
             <FormControl fullWidth>
               <InputLabel >4. What is your primary major?<span style={{ color: 'red' }}>*</span></InputLabel>
-              <Select value={major} onChange={handleMajorChange}>
+              <Select label="4. What is your primary major?" value={major} onChange={handleMajorChange}>
                 <MenuItem value="Undecided">Undecided</MenuItem>
                 <MenuItem value="African, African American, and Diaspora Studies">African, African American, and Diaspora Studies</MenuItem>
                 <MenuItem value="American Studies">American Studies</MenuItem>
