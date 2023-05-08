@@ -1,14 +1,30 @@
 import React from 'react'
 import './index.css';
-import Button from '@mui/material/Button';
 import { Link } from "react-router-dom";
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { useHistory } from 'react-router-dom';
+import {useState, useEffect} from 'react';
+import {db} from '../../Firebase/firebase.js'
+import { doc, getDoc } from 'firebase/firestore';
 
 function Title() {
 
   const auth = getAuth();
   const history = useHistory();
+
+  const [user, setUser] = useState({})
+
+  useEffect(() => {
+
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          setUser(user);
+        } else {
+          console.log('not signed in')
+        }
+    });
+
+}, []);
 
   const handleLogout = () => {
 
@@ -19,6 +35,19 @@ function Title() {
       console.log('Error signing out: ' + error)
     });
     
+  }
+
+  const handleSettings = async () => {
+    const docRef = doc(db, "users", user.uid);
+    const docSnap = await getDoc(docRef);
+
+    const active = docSnap.data()["active"]
+
+    if (active === true) {
+      history.push('/settings')
+    } else {
+      history.push('/deactivatedsettings')
+    }
   }
 
   return (
@@ -33,7 +62,7 @@ function Title() {
         <button onClick={handleLogout} class="titlebuttonlogout">Logout</button>
         </div>
         <div className='Settings-text'>
-        <Link to="/settings"><button class="titlebuttonsettings">Settings</button></Link>
+        <button onClick={handleSettings} class="titlebuttonsettings">Settings</button>
         </div>
     </div>
   )

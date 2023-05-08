@@ -80,7 +80,7 @@ function DeactivatedSettingsPage() {
                         <br></br>
                         <br></br>
                         <div className='deactivatedalignment-container'>
-                            <Link to="/settings"><button class="deactivatedbutton deactivatedbutton-save"><span className='checkmark'><b>&#x2713; </b></span> Save Changes</button></Link>
+                            <Link to="/deactivatedsettings"><button class="deactivatedbutton deactivatedbutton-save"><span className='checkmark'><b>&#x2713; </b></span> Save Changes</button></Link>
                         </div>
                         </div>
                     </div>

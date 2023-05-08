@@ -86,3 +86,6 @@ td {
     padding: 0 5px;
   }
   
+  .para-block {
+    display: block;
+  }
