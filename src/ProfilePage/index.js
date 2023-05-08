@@ -126,7 +126,8 @@ function ProfilePage() {
                     <br></br>
                     <br></br>
                     <br></br>
-                    <div className='image-container'></div>
+                    <br></br>
+                    <div className='url-container'>Photo URL:</div>
                 </div>
                 <div className='right-container'>
                     <br></br>
@@ -168,6 +169,7 @@ function ProfilePage() {
                    {bio}
                 </div>
             </div>
+            <br></br>
         </div>
     )
 }

@@ -97,17 +97,17 @@ function EditBioandPhotoPage() {
                     <br></br>
                     <br></br>
                     <br></br>
-                    <div className='image-container'>
-                        <img src={file} class="img-photo" value={file}/>
-                    </div>
-                    <input 
-                        type="file" 
-                        id="file"
-                        value={file}
-                        accept="image/*"
-                        onChange={handleChange}
-                    />
                     <br></br>
+                    <div className='url-container'>
+                    <TextField
+                        id="url"
+                        label="Enter URL of Photo"
+                        type="email"
+                        size="small"
+                        style = {{width: 180, paddingLeft:"3px", PaddingRight:"3px"}}
+                        // onChange={handleInfo('imageURL')}
+                    />
+                    </div>
                     <br></br>
                 </div>
                 <div className='right-container'>
@@ -160,6 +160,7 @@ function EditBioandPhotoPage() {
                 <p><b>Character Count: {bioInfo['count']}</b></p>
                 </div>
             </div>
+            <br></br>
         </div>
     )
 }

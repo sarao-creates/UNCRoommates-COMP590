@@ -2,8 +2,25 @@ import React from 'react'
 import './index.css';
 import Button from '@mui/material/Button';
 import { Link } from "react-router-dom";
+import { getAuth, signOut } from "firebase/auth";
+import { useHistory } from 'react-router-dom';
 
 function Title() {
+
+  const auth = getAuth();
+  const history = useHistory();
+
+  const handleLogout = () => {
+
+    signOut(auth).then(() => {
+      console.log('Sign-out successful')
+      history.push("/login")
+    }).catch((error) => {
+      console.log('Error signing out: ' + error)
+    });
+    
+  }
+
   return (
     <div className = "Title">
       <div className='App-logo'>
@@ -13,7 +30,7 @@ function Title() {
       <br></br>
       <div className='Logout-text'>
         <br></br>
-        <Link to="/login"><button class="titlebuttonlogout">Logout</button></Link>
+        <button onClick={handleLogout} class="titlebuttonlogout">Logout</button>
         </div>
         <div className='Settings-text'>
         <Link to="/settings"><button class="titlebuttonsettings">Settings</button></Link>
