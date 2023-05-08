@@ -9,7 +9,7 @@ import { fontSize } from '@mui/system';
 import { Link } from "react-router-dom";
 import NavigationTabs from '../NavigationTabs';
 
-function SettingsPage() {
+function DeactivatedSettingsPage() {
     const [Email, setEmail] = useState('')
     const [Phone, setPhone] = useState('')
     const [Password, setPassword] = useState('')
@@ -155,4 +155,4 @@ function SettingsPage() {
     )
 }
 
-export default SettingsPage
+export default DeactivatedSettingsPage
