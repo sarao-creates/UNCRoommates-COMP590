@@ -3,37 +3,15 @@
     height: 100vh;
 }
 
-.img-border{
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
-  border: 3px solid #13294B;
-  object-fit: cover;
-  
-}
-
-.img-photo{
-  object-fit: cover;
-  background-image:url('./images/default-profile-pic.PNG');
-  background-size:cover;            
-  background-repeat:no-repeat;
-  background-position:center center; 
-}
-
-input[type=file]{
-padding:10px;
-color: white;
-background:#13294B;}
-
-
 .onboardingphoto-text {
     font-size: medium;
     padding-bottom: 10px;
 }
 
 .largertext{
-    font-size:19px;
+    font-size:17px;
 }
+
 .button {
     background-color: #13294B;
     border: 2px solid #13294B;
@@ -51,12 +29,11 @@ background:#13294B;}
     color: #13294B;
 }
 
-.button-next {
+.button-urlnext {
     margin: 0 auto;
     padding: 10px 30px 10px 30px;
-    font-size: 20px;
+    font-size: 20px !important;
     text-align: center;
-    background-color: #4B9CD3;
     float: center;
 }
 
@@ -64,7 +41,7 @@ background:#13294B;}
     padding: 15px;
     padding-bottom: 10px;
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
     color: #13294B;
 }
 
@@ -83,7 +60,7 @@ background:#13294B;}
 .onboardingphoto-container {
     margin-left: auto;
     margin-right: auto;
-    width: 40%;
+    width: 60%;
     border: #13294B 2px solid;
     border-top: #13294B 15px solid;
     height: auto;
@@ -96,7 +73,7 @@ background:#13294B;}
 .smallcontainer{
     border: 3px solid #13294B;
     padding: 10px;
-    width:fit-content;
+    width: auto;
     text-align: center;
     margin: 0 auto;
 }
