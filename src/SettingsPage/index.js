@@ -8,50 +8,56 @@ import {TextField} from '@mui/material';
 import { fontSize } from '@mui/system';
 import { Link } from "react-router-dom";
 import NavigationTabs from '../NavigationTabs';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import NotLoggedIn from '../NotLoggedInPage/index.js';
+
 
 function SettingsPage() {
-    const [Email, setEmail] = useState('')
-    const [Phone, setPhone] = useState('')
-    const [Password, setPassword] = useState('')
+    const [currentEmail, setCurrentEmail] = useState('')
+    const [currentPhone, setCurrentPhone] = useState('')
     const [AccountStatus, setAccountStatus] = useState('')
+    const [newEmail, setNewEmail] = useState('');
+    const [newPhone, setNewPhone] = useState('');
+    const flag = false;
 
-  /*   useEffect(() => {
-    const history = useHistory();
-    const [pwd, setPWD] = useState('');
-    const [snackbar, setSnackbar] = useState({
-        status: false,
-        message: '',
-    }); */
-    
-    /* const handlePWD = (event) => {
-        setPWD(event.target.value);
-    }
-    const handlePasswordChange = () => {
-        checkPassword(auth, pwd).then((userCredential) => {
-            console.log('Original password check successful');
-            history.push('/profile');
-        }).catch((error) => {
-            let errorCode = error.code;
-            let errorMessage = error.message;
-            setSnackbar({status: true, message: `${errorCode} - ${errorMessage}`});
-            console.log(`${errorCode} - ${errorMessage}`);
-        })
-    }
- */
-    /* const docLookup = async () => {
-    const docRef = doc(db, "Users", "rkEcudx9k33I5nD8TC9a");
-    const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-            setEmail(docSnap.data()["Email"])
-            setPhone(docSnap.data()["Phone Number"])
-            setPassword(docSnap.data()["Password"])
-            setAccountStatus(docSnap.data()["Account Status"])
+    const [user, setUser] = useState({});
+
+    const auth = getAuth();
+
+    useEffect(() => {
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                flag = true;
+                const docRef = doc(db, "users", user.uid);
+                const docSnap = await getDoc(docRef);
+                setUser(user)
+                setCurrentEmail(docSnap.data()["email"])
+                setCurrentPhone(docSnap.data()["phone"])
+
             } else {
-                setEmail("Error")
-            }    
-        }
-    }, []); */
+                flag = false;
+                console.log('user isnt signed in')
+            }
 
+            
+        });
+    }, []);
+
+    const handleSaveChanges = () => {
+
+
+        // updateEmail(auth.currentUser, newEmail).then(() => {
+        //     // Email updated!
+        //     // ...
+        //   }).catch((error) => {
+        //     // An error occurred
+        //     // ...
+        //   });
+    }
+
+
+    if (flag === true) {
     return (
         <div>
             <Title></Title>
@@ -61,7 +67,7 @@ function SettingsPage() {
                 <Link to="/profile"><button class="settingsbutton settingsbutton-goBack">Back to Profile<br></br><span className='tinytext'>&#x28;Does <u><b>NOT</b></u> Save Changes!&#x29;</span></button></Link>
                         <div className='settingspage-header'>Settings</div>
                     <br></br>
-                    <div className='settingsSaveChangessmaller-container'>
+                    <div className='settingsSaveChangessmaller-container' onClick={handleSaveChanges}>
                         <div className='settingsSaveChangesheaderpadding'>
                             <div className='originalsettingsSaveChanges-header'>
                             <span className='warning'>&#x26A0;</span> <b>Save Changes</b> <span className='warning'>&#x26A0;</span>
@@ -93,7 +99,7 @@ function SettingsPage() {
                             </div>
                         </div>
                         <div className='settingstextpadding'>
-                        <div className='originalsettingstextinputheader'><b>Current Email:</b> {Email}</div>
+                        <div className='originalsettingstextinputheader'><b>Current Email:</b> {currentEmail}</div>
                         <TextField
                             fullWidth
                             id="email"
@@ -102,7 +108,7 @@ function SettingsPage() {
                             size="small"
                             //onChange={}
                         />
-                    <div className='originalsettingstextinputheader'><b>Current Phone Number:</b> {Phone}</div>
+                    <div className='originalsettingstextinputheader'><b>Current Phone Number:</b> {currentPhone}</div>
                         <TextField
                             fullWidth
                             id="phone"
@@ -122,7 +128,7 @@ function SettingsPage() {
                         </div>
                     </div>
                     <div className='settingstextpadding'>
-                        <div className='originalsettingstextinputheader'><b>New Password:</b> {Password}</div>
+                        <div className='originalsettingstextinputheader'><b>New Password:</b> </div>
                         <TextField
                             fullWidth
                             id="currentpassword"
@@ -153,6 +159,9 @@ function SettingsPage() {
             </div>
         </div>
     )
+} else {
+    return (<NotLoggedIn />)
+}
 }
 
 export default SettingsPage

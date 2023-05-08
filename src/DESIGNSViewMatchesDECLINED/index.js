@@ -312,7 +312,7 @@ function DESIGNSViewMatchesDECLINED() {
             <div className="divider">
               <Typography variant="h6" color='#4b9cd3'>{profile.name}</Typography>
               <div className='declinedText'>
-              <Typography variant="h6"><b>&#x2713;</b> ACCEPTED</Typography>
+              <Typography variant="h6"><b>&#x2713;</b> DECLINED</Typography>
               </div>
             </div>
             <Typography variant="body1">

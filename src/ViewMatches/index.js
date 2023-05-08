@@ -6,8 +6,10 @@ import NavigationTabs from '../NavigationTabs';
 //import {Redirect} from 'react-router-dom';
 import db from '../Firebase/firebase.js';
 import { getDoc, doc, getDocs, collection } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useHistory , Link } from 'react-router-dom';
+import NotLoggedIn from '../NotLoggedInPage/index.js';
+
 
 
 import {
@@ -25,6 +27,7 @@ import {
 function ViewMatches() {
   const auth = getAuth();
   const user = auth.currentUser;
+  const flag = false;
     const [responses, setResponses] = useState([]);
     //const [sampleResponse, setSampleResponse] = useState('');
 
@@ -44,8 +47,8 @@ function ViewMatches() {
       getSurveyData();
       
     }, []); */
-
-    const sampleResponse = JSON.parse(localStorage.getItem("surveyData"));
+    const currentSurvey = "surveyData" + user.uid;
+    const sampleResponse = JSON.parse(localStorage.getItem(currentSurvey));
 
 
 
@@ -71,31 +74,42 @@ function ViewMatches() {
     
   useEffect(() => {
     // Function to fetch all survey responses from Firebase
-    const getResponses = async () => {
-        const responseRef = await getDocs(collection(db,"users"));
-        //const snapshot = await responseRef.get();
-        let i = 0;
-        const newResponses = [];
-        responseRef.forEach((doc) => {
-            const fn = doc.data().firstName;
-            const ln = doc.data().lastName;
-            const bio = doc.data().bio;
-            const response = doc.data().responses;
-            response.id = i;
-            response.name = fn + " " + ln;
-            response.score = calculateScore(response,sampleResponse)
-            response.bio = bio;
-            response.status = '';
-            //console.log(response.score);
-            newResponses.push(response);
-            i++;
-            
-        });
-        setResponses(newResponses);
-        
-    };
 
-    getResponses();
+    onAuthStateChanged(auth, async (user) => { 
+      if (user) {
+        const flag = true;
+        const getResponses = async () => {
+          const responseRef = await getDocs(collection(db,"users"));
+          //const snapshot = await responseRef.get();
+          let i = 0;
+          const newResponses = [];
+          responseRef.forEach((doc) => {
+              const fn = doc.data().firstName;
+              const ln = doc.data().lastName;
+              const bio = doc.data().bio;
+              const response = doc.data().responses;
+              response.id = i;
+              response.name = fn + " " + ln;
+              response.score = calculateScore(response,sampleResponse)
+              response.bio = bio;
+              response.status = '';
+              //console.log(response.score);
+              newResponses.push(response);
+              i++;
+              
+          });
+          setResponses(newResponses);
+          
+      };
+  
+      getResponses();
+        
+      }
+      else {
+        flag = false;
+        console.log("not logged in")
+      }
+    });
   }, []);
 
   //console.log(responses);
@@ -284,21 +298,26 @@ function ViewMatches() {
         
         history.push( '/matcheduserprofile/${id}', {profile});
       };
-      if (user===null) {
-        return (
-          <div>
-          <Title></Title>
-          <NavigationTabs></NavigationTabs>
-          <div className='centercontainer'>
-          <Grid container spacing={3} sx={{ width: "66.66%", float:'right'}}>
-              <br></br>
-              Please log in or register an account to view matches!
-              <br></br>
-              Come back later!
-          </Grid>
-          </div>
-      </div>
-        )
+      // if (user===null) {
+      //   return (
+      //     <div>
+      //     <Title></Title>
+      //     <NavigationTabs></NavigationTabs>
+      //     <div className='centercontainer'>
+      //     <Grid container spacing={3} sx={{ width: "66.66%", float:'right'}}>
+      //         <br></br>
+      //         Please log in or register an account to view matches!
+      //         <br></br>
+      //         Come back later!
+      //     </Grid>
+      //     </div>
+      // </div>
+      //   )
+      // }
+
+      if (flag === false) {
+        <NotLoggedIn />
+        
       }
 
      if (responsesFiltered.length === 0) {
@@ -385,7 +404,7 @@ function ViewMatches() {
             <div className="divider">
               <Typography variant="h6" color='#4b9cd3'>{profile.name}</Typography>
               <div className='acceptedText'>
-              <Typography variant="h6"><b>&#x2713;</b> ACCEPTED</Typography>
+              <Typography variant="h6"><b>&#x2713;</b> CONNECTED</Typography>
               </div>
             </div>
             <Typography variant="body1">
