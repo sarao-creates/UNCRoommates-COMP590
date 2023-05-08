@@ -131,8 +131,8 @@ function SettingsPage() {
                         <div className='originalsettingstextinputheader'><b>New Password:</b> </div>
                         <TextField
                             fullWidth
-                            id="currentpassword"
-                            label="Enter your current password"
+                            id="newpassword"
+                            label="Enter your new password"
                             type="email"
                             size="small"
                             //onChange={}
@@ -141,8 +141,8 @@ function SettingsPage() {
                         <br></br>
                         <TextField
                             fullWidth
-                            id="newpassword"
-                            label="Enter new password"
+                            id="re-enternewpassword"
+                            label="Re-enter new password"
                             type="email"
                             size="small"
                             //onChange={}
