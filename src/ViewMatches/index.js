@@ -6,7 +6,7 @@ import NavigationTabs from '../NavigationTabs';
 //import {Redirect} from 'react-router-dom';
 import db from '../Firebase/firebase.js';
 import { getDoc, doc, getDocs, collection } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useHistory , Link } from 'react-router-dom';
 
 
@@ -71,31 +71,40 @@ function ViewMatches() {
     
   useEffect(() => {
     // Function to fetch all survey responses from Firebase
-    const getResponses = async () => {
-        const responseRef = await getDocs(collection(db,"users"));
-        //const snapshot = await responseRef.get();
-        let i = 0;
-        const newResponses = [];
-        responseRef.forEach((doc) => {
-            const fn = doc.data().firstName;
-            const ln = doc.data().lastName;
-            const bio = doc.data().bio;
-            const response = doc.data().responses;
-            response.id = i;
-            response.name = fn + " " + ln;
-            response.score = calculateScore(response,sampleResponse)
-            response.bio = bio;
-            response.status = '';
-            //console.log(response.score);
-            newResponses.push(response);
-            i++;
-            
-        });
-        setResponses(newResponses);
-        
-    };
 
-    getResponses();
+    onAuthStateChanged(auth, async (user) => { 
+      if (user) {
+        const getResponses = async () => {
+          const responseRef = await getDocs(collection(db,"users"));
+          //const snapshot = await responseRef.get();
+          let i = 0;
+          const newResponses = [];
+          responseRef.forEach((doc) => {
+              const fn = doc.data().firstName;
+              const ln = doc.data().lastName;
+              const bio = doc.data().bio;
+              const response = doc.data().responses;
+              response.id = i;
+              response.name = fn + " " + ln;
+              response.score = calculateScore(response,sampleResponse)
+              response.bio = bio;
+              response.status = '';
+              //console.log(response.score);
+              newResponses.push(response);
+              i++;
+              
+          });
+          setResponses(newResponses);
+          
+      };
+  
+      getResponses();
+        
+      }
+      else {
+        console.log("not logged in")
+      }
+    });
   }, []);
 
   //console.log(responses);

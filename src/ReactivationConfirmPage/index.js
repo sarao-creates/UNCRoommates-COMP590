@@ -3,12 +3,12 @@ import {db} from '../Firebase/firebase.js'
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import './index.css'
 import { useState, useEffect } from 'react';
-import Title from '../WelcomePage/Title';
+import Title from '../WelcomePage/Title/index.js';
 import { Link } from "react-router-dom";
-import NavigationTabs from '../NavigationTabs';
+import NavigationTabs from '../NavigationTabs/index.js';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
-function DeactivationConfirmPage() {
+function ReactivationConfirmPage() {
 
     const auth = getAuth();
 
@@ -16,11 +16,11 @@ function DeactivationConfirmPage() {
 
 
 
-    const handleDeactivation = async () => {
+    const handleReactivation = async () => {
         const docRef = doc(db, "users", user.uid);
 
         await updateDoc(docRef, {
-            active: false,
+            active: true,
         });
     }
 
@@ -49,14 +49,14 @@ function DeactivationConfirmPage() {
                 <div className='settings-container'>
                     <br></br>
                     <div className='smaller-container'>
-                        <p><b>Are you sure you wish to deactivate your account?</b> You will <b>not</b> be matched with other users while your account is inactive.
+                        <p><b>Are you sure you wish to reactivate your account?</b> You <b>will</b> be matched with other users while your account is active.
                         </p>
                         <br></br>
                     <div className='alignright'>
-                    <Link to="/settings"><button class="button" type="button">&#x2716; Go Back</button></Link>
+                    <Link to="/deactivatedsettings"><button class="button" type="button">&#x2716; Go Back</button></Link>
                     </div>
                     <div className='alignleft'>
-                    <Link to="/deactivatedsettings"><button class="button" type="button" onClick={handleDeactivation}>&#x2714; Yes, Deactivate Account</button></Link>
+                    <Link to="/settings"><button class="button" type="button" onClick={handleReactivation}>&#x2714; Yes, Reactivate Account</button></Link>
                     </div>
                     </div>
                 <br></br>
@@ -68,4 +68,4 @@ function DeactivationConfirmPage() {
     )
 }
 
-export default DeactivationConfirmPage
+export default ReactivationConfirmPage
