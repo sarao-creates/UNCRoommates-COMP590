@@ -30,22 +30,33 @@ function CreateAccountPage() {
 
 
     const [pwd, setPWD] = useState('')
+    const [confirmPWD, setConfirmPWD] = useState('')
 
     const handlePWD = (event) => {
         setPWD(event.target.value)
     }
 
+    const handleConfirmPWD = (event) => {
+        setConfirmPWD(event.target.value);
+    }
+
     const handleSignup = () => {
-        createUserWithEmailAndPassword(auth, userInfo['email'], pwd).then(async (userCredential) => {
-            console.log(userCredential.user)
-            history.push('/onboarding-photo');
-            // return db.collection('users').doc(userCredential.user.uid).set(userInfo);
-            await setDoc(doc(db, "users", userCredential.user.uid), userInfo);
-        })
-        .catch((error) => {
-            console.log(error.code + " - " + error.message);
-            setSnackbar({status: true, message: `${error.code} - ${error.message}`});
-        })
+        console.log(pwd)
+        console.log(confirmPWD)
+        if (pwd == confirmPWD) {
+            createUserWithEmailAndPassword(auth, userInfo['email'], pwd).then(async (userCredential) => {
+                console.log(userCredential.user)
+                history.push('/onboarding-photo');
+                // return db.collection('users').doc(userCredential.user.uid).set(userInfo);
+                await setDoc(doc(db, "users", userCredential.user.uid), userInfo);
+            })
+            .catch((error) => {
+                console.log(error.code + " - " + error.message);
+                setSnackbar({status: true, message: `${error.code} - ${error.message}`});
+            })
+        } else {
+            setSnackbar({status: true, message: `Passwords do not match. Please try again.`});
+        }
     }
 
     const handleInfo = (prop) => (event) => {
@@ -100,7 +111,7 @@ function CreateAccountPage() {
                     type="password"
                     size="small"
                     style = {{width: 340, paddingBottom: 30}}
-                    //onChange={}
+                    onChange={handleConfirmPWD}
                 />
                 <div className='aligncenter'>
                 <button onClick={handleSignup} class="button button-create" type="button">Create Account</button>

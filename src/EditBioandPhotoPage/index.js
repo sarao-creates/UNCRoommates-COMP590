@@ -9,10 +9,11 @@ import { Link, useHistory } from "react-router-dom";
 import {TextField} from '@mui/material';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 
 function EditBioandPhotoPage() {
+    
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [gender, setGender] = useState('')
@@ -24,9 +25,74 @@ function EditBioandPhotoPage() {
     const [wake, setWake] = useState('')
     const [year, setYear] = useState('')
     const [allergies, setAllergies] = useState('')
+    const [animal, setAnimal] = useState('');
+    const [user, setUser] = useState({});
 
     const auth = getAuth();
-    const user = auth.currentUser;
+
+
+
+    useEffect(() => {
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                setUser(user);
+                const docRef = doc(db, "users", user.uid);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    setFirstName(docSnap.data()["firstName"])
+                    setLastName(docSnap.data()["lastName"])
+                    setBio(docSnap.data()["bio"])
+                    setGender(docSnap.data()['responses']["gender"])
+                    setBirthday(2023 - docSnap.data()['responses']['birthYear'])
+                    setLocation(docSnap.data()["responses"]['location'])
+                    setParty(docSnap.data()["responses"]["party"])
+                    setSleep(docSnap.data()["responses"]["bedTime"])
+                    setWake(docSnap.data()["responses"]["wakeTime"])
+                    setYear(docSnap.data()["responses"]["classYear"])
+                    setAllergies(docSnap.data()["responses"]["allergies"])
+                    setAnimal(docSnap.data()["responses"]["animal"])
+                  } else {
+                    setFirstName("Error")
+                }    
+
+            } else {
+
+            }
+
+            
+        });
+
+        console.log(gender);
+
+
+    }, []);
+    let text = '';
+    if (gender === 'male') {
+        text = text + "<span2>Male</span2>&nbsp;"
+    } else if (gender === 'female') {
+        text = text + "<span>Female</span>&nbsp;"
+    }
+    if (wake === "Early") {
+        text = text + "<span3>Early Riser</span3>&nbsp;"
+    }
+    if (sleep === "Late") {
+        text = text + "<span4>Night Owl</span4>&nbsp;"
+    }
+    if (window === "Open") {
+        text = text + "<span5>Window Opened</span5>&nbsp;"
+    }
+    if (window === "Closed") {
+        text = text + "<span6>Window Closed</span6>&nbsp;"
+    }
+    if (party === "I love to party") {
+        text = text + "<span7>Party Friendly</span7>&nbsp;"
+    }
+    console.log(animal);
+    if (animal === "Yes") {
+        text = text + "<span8>Animal Friendly</span8>&nbsp;"
+    }
 
     const history = useHistory();
     const [bioInfo, setBioInfo] = useState({
@@ -53,40 +119,14 @@ function EditBioandPhotoPage() {
         if (validate() == true) {
             console.log(user)
             await updateDoc(doc(db, "users", user.uid), {"bio":bioInfo["value"]})
-            history.push('/survey');
+            history.push('/profile');
         }
         else {
             setSnackbar({status: true, message: `Bio needs to be between 150 and 1500 characters.`});
         }
     }
 
-    useEffect(() => {
 
-        const docLookup = async () => {
-            const docRef = doc(db, "Users", "rkEcudx9k33I5nD8TC9a");
-            const docSnap = await getDoc(docRef);
-
-            if (docSnap.exists()) {
-                setFirstName(docSnap.data()["First Name"])
-                setLastName(docSnap.data()["Last Name"])
-                setBio(docSnap.data()["Bio"])
-                setGender(docSnap.data()["Gender"])
-                setBirthday(docSnap.data()["Birthday"])
-                setLocation(docSnap.data()["Location Preference"])
-                setParty(docSnap.data()["PartyPref"])
-                setSleep(docSnap.data()["SleepTime"])
-                setWake(docSnap.data()["WakeTime"])
-                setYear(docSnap.data()["Year"])
-                setAllergies(docSnap.data()["Allergies"])
-              } else {
-                setFirstName("Error")
-            }    
-    
-        }
-
-        docLookup();
-
-    }, []);
     
     return (
         <div className='full-screen'>
@@ -151,7 +191,7 @@ function EditBioandPhotoPage() {
                     fullWidth
                     multiline
                     id="bio"
-                    value={bio}
+                    defaultValue={bio}
                     type="text"
                     rows={5}
                     className="full_height_Width"
