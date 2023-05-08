@@ -32,7 +32,7 @@ import NotLoggedIn from '../NotLoggedInPage';
 function Survey() {
   const auth = getAuth();
   const history = useHistory();
-  const flag = false;
+  const [flag, setFlag] = useState(false);
   // const user = auth.currentUser;
   
   //const [name, setName] = useState('');
@@ -63,7 +63,7 @@ function Survey() {
     // const surveyData = JSON.parse(localStorage.getItem("surveyData"));
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        flag = true;
+        setFlag(true);
         setUser(user);
 
         const surveyData = (await getDoc(doc(db, "users", user.uid))).data().responses;
@@ -90,7 +90,7 @@ function Survey() {
 
 
       } else {
-        flag = false;
+        setFlag(false);
         console.log('not signed in')
       }
       
