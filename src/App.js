@@ -13,6 +13,7 @@ import DESIGNSViewMatchesDECLINED from './DESIGNSViewMatchesDECLINED';
 import MatchedUserProfilePage from './MatchedUserProfilePage';
 import DeactivationConfirmPage from './DeactivationConfirmPage';
 import DeactivatedSettingsPage from './DeactivatedSettingsPage';
+import ReactivationConfirmPage from './ReactivationConfirmPage';
 import EditBioandPhotoPage from './EditBioandPhotoPage';
 
 const ProfilePath = '/profile';
@@ -26,14 +27,17 @@ const OnboardingPhotoPath = '/onboarding-photo';
 const ViewMatchesPath = '/viewmatches'
 const DESIGNSViewMatchesACCEPTEDPath = '/DESIGNSviewmatchesACCEPTED'
 const DESIGNSViewMatchesDECLINEDPath = '/DESIGNSviewmatchesDECLINED'
-const MatchedUserProfilePath = '/matcheduserprofile';
+const MatchedUserProfilePath = '/matcheduserprofile/:id';
+const ReactivationConfirmPath = '/reactivationconfirm';
 const DeactivationConfirmPath = '/deactivationconfirm';
 const DeactivatedSettingsPath = '/deactivatedsettings';
 const EditBioandPhotoPath = '/editbioandphoto';
 
+
 function App() {
   return (
     <Router>
+      <Switch>
       <Route exact path='/'>
         <Redirect to='/welcome'></Redirect>
       </Route>
@@ -51,7 +55,9 @@ function App() {
       <Route path={MatchedUserProfilePath} component={MatchedUserProfilePage}></Route>
       <Route path={DeactivationConfirmPath} component={DeactivationConfirmPage}></Route>
       <Route path={DeactivatedSettingsPath} component={DeactivatedSettingsPage}></Route>
+      <Route path={ReactivationConfirmPath} component={ReactivationConfirmPage}></Route>
       <Route path={EditBioandPhotoPath} component={EditBioandPhotoPage}></Route>
+      </Switch>
     </Router>
   );
 }

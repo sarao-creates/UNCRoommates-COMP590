@@ -145,7 +145,7 @@ function DeactivatedSettingsPage() {
                 </div>
                 <br></br>
                 <div className='deactivatedalignment-container'>
-                    <Link to='deactivationconfirm'><button class="deactivatedbutton deactivatedbutton-status">Reactivate Account</button></Link>
+                    <Link to='reactivationconfirm'><button class="deactivatedbutton deactivatedbutton-status">Reactivate Account</button></Link>
                 </div>
                 <br></br>
                 </div> 
