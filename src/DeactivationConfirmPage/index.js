@@ -1,6 +1,6 @@
 import React from 'react'
 import {db} from '../Firebase/firebase.js'
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
 import './index.css'
 import { useState, useEffect } from 'react';
 import Title from '../WelcomePage/Title';
@@ -37,7 +37,7 @@ function DeactivationConfirmPage() {
         
         });
 
-    }, []);
+    }, [auth]);
 
 
     return (

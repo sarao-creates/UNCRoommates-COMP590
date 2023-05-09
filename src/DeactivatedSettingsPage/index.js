@@ -5,7 +5,6 @@ import './index.css'
 import { useState, useEffect } from 'react';
 import Title from '../WelcomePage/Title';
 import {TextField} from '@mui/material';
-import { fontSize } from '@mui/system';
 import { Link } from "react-router-dom";
 import NavigationTabs from '../NavigationTabs';
 import { getAuth, onAuthStateChanged, reauthenticateWithCredential, EmailAuthProvider, updateEmail, updatePassword } from 'firebase/auth';
@@ -17,7 +16,6 @@ function DeactivatedSettingsPage() {
     const [currentPhone, setCurrentPhone] = useState('')
     const [newEmail, setNewEmail] = useState('');
     const [newPhone, setNewPhone] = useState('');
-    const [active, setActive] = useState('')
     const [currentEnteredPassword, setCurrentEnteredPassword] = useState('')
     const [newEnteredPassword, setNewEnteredPassword] = useState('')
     const [newPasswordConf, setNewPasswordConf] = useState('')
@@ -42,7 +40,6 @@ function DeactivatedSettingsPage() {
                 setUser(user)
                 setCurrentEmail(docSnap.data()["email"])
                 setCurrentPhone(docSnap.data()["phone"])
-                setActive(docSnap.data()['active'])
 
             } else {
                 console.log('user isnt signed in')
@@ -50,7 +47,7 @@ function DeactivatedSettingsPage() {
 
             
         });
-    }, []);
+    }, [auth]);
 
     const handleSaveChanges = () => {
 
@@ -63,7 +60,7 @@ function DeactivatedSettingsPage() {
             console.log('it worked')
             console.log(currentEmail)
             console.log(newEmail);
-            if ((currentEmail != newEmail) && (newEmail != '')) {
+            if ((currentEmail !== newEmail) && (newEmail !== '')) {
                 console.log(' are we getting here');
                 updateEmail(auth.currentUser, newEmail).then(async () => {
                     await updateDoc(doc(db, "users", user.uid), {"email":newEmail})
@@ -75,12 +72,12 @@ function DeactivatedSettingsPage() {
                 });
             }
 
-            if ((currentPhone != newPhone) && (newPhone != '')) {
+            if ((currentPhone !== newPhone) && (newPhone !== '')) {
                 await updateDoc(doc(db, "users", user.uid), {"phone":newPhone})
                 setSnackbar({status: true, message: 'Your phone has been updated!'})
             }
 
-            if ((currentEnteredPassword != newEnteredPassword) && (newEnteredPassword != '')) {
+            if ((currentEnteredPassword !== newEnteredPassword) && (newEnteredPassword !== '')) {
                 if (newEnteredPassword === newPasswordConf) {
                     updatePassword(auth.currentUser, newEnteredPassword).then(() => {
                         setSnackbar({status: true, message: 'Your password has been updated!'})

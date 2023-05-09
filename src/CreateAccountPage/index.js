@@ -1,9 +1,8 @@
 import React from 'react'
 import {db} from '../Firebase/firebase.js'
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { collection, addDoc } from "firebase/firestore"; 
+import { doc, setDoc } from 'firebase/firestore';
 import './index.css'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import LoginTitle from '../WelcomePage/LoginTitle';
 import {TextField} from '@mui/material';
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -43,7 +42,7 @@ function CreateAccountPage() {
     const handleSignup = () => {
         console.log(pwd)
         console.log(confirmPWD)
-        if (pwd == confirmPWD) {
+        if (pwd === confirmPWD) {
             createUserWithEmailAndPassword(auth, userInfo['email'], pwd).then(async (userCredential) => {
                 console.log(userCredential.user)
                 history.push('/onboarding-photo');

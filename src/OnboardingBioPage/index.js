@@ -1,8 +1,8 @@
 import React from 'react'
 import {db} from '../Firebase/firebase.js'
-import { doc, updateDoc, getDoc } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
 import './index.css'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Title from '../WelcomePage/Title';
 import {TextField} from '@mui/material';
 import Snackbar from '@mui/material/Snackbar';
@@ -33,7 +33,7 @@ function OnboardingBioPage() {
     });
 
     const handleBio = async () => {
-        if (validate() == true) {
+        if (validate() === true) {
             console.log(user)
             await updateDoc(doc(db, "users", user.uid), {"bio":bioInfo["value"]})
             history.push('/survey');

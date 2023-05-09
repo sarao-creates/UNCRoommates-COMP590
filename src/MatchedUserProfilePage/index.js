@@ -1,10 +1,8 @@
-import {db} from '../Firebase/firebase.js'
-import { doc, getDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import './index.css';
 import Title from '../WelcomePage/Title';
 import NavigationTabs from '../NavigationTabs';
-import { Link , useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 
 
@@ -58,7 +56,7 @@ function MatchedUserProfilePage(profiles) {
         }
 
 
-    })
+    }, [profile])
 
     let text = '';
     if (gender === 'male') {
