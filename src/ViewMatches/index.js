@@ -16,7 +16,7 @@ import {
   Grid,
   Paper, 
   Typography,
-  Icon,
+  Button,
   accordionClasses
 } from '@mui/material';
 
@@ -28,7 +28,8 @@ function ViewMatches() {
   const auth = getAuth();
   const user = auth.currentUser;
   const [flag, setFlag] = useState(false);
-    const [responses, setResponses] = useState([]);
+  const [responses, setResponses] = useState([]);
+  const [filterDeclined, setFilterDeclined] = useState(false);
     //const [sampleResponse, setSampleResponse] = useState('');
 
     // TODO: we might want to change this sample response to the current user's response.
@@ -316,6 +317,9 @@ function ViewMatches() {
       // </div>
       //   )
       // }
+      function handleFilterDeclined() {
+        setFilterDeclined(!filterDeclined);
+      }
 
       if (flag === false) {
         <NotLoggedIn />
@@ -337,6 +341,69 @@ function ViewMatches() {
                 </div>
             </div>
         )
+     }
+
+     if (filterDeclined) {
+      return (
+        <div>
+            <Title></Title>
+            <NavigationTabs></NavigationTabs>
+            <div className='centercontainer'>
+            <Grid container spacing={3} sx={{ width: "73%", float:'right'}}>
+      {blankList.map((profile) => (
+        <Grid key={profile.order} item xs={6}>
+          
+        <Paper
+          elevation={3}
+          sx={{ height: "80%", padding: 2, display: "flex", flexDirection: "column", justifyContent: "space-between", cursor: "pointer" }}
+          onClick={() => handleProfileClick(profile.id)}
+        >
+          <Typography variant="h6" color='#4b9cd3'>{profile.name}</Typography>
+          <Typography variant="body1">
+            Year: {profile.classYear} | Age: {2023-profile.birthYear} | Location: {((profile.location)==="I don't care") ? "Any" : profile.location}
+          </Typography>
+          <Typography sx={{
+            display: '-webkit-box',
+            overflow: 'hidden',
+            WebkitBoxOrient: 'vertical',
+            WebkitLineClamp: 5,
+            }} variant="body2"><b>Bio: </b>{profile.bio}</Typography>
+        </Paper>
+      </Grid>
+       
+      ))}
+
+{acceptedList.map((profile) => (
+        <Grid key={profile.order} item xs={6}>
+          <Paper
+            elevation={3}
+            sx={{ height: "80%", padding: 2, display: "flex", border: "solid green 3px", flexDirection: "column", justifyContent: "space-between", cursor: "pointer" }}
+            onClick={() => handleProfileClick(profile.id)}
+          >
+            <div className="divider">
+              <Typography variant="h6" color='#4b9cd3'>{profile.name}</Typography>
+              <div className='acceptedText'>
+              <Typography variant="h6"><b>&#x2713;</b> CONNECTED</Typography>
+              </div>
+            </div>
+            <Typography variant="body1">
+              Year: {profile.classYear} | Age: {2023-profile.birthYear} | Location: {((profile.location)==="I don't care") ? "Any" : profile.location}
+            </Typography>
+            <Typography sx={{
+              display: '-webkit-box',
+              overflow: 'hidden',
+              WebkitBoxOrient: 'vertical',
+              WebkitLineClamp: 5,
+              }}
+              variant="body2"><b>Bio: </b>{profile.bio}</Typography>
+          </Paper>
+        </Grid>
+      ))}
+    </Grid>
+    <Button style={{position:'fixed',bottom:'20px',right:'20px', maxWidth: '100px', maxHeight: '40px', minWidth: '100px', minHeight: '40px',backgroundColor:'#13294b', color:'#ffffff'}} onClick={handleFilterDeclined}>Unfilter Declined</Button>
+    </div>
+    </div>
+      )
      }
 
     
@@ -423,6 +490,7 @@ function ViewMatches() {
         </Grid>
       ))}
     </Grid>
+    <Button style={{position:'fixed',bottom:'20px',right:'20px', maxWidth: '100px', maxHeight: '40px', minWidth: '100px', minHeight: '40px',backgroundColor:'#13294b', color:'#ffffff'}} onClick={handleFilterDeclined}>Filter Declined</Button>
     </div>
     </div>
     )
