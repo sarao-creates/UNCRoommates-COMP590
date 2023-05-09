@@ -55,7 +55,7 @@ function EditBioandPhotoPage() {
                     setBio(docSnap.data()["bio"])
                     setPhoto(docSnap.data()["photoURL"])
                     setGender(docSnap.data()['responses']["gender"])
-                    setBirthday(2023 - docSnap.data()['responses']['birthYear'])
+                    setBirthday(docSnap.data()['responses']['birthYear'])
                     setLocation(docSnap.data()["responses"]['location'])
                     setParty(docSnap.data()["responses"]["party"])
                     setSleep(docSnap.data()["responses"]["bedTime"])
@@ -186,7 +186,7 @@ function EditBioandPhotoPage() {
                         <table>
                             <tr>
                                 <td className='table-size'>Year</td>
-                                <td>Birthday</td>
+                                <td>Birth Year</td>
                                 <td>Location Preference</td>
                             </tr>
                             <tr>
