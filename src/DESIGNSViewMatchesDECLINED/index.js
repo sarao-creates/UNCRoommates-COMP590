@@ -93,7 +93,7 @@ function DESIGNSViewMatchesDECLINED() {
     };
 
     getResponses();
-  }, [sampleResponse]);
+  });
 
   //console.log(responses);
 

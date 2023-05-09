@@ -47,7 +47,7 @@ function DeactivatedSettingsPage() {
 
             
         });
-    }, [auth]);
+    });
 
     const handleSaveChanges = () => {
 

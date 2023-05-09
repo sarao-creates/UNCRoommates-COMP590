@@ -37,7 +37,7 @@ function ReactivationConfirmPage() {
         
         });
 
-    }, [auth]);
+    });
 
 
     return (

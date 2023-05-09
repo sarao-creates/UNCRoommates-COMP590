@@ -93,7 +93,7 @@ function DESIGNSViewMatchesACCEPTED() {
     };
 
     getResponses();
-  }, [sampleResponse]);
+  });
 
   //console.log(responses);
 

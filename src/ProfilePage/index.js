@@ -64,7 +64,7 @@ function ProfilePage() {
             
         });
 
-    }, [auth]);
+    });
     let text = '';
     if (gender === 'male') {
         text = text + "<span2>Male</span2>&nbsp;"

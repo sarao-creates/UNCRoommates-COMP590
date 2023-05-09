@@ -55,7 +55,7 @@ function SettingsPage() {
 
             
         });
-    }, [auth]);
+    });
 
     const handleSaveChanges = () => {
 
