@@ -28,7 +28,7 @@ function ViewMatches() {
   const auth = getAuth();
   const user = auth.currentUser;
   const [flag, setFlag] = useState(false);
-    const [responses, setResponses] = useState([]);
+  const [responses, setResponses] = useState([]);
     //const [sampleResponse, setSampleResponse] = useState('');
 
     // TODO: we might want to change this sample response to the current user's response.
