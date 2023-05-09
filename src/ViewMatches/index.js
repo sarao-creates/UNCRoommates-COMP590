@@ -96,6 +96,7 @@ function ViewMatches() {
               response.score = calculateScore(response,sampleResponse)
               response.bio = bio;
               response.status = '';
+              response.url = doc.data().photoURL
               //console.log(response.score);
               newResponses.push(response);
               i++;

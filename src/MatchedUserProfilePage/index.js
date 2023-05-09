@@ -33,10 +33,12 @@ function MatchedUserProfilePage(profiles) {
     const [allergies, setAllergies] = useState('')
     const [window, setWindow] = useState('');
     const [animal, setAnimal] = useState('');
+    const [photoURL, setPhotoURL] = useState('')
 
     useEffect(() => {
         if (profile) {
             //console.log("here");
+            console.log(profile);
             const fn = (profile.name).split(" ")[0];
             const ln = (profile.name).split(" ")[1];
             setFirstName(fn);
@@ -52,6 +54,7 @@ function MatchedUserProfilePage(profiles) {
             setAllergies(profile.allergies);
             setWindow(profile.window);
             setAnimal(profile.animal);
+            setPhotoURL(profile.url);
         }
 
 
@@ -144,7 +147,9 @@ function MatchedUserProfilePage(profiles) {
             <div className='profile-container'>
                 <div className='left-container'>
                     <br></br>
-                    <div className='image-container'></div>
+                    <br></br>
+                    <div className='url-container'>Photo URL: {photoURL}</div>
+                    
                 </div>
                 <div className='right-container'>
                     <div className='name-container'>
