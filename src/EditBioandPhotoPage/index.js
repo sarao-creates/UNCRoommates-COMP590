@@ -102,6 +102,7 @@ function EditBioandPhotoPage() {
         "value": "",
     });
     
+    
     // const [file, setFile] = useState("");
     // function handleChange(e) {
     //     console.log(e.target.files);
