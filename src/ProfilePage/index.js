@@ -102,7 +102,10 @@ function ProfilePage() {
                     <br></br>
                     <br></br>
                     <br></br>
-                    <div className='url-container'>Photo URL: {photoURL}</div>
+                    <div className='url-container'><b>Photo URL:</b> 
+                    <br></br>
+                    <a href={photoURL}><u>Click Here</u></a>
+                    </div>
                 </div>
                 <div className='right-container'>
                     <br></br>
