@@ -22,7 +22,6 @@ function ProfilePage() {
     const [allergies, setAllergies] = useState('')
     const [animal, setAnimal] = useState('');
     const [window, setWindow] = useState('');
-    const [user, setUser] = useState({});
     const [flag, setFlag] = useState(false)
     const [photoURL, setPhotoURL] = useState('');
 
@@ -65,7 +64,7 @@ function ProfilePage() {
             
         });
 
-    }, []);
+    }, [auth]);
     let text = '';
     if (gender === 'male') {
         text = text + "<span2>Male</span2>&nbsp;"

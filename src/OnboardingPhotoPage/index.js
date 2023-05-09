@@ -1,8 +1,8 @@
 import React from 'react'
 import {db} from '../Firebase/firebase.js'
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
 import './index.css'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Title from '../WelcomePage/Title/index.js';
 import { Link } from 'react-router-dom';
 import {TextField} from '@mui/material';

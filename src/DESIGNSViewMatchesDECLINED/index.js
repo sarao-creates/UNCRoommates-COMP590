@@ -5,16 +5,15 @@ import NavigationTabs from '../NavigationTabs';
 //import { Link } from 'react-router-dom';
 //import {Redirect} from 'react-router-dom';
 import db from '../Firebase/firebase.js';
-import { getDoc, doc, getDocs, collection } from "firebase/firestore";
+import { getDocs, collection } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
-import { useHistory , Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 import {
   Grid,
   Paper, 
   Typography,
-  Icon
 } from '@mui/material';
 
 //import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -94,7 +93,7 @@ function DESIGNSViewMatchesDECLINED() {
     };
 
     getResponses();
-  }, []);
+  }, [sampleResponse]);
 
   //console.log(responses);
 
@@ -259,7 +258,7 @@ function DESIGNSViewMatchesDECLINED() {
       const handleProfileClick = (id) => {
         console.log(`Clicked profile with ID ${id}`);
         const profile = responsesFiltered.find(p => p.id===id);
-        history.push( '/matcheduserprofile/${id}', {profile});
+        history.push( `/matcheduserprofile/${id}`, {profile});
       };
       if (user===null) {
         return (

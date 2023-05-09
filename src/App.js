@@ -12,7 +12,6 @@ import DESIGNSViewMatchesACCEPTED from './DESIGNSViewMatchesACCEPTED';
 import DESIGNSViewMatchesDECLINED from './DESIGNSViewMatchesDECLINED';
 import MatchedUserProfilePage from './MatchedUserProfilePage';
 import DeactivationConfirmPage from './DeactivationConfirmPage';
-import DeactivatedSettingsPage from './DeactivatedSettingsPage';
 import ReactivationConfirmPage from './ReactivationConfirmPage';
 import EditBioandPhotoPage from './EditBioandPhotoPage';
 

@@ -1,30 +1,30 @@
 import React from 'react'
 import './index.css';
 import { Link } from "react-router-dom";
-import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import { useHistory } from 'react-router-dom';
-import {useState, useEffect} from 'react';
-import {db} from '../../Firebase/firebase.js'
-import { doc, getDoc } from 'firebase/firestore';
+// import {useState, useEffect} from 'react';
+// import {db} from '../../Firebase/firebase.js'
+// import { doc, getDoc } from 'firebase/firestore';
 
 function Title() {
 
   const auth = getAuth();
   const history = useHistory();
 
-  const [user, setUser] = useState({})
+  // const [user, setUser] = useState({})
 
-  useEffect(() => {
+//   useEffect(() => {
 
-    onAuthStateChanged(auth, async (user) => {
-        if (user) {
-          setUser(user);
-        } else {
-          console.log('not signed in')
-        }
-    });
+//     onAuthStateChanged(auth, async (user) => {
+//         if (user) {
+//           setUser(user);
+//         } else {
+//           console.log('not signed in')
+//         }
+//     });
 
-}, []);
+// }, []);
 
   const handleLogout = () => {
 
