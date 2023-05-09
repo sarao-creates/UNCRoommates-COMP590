@@ -18,8 +18,12 @@
 .profile-container {
   margin-left: auto;
   margin-right:auto ;
-  width: 60%;
+  width: 59.5% !important;
   border: #13294B 2px solid;
+}
+
+a {
+  color: #13294B;
 }
 
 .url-container {
@@ -29,6 +33,7 @@
   margin: auto;
   text-align: center;
   overflow-wrap: break-word;
+  overflow: hidden;
 }
 
 .name-container {
