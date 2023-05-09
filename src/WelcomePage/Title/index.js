@@ -37,18 +37,18 @@ function Title() {
     
   }
 
-  const handleSettings = async () => {
-    const docRef = doc(db, "users", user.uid);
-    const docSnap = await getDoc(docRef);
+  // const handleSettings = async () => {
+  //   const docRef = doc(db, "users", user.uid);
+  //   const docSnap = await getDoc(docRef);
 
-    const active = docSnap.data()["active"]
+  //   const active = docSnap.data()["active"]
 
-    if (active === true) {
-      history.push('/settings')
-    } else {
-      history.push('/deactivatedsettings')
-    }
-  }
+  //   if (active === true) {
+  //     history.push('/settings')
+  //   } else {
+  //     history.push('/deactivatedsettings')
+  //   }
+  // }
 
   return (
     <div className = "Title">
@@ -62,7 +62,7 @@ function Title() {
         <button onClick={handleLogout} class="titlebuttonlogout">Logout</button>
         </div>
         <div className='Settings-text'>
-        <button onClick={handleSettings} class="titlebuttonsettings">Settings</button>
+        <Link to='/settings'><button class="titlebuttonsettings">Settings</button></Link>
         </div>
     </div>
   )

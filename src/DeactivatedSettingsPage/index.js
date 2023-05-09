@@ -1,6 +1,6 @@
 import React from 'react'
 import {db} from '../Firebase/firebase.js'
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import './index.css'
 import { useState, useEffect } from 'react';
 import Title from '../WelcomePage/Title';
@@ -8,49 +8,124 @@ import {TextField} from '@mui/material';
 import { fontSize } from '@mui/system';
 import { Link } from "react-router-dom";
 import NavigationTabs from '../NavigationTabs';
+import { getAuth, onAuthStateChanged, reauthenticateWithCredential, EmailAuthProvider, updateEmail, updatePassword } from 'firebase/auth';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 function DeactivatedSettingsPage() {
-    const [Email, setEmail] = useState('')
-    const [Phone, setPhone] = useState('')
-    const [Password, setPassword] = useState('')
-    const [AccountStatus, setAccountStatus] = useState('')
+    const [currentEmail, setCurrentEmail] = useState('')
+    const [currentPhone, setCurrentPhone] = useState('')
+    const [newEmail, setNewEmail] = useState('');
+    const [newPhone, setNewPhone] = useState('');
+    const [active, setActive] = useState('')
+    const [currentEnteredPassword, setCurrentEnteredPassword] = useState('')
+    const [newEnteredPassword, setNewEnteredPassword] = useState('')
+    const [newPasswordConf, setNewPasswordConf] = useState('')
 
-  /*   useEffect(() => {
-    const history = useHistory();
-    const [pwd, setPWD] = useState('');
     const [snackbar, setSnackbar] = useState({
         status: false,
         message: '',
-    }); */
-    
-    /* const handlePWD = (event) => {
-        setPWD(event.target.value);
-    }
-    const handlePasswordChange = () => {
-        checkPassword(auth, pwd).then((userCredential) => {
-            console.log('Original password check successful');
-            history.push('/profile');
+    });
+
+
+
+    const [user, setUser] = useState({});
+
+    const auth = getAuth();
+
+    useEffect(() => {
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const docRef = doc(db, "users", user.uid);
+                const docSnap = await getDoc(docRef);
+                setUser(user)
+                setCurrentEmail(docSnap.data()["email"])
+                setCurrentPhone(docSnap.data()["phone"])
+                setActive(docSnap.data()['active'])
+
+            } else {
+                console.log('user isnt signed in')
+            }
+
+            
+        });
+    }, []);
+
+    const handleSaveChanges = () => {
+
+        if ((newEmail === '') && (newPhone === '') && (newEnteredPassword === '')) {
+            setSnackbar({status: true, message: 'No entry for new email, phone, or password has been made. Please try again.'})
+        }
+
+        // const credential = promptForCredentials();
+        reauthenticateWithCredential(auth.currentUser, EmailAuthProvider.credential(auth.currentUser.email, currentEnteredPassword)).then(async () => {
+            console.log('it worked')
+            console.log(currentEmail)
+            console.log(newEmail);
+            if ((currentEmail != newEmail) && (newEmail != '')) {
+                console.log(' are we getting here');
+                updateEmail(auth.currentUser, newEmail).then(async () => {
+                    await updateDoc(doc(db, "users", user.uid), {"email":newEmail})
+                    setSnackbar({status: true, message: 'Your email has been updated!'})
+                }).catch((error) => {
+                    let errorCode = error.code;
+                    let errorMessage = error.message;
+                    setSnackbar({status: true, message: `${errorCode} - ${errorMessage}`});
+                });
+            }
+
+            if ((currentPhone != newPhone) && (newPhone != '')) {
+                await updateDoc(doc(db, "users", user.uid), {"phone":newPhone})
+                setSnackbar({status: true, message: 'Your phone has been updated!'})
+            }
+
+            if ((currentEnteredPassword != newEnteredPassword) && (newEnteredPassword != '')) {
+                if (newEnteredPassword === newPasswordConf) {
+                    updatePassword(auth.currentUser, newEnteredPassword).then(() => {
+                        setSnackbar({status: true, message: 'Your password has been updated!'})
+                    }).catch((error) => {
+                        let errorCode = error.code;
+                        let errorMessage = error.message;
+                        setSnackbar({status: true, message: `${errorCode} - ${errorMessage}`});
+                    });
+                } else {
+                    setSnackbar({status: true, message: 'New password and confirmation do not match! Please try again.'})
+                }
+                  
+            }
         }).catch((error) => {
             let errorCode = error.code;
             let errorMessage = error.message;
             setSnackbar({status: true, message: `${errorCode} - ${errorMessage}`});
-            console.log(`${errorCode} - ${errorMessage}`);
-        })
+        });
+
+
+        
     }
- */
-    /* const docLookup = async () => {
-    const docRef = doc(db, "Users", "rkEcudx9k33I5nD8TC9a");
-    const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-            setEmail(docSnap.data()["Email"])
-            setPhone(docSnap.data()["Phone Number"])
-            setPassword(docSnap.data()["Password"])
-            setAccountStatus(docSnap.data()["Account Status"])
-            } else {
-                setEmail("Error")
-            }    
-        }
-    }, []); */
+
+    const handleCurrentPWDEntry = (event) => {
+        setCurrentEnteredPassword(event.target.value);
+    }
+
+    const handleNewPWDEntry = (event) => {
+        setNewEnteredPassword(event.target.value);
+    }
+
+    const handleNewPhone = (event) => {
+        setNewPhone(event.target.value)
+    }
+
+    const handleNewEmail = (event) => {
+        setNewEmail(event.target.value);
+    }
+
+    const handleNewPWDConfirmation = (event) => {
+        setNewPasswordConf(event.target.value);
+    }
+
+
+  
 
     return (
         <div>
@@ -75,12 +150,12 @@ function DeactivatedSettingsPage() {
                             label="Enter your current password"
                             type="email"
                             size="small"
-                            //onChange={}
+                            onChange={handleCurrentPWDEntry}
                         />
                         <br></br>
                         <br></br>
                         <div className='deactivatedalignment-container'>
-                            <Link to="/deactivatedsettings"><button class="deactivatedbutton deactivatedbutton-save"><span className='checkmark'><b>&#x2713; </b></span> Save Changes</button></Link>
+                            <Link to="/settings"><button onClick={handleSaveChanges} class="deactivatedbutton deactivatedbutton-save"><span className='checkmark'><b>&#x2713; </b></span> Save Changes</button></Link>
                         </div>
                         </div>
                     </div>
@@ -93,23 +168,23 @@ function DeactivatedSettingsPage() {
                             </div>
                         </div>
                         <div className='deactivatedtextpadding'>
-                        <div className='deactivatedsettingstextinputheader'><b>Current Email:</b> {Email}</div>
+                        <div className='deactivatedsettingstextinputheader'><b>Current Email:</b> {currentEmail}</div>
                         <TextField
                             fullWidth
                             id="email"
                             label="New email"
                             type="email"
                             size="small"
-                            //onChange={}
+                            onChange={handleNewEmail}
                         />
-                    <div className='deactivatedsettingstextinputheader'><b>Current Phone Number:</b> {Phone}</div>
+                    <div className='deactivatedsettingstextinputheader'><b>Current Phone Number:</b> {currentPhone}</div>
                         <TextField
                             fullWidth
                             id="phone"
                             label="New phone number"
                             type="email"
                             size="small"
-                            //onChange={}
+                            onChange={handleNewPhone}
                         />
                     </div>
                     </div>
@@ -122,24 +197,24 @@ function DeactivatedSettingsPage() {
                         </div>
                     </div>
                     <div className='deactivatedtextpadding'>
-                        <div className='deactivatedsettingstextinputheader'><b>New Password:</b> {Password}</div>
+                        <div className='deactivatedsettingstextinputheader'><b>New Password:</b></div>
                         <TextField
                             fullWidth
                             id="currentpassword"
-                            label="Enter your current password"
+                            label="Enter your new password"
                             type="email"
                             size="small"
-                            //onChange={}
+                            onChange={handleNewPWDEntry}
                         />
                         <br></br>
                         <br></br>
                         <TextField
                             fullWidth
                             id="newpassword"
-                            label="Enter new password"
+                            label="Re-enter new password"
                             type="email"
                             size="small"
-                            //onChange={}
+                            onChange={handleNewPWDConfirmation}
                         />
                         </div>
                 </div>
@@ -151,6 +226,9 @@ function DeactivatedSettingsPage() {
                 </div> 
                 <br></br>
             </div>
+            <Snackbar open={snackbar.status} autoHideDuration={7500} onClose={() => setSnackbar({status: false})}> 
+                    <Alert severity='info'>{snackbar.message}</Alert>
+            </Snackbar>
         </div>
     )
 }
