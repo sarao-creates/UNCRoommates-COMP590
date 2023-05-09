@@ -96,32 +96,9 @@ function Survey() {
       
     });
 
-    // async function getSurveyData() {
-    //   const surveyData = (await getDoc(doc(db, "users", uid))).data().responses;
-    //   console.log(uid)
-    //   console.log(surveyData)
-    //   if (surveyData) {
-    //     // setName(surveyData.name);
-    //     setBirthYear(surveyData.birthYear);
-    //     setGender(surveyData.gender);
-    //     setClassYear(surveyData.classYear);
-    //     setMajor(surveyData.major);
-    //     setLocation(surveyData.location);
-    //     setBedTime(surveyData.bedTime);
-    //     setWakeTime(surveyData.wakeTime);
-    //     setNoiseLevel(surveyData.noiseLevel);
-    //     setGuestLevel(surveyData.guestLevel);
-    //     setTidiness(surveyData.tidiness);
-    //     setAllergies(surveyData.allergies);
-    //     setAccomodations(surveyData.accomodations);
-    //     setWindow(surveyData.window);
-    //     setAnimal(surveyData.animal);
-    //     setParty(surveyData.party);
-    //   }
-    // }
-    // getSurveyData();
     
-  }, [auth]);
+    
+  }, []);
   
 
   const handleSubmit = async(e) => {

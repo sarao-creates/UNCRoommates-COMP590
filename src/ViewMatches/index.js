@@ -113,7 +113,7 @@ function ViewMatches() {
         console.log("not logged in")
       }
     });
-  });
+  }, []);
 
   //console.log(responses);
 

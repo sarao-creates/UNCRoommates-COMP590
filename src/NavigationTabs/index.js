@@ -32,7 +32,7 @@ function NavigationTabs() {
       
       
 
-  });
+  }, []);
 
   if (active) {
     return (
