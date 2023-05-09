@@ -24,13 +24,10 @@ function OnboardingBioPage() {
     });
 
     const validate = () => {
-        console.log(bioInfo['count'])
-        if (bioInfo["count"] >= 150 & bioInfo["count"] < 1500) {
-            return true;
-        }
-        else {
-            return false;
-        }
+
+        console.log(bioInfo["count"]);
+        return (bioInfo["count"] >= 150 & bioInfo["count"] < 1500);
+
       };
 
     const [snackbar, setSnackbar] = useState({
@@ -65,7 +62,7 @@ function OnboardingBioPage() {
                             type="text"
                             rows={5}
                             className="full_height_Width"
-                            onChange={e => setBioInfo({"count": e.target.value.length, "value":e.target.value})}
+                            onChange={(e) => setBioInfo({"count": e.target.value.length, "value":e.target.value})}
                         />
                         <p><b>Character Count: {bioInfo['count']}</b></p>
                         <button onClick={handleBio} class="button button-next" type="button" disabled={!validate()}>Next</button>
