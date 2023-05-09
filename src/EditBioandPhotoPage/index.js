@@ -21,7 +21,7 @@ function EditBioandPhotoPage() {
     const [birthday, setBirthday] = useState('')
     const [location, setLocation] = useState('')
     const [party, setParty] = useState('')
-    // const [sleep, setSleep] = useState('')
+    const [sleep, setSleep] = useState('')
     const [wake, setWake] = useState('')
     const [year, setYear] = useState('')
     const [allergies, setAllergies] = useState('')
@@ -58,7 +58,7 @@ function EditBioandPhotoPage() {
                     setBirthday(docSnap.data()['responses']['birthYear'])
                     setLocation(docSnap.data()["responses"]['location'])
                     setParty(docSnap.data()["responses"]["party"])
-                    // setSleep(docSnap.data()["responses"]["bedTime"])
+                    setSleep(docSnap.data()["responses"]["bedTime"])
                     setWake(docSnap.data()["responses"]["wakeTime"])
                     setYear(docSnap.data()["responses"]["classYear"])
                     setAllergies(docSnap.data()["responses"]["allergies"])
@@ -79,31 +79,31 @@ function EditBioandPhotoPage() {
 
 
     }, [auth]);
-    // let text = '';
-    // if (gender === 'male') {
-    //     text = text + "<span2>Male</span2>&nbsp;"
-    // } else if (gender === 'female') {
-    //     text = text + "<span>Female</span>&nbsp;"
-    // }
-    // if (wake === "Early") {
-    //     text = text + "<span3>Early Riser</span3>&nbsp;"
-    // }
-    // if (sleep === "Late") {
-    //     text = text + "<span4>Night Owl</span4>&nbsp;"
-    // }
-    // if (window === "Open") {
-    //     text = text + "<span5>Window Opened</span5>&nbsp;"
-    // }
-    // if (window === "Closed") {
-    //     text = text + "<span6>Window Closed</span6>&nbsp;"
-    // }
-    // if (party === "I love to party") {
-    //     text = text + "<span7>Party Friendly</span7>&nbsp;"
-    // }
-    // //console.log(animal);
-    // if (animal === "Yes") {
-    //     text = text + "<span8>Animal Friendly</span8>&nbsp;"
-    // }
+    let text = '';
+    if (gender === 'male') {
+        text = text + "<span2>Male</span2>&nbsp;"
+    } else if (gender === 'female') {
+        text = text + "<span>Female</span>&nbsp;"
+    }
+    if (wake === "Early") {
+        text = text + "<span3>Early Riser</span3>&nbsp;"
+    }
+    if (sleep === "Late") {
+        text = text + "<span4>Night Owl</span4>&nbsp;"
+    }
+    if (window === "Open") {
+        text = text + "<span5>Window Opened</span5>&nbsp;"
+    }
+    if (window === "Closed") {
+        text = text + "<span6>Window Closed</span6>&nbsp;"
+    }
+    if (party === "I love to party") {
+        text = text + "<span7>Party Friendly</span7>&nbsp;"
+    }
+    //console.log(animal);
+    if (animal === "Yes") {
+        text = text + "<span8>Animal Friendly</span8>&nbsp;"
+    }
 
     const [bioInfo, setBioInfo] = useState({
         "count": 0,
