@@ -37,7 +37,7 @@ function DeactivationConfirmPage() {
         
         });
 
-    });
+    }, []);
 
 
     return (

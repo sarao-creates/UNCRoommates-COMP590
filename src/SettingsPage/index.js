@@ -56,7 +56,7 @@ function SettingsPage() {
 
             
         });
-    });
+    }, []);
 
     const handleSaveChanges = () => {
 
