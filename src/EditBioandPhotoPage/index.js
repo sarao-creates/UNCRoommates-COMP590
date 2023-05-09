@@ -109,8 +109,8 @@ function EditBioandPhotoPage() {
     });
     useEffect(() => {
         setBioInfo({"count":bio.length, "value": bio});
-    })
-    //console.log("1");
+    },[bio]);
+    console.log("1");
     
     
 
