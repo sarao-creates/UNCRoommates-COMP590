@@ -27,7 +27,6 @@ function EditBioandPhotoPage() {
     const [allergies, setAllergies] = useState('')
     const [animal, setAnimal] = useState('');
     const [window, setWindow] = useState('');
-    const [sleep, setSleep] = useState('');
     const [user, setUser] = useState({});
 
     const [photo, setPhoto] = useState('');
