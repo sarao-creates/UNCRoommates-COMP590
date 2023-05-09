@@ -56,7 +56,7 @@ function DeactivationConfirmPage() {
                     <Link to="/settings"><button class="button" type="button">&#x2716; Go Back</button></Link>
                     </div>
                     <div className='alignleft'>
-                    <Link to="/deactivatedsettings"><button class="button" type="button" onClick={handleDeactivation}>&#x2714; Yes, Deactivate Account</button></Link>
+                    <Link to="/settings"><button class="button" type="button" onClick={handleDeactivation}>&#x2714; Yes, Deactivate Account</button></Link>
                     </div>
                     </div>
                 <br></br>

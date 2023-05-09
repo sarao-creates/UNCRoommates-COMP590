@@ -30,7 +30,6 @@ const DESIGNSViewMatchesDECLINEDPath = '/DESIGNSviewmatchesDECLINED'
 const MatchedUserProfilePath = '/matcheduserprofile/:id';
 const ReactivationConfirmPath = '/reactivationconfirm';
 const DeactivationConfirmPath = '/deactivationconfirm';
-const DeactivatedSettingsPath = '/deactivatedsettings';
 const EditBioandPhotoPath = '/editbioandphoto';
 
 
@@ -54,7 +53,6 @@ function App() {
       <Route path={DESIGNSViewMatchesDECLINEDPath} component={DESIGNSViewMatchesDECLINED}></Route>
       <Route path={MatchedUserProfilePath} component={MatchedUserProfilePage}></Route>
       <Route path={DeactivationConfirmPath} component={DeactivationConfirmPage}></Route>
-      <Route path={DeactivatedSettingsPath} component={DeactivatedSettingsPage}></Route>
       <Route path={ReactivationConfirmPath} component={ReactivationConfirmPage}></Route>
       <Route path={EditBioandPhotoPath} component={EditBioandPhotoPage}></Route>
       </Switch>
