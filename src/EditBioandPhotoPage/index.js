@@ -6,7 +6,7 @@ import './index.css';
 import Title from '../WelcomePage/Title';
 import NavigationTabs from '../NavigationTabs';
 import { Link, useHistory } from "react-router-dom";
-import {TextField} from '@mui/material';
+import {TextField, useForkRef} from '@mui/material';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
@@ -29,6 +29,11 @@ function EditBioandPhotoPage() {
     const [user, setUser] = useState({});
 
     const [photo, setPhoto] = useState('');
+
+
+    const history = useHistory();
+    //console.log(bioLength);
+    
 
     const auth = getAuth();
 
@@ -64,6 +69,8 @@ function EditBioandPhotoPage() {
             } else {
 
             }
+            
+            
 
             
         });
@@ -91,17 +98,22 @@ function EditBioandPhotoPage() {
     if (party === "I love to party") {
         text = text + "<span7>Party Friendly</span7>&nbsp;"
     }
-    console.log(animal);
+    //console.log(animal);
     if (animal === "Yes") {
         text = text + "<span8>Animal Friendly</span8>&nbsp;"
     }
 
-    const history = useHistory();
     const [bioInfo, setBioInfo] = useState({
         "count": 0,
         "value": "",
     });
+    useEffect(() => {
+        setBioInfo({"count":bio.length, "value": bio});
+    })
+    //console.log("1");
     
+    
+
     
     // const [file, setFile] = useState("");
     // function handleChange(e) {
@@ -205,7 +217,7 @@ function EditBioandPhotoPage() {
                     className="full_height_Width"
                     onChange={e => setBioInfo({"count": e.target.value.length, "value":e.target.value})}
                 />
-                <p><b>Character Count: {bioInfo['count']}</b></p>
+                <p><b>Character Count: {bioInfo["count"]}</b></p>
                 </div>
             </div>
             <Snackbar open={snackbar.status} autoHideDuration={7500} onClose={() => setSnackbar({status: false})}> 
