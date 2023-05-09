@@ -41,6 +41,7 @@ function SettingsPage() {
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 setFlag(true);
+                console.log('test');
                 const docRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(docRef);
                 setUser(user)

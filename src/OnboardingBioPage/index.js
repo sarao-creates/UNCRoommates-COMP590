@@ -24,10 +24,13 @@ function OnboardingBioPage() {
     });
 
     const validate = () => {
-
-        console.log(bioInfo["count"]);
-        return (bioInfo["count"] >= 150 & bioInfo["count"] < 1500);
-
+        console.log(bioInfo['count'])
+        if (bioInfo["count"] >= 150 & bioInfo["count"] < 1500) {
+            return true;
+        }
+        else {
+            return false;
+        }
       };
 
     const [snackbar, setSnackbar] = useState({

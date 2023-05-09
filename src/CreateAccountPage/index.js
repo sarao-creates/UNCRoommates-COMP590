@@ -20,6 +20,7 @@ function CreateAccountPage() {
         firstName: '',
         lastName: '',
         phone: '',
+        active: true,
     })
 
      const [snackbar, setSnackbar] = useState({

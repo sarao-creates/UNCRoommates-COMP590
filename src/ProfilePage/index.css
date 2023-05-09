@@ -68,6 +68,7 @@ a {
   height:fit-content;
   width: auto;
   padding: 10px;
+  overflow-wrap: break-word;
 }
 
 .profile-characteristics {
